@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Airbus A320 Flight Phases by FWC — Visual Technical Guide</title>
+<style>
+:root {
+  --bg:#081018; --side:#0c151e; --panel:#101b25; --panel2:#162431;
+  --line:#2a3d4d; --text:#eaf1f6; --muted:#9fb1be; --accent:#52b8ff;
+  --green:#72d9b3; --mag:#d783ff; --warn:#f2b94b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 "Segoe UI",Arial,sans-serif}
+a{color:inherit;text-decoration:none}
+.sidebar{position:fixed;inset:0 auto 0 0;width:285px;background:var(--side);border-right:1px solid var(--line);padding:24px 18px;overflow:auto}
+.brand{font-size:20px;font-weight:760}
+.sub{font-size:12px;color:var(--muted);margin-top:5px}
+.nav{margin-top:22px}
+.nav a{display:block;padding:9px 10px;border-radius:8px;color:#dce8ef}
+.nav a:hover{background:var(--panel2)}
+.phase-links{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-top:16px}
+.phase-links a{text-align:center;padding:7px 0;border:1px solid var(--line);border-radius:7px;background:#12202b;color:var(--accent)}
+.main{margin-left:285px;padding:34px;max-width:1500px}
+.hero{background:linear-gradient(135deg,#14283a,#0e1720);border:1px solid var(--line);border-radius:17px;padding:28px}
+.hero h1{margin:0 0 7px;font-size:31px}
+.hero p{max-width:900px;color:#c7d3dc}
+.kicker{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:800}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.badge{border:1px solid #31536d;background:#162837;border-radius:999px;padding:6px 9px;font-size:12px}
+.note{border-left:4px solid var(--accent);background:#0e1a24;border-radius:8px;padding:12px 14px;margin:18px 0}
+.note.mag{border-left-color:var(--mag)}
+.section{scroll-margin-top:20px;margin:22px 0;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:23px}
+.section h2{margin:3px 0 17px;font-size:23px}
+.figures{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:14px}
+.figure-card{margin:0;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px}
+.figure-card img{display:block;width:100%;height:auto;border-radius:7px;background:#fff}
+.figure-card figcaption{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-top:10px;flex-wrap:wrap}
+.figure-link{color:var(--accent);font-size:12px;border:1px solid #35536a;border-radius:7px;padding:6px 8px;background:#10283a}
+.phase-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:13px}
+.phase-card{display:flex;gap:14px;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:15px;scroll-margin-top:18px}
+.phase-num{flex:0 0 46px;height:46px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#102c42;border:1px solid #3c6787;color:var(--accent);font-weight:800;font-size:19px}
+.phase-body h3{margin:0 0 4px;font-size:17px}
+.range{color:var(--green);font-weight:650;font-size:13px}
+.phase-body p{color:var(--muted);font-size:13px;margin:7px 0 0}
+.timeline{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;margin:14px 0}
+.timeline a{text-align:center;padding:10px 2px;border-radius:7px;background:#142636;border:1px solid #2c4559;font-weight:700;color:#dce9f1}
+.timeline a:nth-child(3),.timeline a:nth-child(4),.timeline a:nth-child(5){box-shadow:inset 0 -3px 0 var(--mag)}
+.timeline a:nth-child(7),.timeline a:nth-child(8){box-shadow:inset 0 -3px 0 var(--mag)}
+.legend{font-size:12px;color:var(--muted)}
+.top{position:fixed;right:18px;bottom:18px;background:#172837;border:1px solid #365974;padding:10px 12px;border-radius:10px}
+.footer{font-size:12px;color:var(--muted);padding:20px 0 60px}
+@media(max-width:900px){
+ .sidebar{position:static;width:auto;border-right:0;border-bottom:1px solid var(--line)}
+ .main{margin:0;padding:18px}
+ .figures,.phase-grid{grid-template-columns:1fr}
+}
+@media print{
+ .sidebar,.top,.figure-link{display:none}
+ .main{margin:0;padding:0}
+ body{background:white;color:black}
+ .hero,.section,.figure-card,.phase-card{background:white;color:black;border-color:#bbb}
+ .phase-body p,.hero p,.sub,.legend{color:#555}
+}
+</style>
+</head>
+<body id="top">
+<aside class="sidebar">
+  <div class="brand">A320 Flight Phases</div>
+  <div class="sub">FWC Technical Visual Guide</div>
+  <nav class="nav">
+    <a href="#overview">Overview</a>
+    <a href="#figures">Reference Figures</a>
+    <a href="#timeline">Phase Timeline</a>
+    <a href="#phases">Flight Phases 1–10</a>
+    <a href="#notes">FWC Notes</a>
+  </nav>
+  <div class="phase-links"><a href="#phase-1">1</a> <a href="#phase-2">2</a> <a href="#phase-3">3</a> <a href="#phase-4">4</a> <a href="#phase-5">5</a> <a href="#phase-6">6</a> <a href="#phase-7">7</a> <a href="#phase-8">8</a> <a href="#phase-9">9</a> <a href="#phase-10">10</a></div>
+</aside>
+
+<main class="main">
+<section class="hero" id="overview">
+  <div class="kicker">Airbus A320 • Flight Warning Computer</div>
+  <h1>Flight Phases 1 to 10 — Visual Technical Guide</h1>
+  <p>The A320 Flight Warning Computers determine ten operational flight phases from aircraft configuration signals. The phases are used by the warning/display logic and are independent from FMGC flight phases.</p>
+  <div class="badges">
+    <span class="badge">FWC 1 / FWC 2</span>
+    <span class="badge">ECAM</span>
+    <span class="badge">T.O. INHIBIT</span>
+    <span class="badge">LDG INHIBIT</span>
+    <span class="badge">FCOM DSC-31-15</span>
+  </div>
+</section>
+
+<div class="note mag">
+<strong>Warning inhibition:</strong> T.O. INHIBIT is associated with phases 3–5, while LDG INHIBIT is associated with phases 7–8.
+</div>
+
+<section class="section" id="figures">
+  <div class="kicker">Visual references</div>
+  <h2>Reference Figures</h2>
+  <div class="figures">
+    
+    <figure class="figure-card">
+      <img src="https://www.aviationhunt.com/wp-content/uploads/2024/03/a320-fwc-flight-phases-featured.webp" alt="A320 FWC flight phases overview" loading="lazy">
+      <figcaption>
+        <strong>A320 Flight Phases — Overview</strong>
+        <a class="figure-link" href="https://www.aviationhunt.com/wp-content/uploads/2024/03/a320-fwc-flight-phases-featured.webp" target="_blank" rel="noopener">Open figure ↗</a>
+      </figcaption>
+    </figure>
+    
+
+    <figure class="figure-card">
+      <img src="https://www.aviationhunt.com/wp-content/uploads/2024/03/a320-flight-phases-by-fwc.webp" alt="A320 flight phases by Flight Warning Computer" loading="lazy">
+      <figcaption>
+        <strong>A320 Flight Phases by FWC — System Logic</strong>
+        <a class="figure-link" href="https://www.aviationhunt.com/wp-content/uploads/2024/03/a320-flight-phases-by-fwc.webp" target="_blank" rel="noopener">Open figure ↗</a>
+      </figcaption>
+    </figure>
+    
+  </div>
+</section>
+
+<section class="section" id="timeline">
+  <div class="kicker">Quick navigation</div>
+  <h2>Flight Phase Timeline</h2>
+  <div class="timeline">
+    <a href="#phase-1">1</a><a href="#phase-2">2</a><a href="#phase-3">3</a><a href="#phase-4">4</a><a href="#phase-5">5</a><a href="#phase-6">6</a><a href="#phase-7">7</a><a href="#phase-8">8</a><a href="#phase-9">9</a><a href="#phase-10">10</a>
+  </div>
+  <div class="legend">Magenta underline: phases associated with T.O. INHIBIT (3–5) and LDG INHIBIT (7–8).</div>
+</section>
+
+<section class="section" id="phases">
+  <div class="kicker">FWC logic</div>
+  <h2>The 10 Flight Phases</h2>
+  <div class="phase-grid">
+    
+    <article class="phase-card" id="phase-1">
+      <div class="phase-num">1</div>
+      <div class="phase-body">
+        <h3>Flight Phase 1</h3>
+        <div class="range">Electrical power ON → first engine start</div>
+        <p>On ground; both engines stopped.</p>
+      </div>
+    </article>
+    
+
+    <article class="phase-card" id="phase-2">
+      <div class="phase-num">2</div>
+      <div class="phase-body">
+        <h3>Flight Phase 2</h3>
+        <div class="range">First engine start → takeoff power</div>
+        <p>On ground; below 80 kt; at least one engine running.</p>
+      </div>
+    </article>
+    
+
+    <article class="phase-card" id="phase-3">
+      <div class="phase-num">3</div>
+      <div class="phase-body">
+        <h3>Flight Phase 3</h3>
+        <div class="range">Takeoff power applied → accelerating to 80 kt</div>
+        <p>On ground; below 80 kt; takeoff power set.</p>
+      </div>
+    </article>
+    
+
+    <article class="phase-card" id="phase-4">
+      <div class="phase-num">4</div>
+      <div class="phase-body">
+        <h3>Flight Phase 4</h3>
+        <div class="range">80 kt → liftoff</div>
+        <p>On ground; above 80 kt; takeoff power set.</p>
+      </div>
+    </article>
+    
+
+    <article class="phase-card" id="phase-5">
+      <div class="phase-num">5</div>
+      <div class="phase-body">
+        <h3>Flight Phase 5</h3>
+        <div class="range">Liftoff → 1500 ft</div>
+        <p>Airborne; RA below 1500 ft. Maximum duration: 2 min.</p>
+      </div>
+    </article>
+    
+
+    <article class="phase-card" id="phase-6">
+      <div class="phase-num">6</div>
+      <div class="phase-body">
+        <h3>Flight Phase 6</h3>
+        <div class="range">1500 ft → 800 ft</div>
+        <p>Airborne cruise/climb segment outside phases 5 and 7.</p>
+      </div>
+    </article>
+    
+
+    <article class="phase-card" id="phase-7">
+      <div class="phase-num">7</div>
+      <div class="phase-body">
+        <h3>Flight Phase 7</h3>
+        <div class="range">Below 800 ft → touchdown</div>
+        <p>Approach/descent logic. Maximum duration: 3 min.</p>
+      </div>
+    </article>
+    
+
+    <article class="phase-card" id="phase-8">
+      <div class="phase-num">8</div>
+      <div class="phase-body">
+        <h3>Flight Phase 8</h3>
+        <div class="range">Touchdown → decelerating to 80 kt</div>
+        <p>On ground; takeoff power not set.</p>
+      </div>
+    </article>
+    
+
+    <article class="phase-card" id="phase-9">
+      <div class="phase-num">9</div>
+      <div class="phase-body">
+        <h3>Flight Phase 9</h3>
+        <div class="range">Below 80 kt → second engine shutdown</div>
+        <p>On ground; at least one engine running.</p>
+      </div>
+    </article>
+    
+
+    <article class="phase-card" id="phase-10">
+      <div class="phase-num">10</div>
+      <div class="phase-body">
+        <h3>Flight Phase 10</h3>
+        <div class="range">Second engine shutdown → 5 min later</div>
+        <p>On ground; both engines stopped; then returns to phase 1.</p>
+      </div>
+    </article>
+    
+  </div>
+</section>
+
+<section class="section" id="notes">
+  <div class="kicker">Technical notes</div>
+  <h2>FWC Notes</h2>
+  <div class="note"><strong>Phase 5:</strong> if the aircraft remains airborne beyond the phase-5 time limit, the logic transitions to phase 6.</div>
+  <div class="note"><strong>Phase 7:</strong> approach logic remains active until ground detection or climb above the applicable altitude threshold; its duration is limited.</div>
+  <div class="note"><strong>Ground logic:</strong> the source describes “on ground” using landing-gear downlocked/compressed information together with very low radio-altimeter height.</div>
+  <div class="note"><strong>Reference:</strong> detailed flight-phase logic is identified in the source as FCOM DSC-31-15.</div>
+</section>
+
+<div class="footer">A320 Flight Phases by FWC — visual quick-reference page.</div>
+</main>
+<a class="top" href="#top">↑ Top</a>
+</body>
+</html>

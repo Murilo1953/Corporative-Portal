@@ -1,0 +1,371 @@
+```
+html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>PAINEL OPERACIONAL – LATAM MOC</title>
+
+<style>
+    body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        background: #f4f6f9;
+        margin: 0;
+        padding: 0;
+        transition: background 0.3s, color 0.3s;
+    }
+
+    /* DARK MODE */
+    body.dark {
+        background: #1e1e1e;
+        color: #e0e0e0;
+    }
+    body.dark .section { background: #2b2b2b; border-top-color: #E4007C; }
+    body.dark .card { background: #3a3a3a; border-left-color: #E4007C; }
+    body.dark a { color: #E4007C; }
+
+    /* SIDEBAR */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 240px;
+        height: 100%;
+        background: #6D2077;
+        color: white;
+        padding-top: 30px;
+        box-shadow: 3px 0 10px rgba(0,0,0,0.2);
+    }
+    .sidebar h3 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 20px;
+        font-weight: 600;
+    }
+    .sidebar a {
+        display: block;
+        padding: 12px 20px;
+        color: white;
+        text-decoration: none;
+        font-size: 16px;
+        transition: 0.2s;
+    }
+    .sidebar a:hover { background: #E4007C; }
+
+    .dark-toggle {
+        margin: 20px auto;
+        display: block;
+        padding: 10px 20px;
+        background: #E4007C;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.2s;
+    }
+    .dark-toggle:hover { background: #ff1aa8; }
+
+    /* CONTENT */
+    .container {
+        padding: 30px;
+        margin-left: 240px;
+    }
+
+    .section {
+        background: white;
+        padding: 25px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        border-top: 6px solid #6D2077;
+    }
+    .section h2 {
+        margin-top: 0;
+        padding-bottom: 10px;
+        border-bottom: 3px solid #E4007C;
+        color: #6D2077;
+        font-size: 22px;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    .card {
+        background: #ffffff;
+        border-radius: 10px;
+        padding: 20px;
+        text-align: center;
+        border-left: 6px solid #6D2077;
+        transition: 0.2s;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .card:hover {
+        transform: scale(1.03);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .card a {
+        text-decoration: none;
+        color: #6D2077;
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    .icon {
+        font-size: 40px;
+        margin-bottom: 10px;
+        color: #E4007C;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+        .sidebar { width: 100%; height: auto; position: relative; }
+        .container { margin-left: 0; }
+    }
+</style>
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+<div class="sidebar">
+    <h3>LATAM Portal</h3>
+    <a href="#ops">Operations</a>
+    <a href="#maint">Maintenance Facilities</a>
+    <a href="#a320-moc">A320 MOC Maintenance Facilities</a>
+    <a href="#mfg">Manufacturers</a>
+    <a href="#docs">Documentation</a>
+    <a href="#extra">Recursos Adicionais</a>
+
+    <button class="dark-toggle" onclick="document.body.classList.toggle('dark')">
+        Alternar Dark Mode
+    </button>
+</div>
+
+<div class="container">
+
+<!-- OPERATIONS -->
+<div class="section" id="ops">
+    <h2>🟦 Operations & Control Room</h2>
+    <div class="grid">
+
+        <div class="card"><div class="icon">✈️</div>
+            <a href="https://iflightla.ibsplc.aero/iflight-limops/web/getMainPage" target="_blank">Limops</a>
+        </div>
+
+        <div class="card"><div class="icon">✈️</div>
+            <a href="https://iflightla.ibsplc.aero/iflight-ops/web/getMainPage" target="_blank">Malha Aérea LATAM</a>
+        </div>
+
+        <div class="card"><div class="icon">📊</div>
+            <a href="https://portalmoc.appslatam.com/operations/ac-flight-monitoring" target="_blank">Dashboards</a>
+        </div>
+
+        <div class="card"><div class="icon">📋</div>
+            <a href="https://trello.com/b/IdrmcHRA/moc" target="_blank">Trello</a>
+        </div>
+
+        <div class="card"><div class="icon">📦</div>
+            <a href="https://fiori.appslatam.com/sites/prd#stockSituationMMBE-Display?mode=MMBE" target="_blank">Stock Situation</a>
+        </div>
+
+        <div class="card"><div class="icon">🚚</div>
+            <a href="https://cargo-heroes.appslatam.com/#/app" target="_blank">Cargo Heroes</a>
+        </div>
+
+        <div class="card"><div class="icon">🔧</div>
+            <a href="https://maintenix.lan.com/maintenix/common/security/login.jsp" target="_blank">Maintenix</a>
+        </div>
+
+        <div class="card"><div class="icon">📊</div>
+            <a href="https://datastudio.google.com/u/0/reporting/1rLUa2IErQ-fI172csXDY18MX4LCEwREU/page/lIkR" target="_blank">CCM MEL</a>
+        </div>
+
+        <div class="card"><div class="icon">🧰</div>
+            <a href="https://client.wvd.microsoft.com/arm/webclient/index.html" target="_blank">Aircom</a>
+        </div>
+
+        <div class="card"><div class="icon">🛠️</div>
+            <a href="https://laningenieria.sysaidit.com/HelpDesk.jsp?fromId=IncidentsList" target="_blank">SysAid</a>
+        </div>
+
+    </div>
+</div>
+
+<!-- MAINTENANCE FACILITIES -->
+<div class="section" id="maint">
+    <h2>🟩 Maintenance Facilities</h2>
+    <div class="grid">
+
+        
+
+        <div class="card"><div class="icon">🎓</div>
+            <a href="https://sites.google.com/latam.com/lc-line-control/facilitadores-b777" target="_blank">Facilitadores B777</a>
+        </div>
+
+        <div class="card"><div class="icon">🎓</div>
+            <a href="https://sites.google.com/latam.com/lc-line-control/facilitadores-b787" target="_blank">Facilitadores B787</a>
+        </div>
+
+        <div class="card"><div class="icon">🎓</div>
+            <a href="https://sites.google.com/latam.com/lc-line-control/facilitadores-embraer-e2" target="_blank">Facilitadores Embraer E2</a>
+        </div>
+
+    </div>
+</div>
+
+        <!-- A320 MOC MAINTENANCE FACILITIES -->
+        <div class="section" id="a320-moc">
+            <h2>🛠️ A320 MOC Maintenance Facilities</h2>
+            <div class="grid">
+
+                
+
+                
+                <div class="card"><div class="icon">📞</div>
+                    <a href="file:///C:/Users/limam/OneDrive/Airbus%20A320%20Family/Alpha_Call_Up_References.html" target="_blank">Alpha Call Up References</a>
+                </div>
+                <div class="card"><div class="icon">🖥️</div>
+                    <a href="file:///C:/Users/limam/OneDrive/Airbus%20A320%20Family/Avionics_Computers_Visual_Guide.html" target="_blank">Avionics Computers Visual Guide</a>
+                </div>
+                <div class="card"><div class="icon">🧪</div>
+                    <a href="file:///C:/Users/limam/OneDrive/Airbus%20A320%20Family/CFDS_BITE_MODES_Guide.html" target="_blank">CFDS BITE Modes Guide</a>
+                </div>
+                <div class="card"><div class="icon">🎛️</div>
+                    <a href="file:///C:/Users/limam/OneDrive/Airbus%20A320%20Family/Cockpit_Panels_Visual_Guide.html" target="_blank">Cockpit Panels Visual Guide</a>
+                </div>
+                <div class="card"><div class="icon">📊</div>
+                    <a href="file:///C:/Users/limam/OneDrive/Airbus%20A320%20Family/ECAM_SD_Pages_Visual_Technical_Guide.html" target="_blank">ECAM SD Pages Visual Technical Guide</a>
+                </div>
+                <div class="card"><div class="icon">✈️</div>
+                    <a href="file:///C:/Users/limam/OneDrive/Airbus%20A320%20Family/Flight_Phases_FWC_Visual_Guide.html" target="_blank">Flight Phases FWC Visual Guide</a>
+                </div>
+                <div class="card"><div class="icon">🔩</div>
+                    <a href="file:///C:/Users/limam/OneDrive/Airbus%20A320%20Family/Guia_A320_Missing_Fasteners.html" target="_blank">Guia A320 Missing Fasteners</a>
+                </div>
+                <div class="card"><div class="icon">⚡</div>
+                    <a href="file:///C:/Users/limam/OneDrive/Airbus%20A320%20Family/Guia_Localizacao_CB_A320.html" target="_blank">Guia Localização CB A320</a>
+                </div>
+                <div class="card"><div class="icon">📅</div>
+                    <a href="file:///C:/Users/limam/OneDrive/Airbus%20A320%20Family/MEL_Day_Validity_Calculator_UTC.html" target="_blank">MEL Day Validity Calculator UTC</a>
+                </div>
+                <div class="card"><div class="icon">⛔</div>
+                    <a href="file:///C:/Users/limam/OneDrive/Airbus%20A320%20Family/NO_GO_ITENS_ATA_Technical_Guide.html" target="_blank">NO-GO Items ATA Technical Guide</a>
+                </div>
+                <div class="card"><div class="icon">📘</div>
+                    <a href="file:///C:/Users/limam/OneDrive/Airbus%20A320%20Family/Quick_Reference_Guide.html" target="_blank">Quick Reference Guide</a>
+                </div>
+                <div class="card"><div class="icon">🔄</div>
+                    <a href="file:///C:/Users/limam/OneDrive/Airbus%20A320%20Family/System_Reset_Technical_Index.html" target="_blank">System Reset Technical Index</a>
+                </div>
+                <div class="card"><div class="icon">🔧</div>
+                    <a href="file:///C:/Users/limam/OneDrive/Airbus%20A320%20Family/Task_Reference_Guide.html" target="_blank">Task Reference Guide</a>
+                </div>
+                <div class="card"><div class="icon">🎚️</div>
+                    <a href="file:///C:/Users/limam/OneDrive/Airbus%20A320%20Family/VU_Panels_Guide.html" target="_blank">VU Panels Guide</a>
+                </div>
+
+<div class="card"><div class="icon">🧪</div>
+                    <a href="https://w3.airbus.com/1T40/search/text?q=operational%20test%20with%20cfds" target="_blank">Operational Tests With CFDS (A320 Family)</a>
+                </div>
+
+                <div class="card"><div class="icon">⚙️</div>
+                    <a href="https://w3.airbus.com/1T40/search/text?q=system%20test%20with%20cfds" target="_blank">System Tests With CFDS (A320 Family)</a>
+                </div>
+
+            </div>
+        </div>
+
+<!-- MANUFACTURERS -->
+<div class="section" id="mfg">
+    <h2>🟧 Manufacturers Portals</h2>
+    <div class="grid">
+        <div class="card"><div class="icon">🏭</div><a href="https://w3.airbus.com/newairbusworld/faces/wcnav_defaultSelection" target="_blank">Airbus World</a></div>
+        <div class="card"><div class="icon">🛩️</div><a href="https://flyembraer.com/home?first=true" target="_blank">FlyEmbraer</a></div>
+        <div class="card"><div class="icon">✈️</div><a href="https://ui.aviationid.com/iamui/mfa/userReference" target="_blank">MyBoeing Fleet</a></div>
+    </div>
+</div>
+
+<!-- DOCUMENTATION -->
+<div class="section" id="docs">
+    <h2>🟥 Technical Documentation</h2>
+    <div class="grid">
+
+        <div class="card"><div class="icon">📦</div><a href="https://toolbox.appslatam.com/a320/ToolboxRemote.html" target="_blank">Toolbox A320</a></div>
+        <div class="card"><div class="icon">📦</div><a href="https://toolbox.appslatam.com/e195/ToolboxRemote.html" target="_blank">Toolbox Embraer</a></div>
+        <div class="card"><div class="icon">📦</div><a href="https://toolbox.appslatam.com/b787/ToolboxRemote.html" target="_blank">Toolbox B787</a></div>
+        <div class="card"><div class="icon">📦</div><a href="https://toolbox.appslatam.com/b767/ToolboxRemote.html" target="_blank">Toolbox B767</a></div>
+        <div class="card"><div class="icon">📦</div><a href="https://toolbox.appslatam.com/b777/ToolboxRemote.html" target="_blank">Toolbox B777</a></div>
+
+        <div class="card"><div class="icon">📘</div><a href="https://sites.google.com/latam.com/lc-line-control/aeronaves" target="_blank">FCOM A320</a></div>
+        <div class="card"><div class="icon">📘</div><a href="https://drive.google.com/drive/folders/1-qRf6s5FfEI321VMYvwqbnLdUs7IH5DK" target="_blank">FCOM B777</a></div>
+        <div class="card"><div class="icon">📘</div><a href="https://drive.google.com/drive/folders/1MtgaculTtXBOUTavz5pZpwvPojC3jiWU" target="_blank">FCOM B787</a></div>
+
+        <div class="card"><div class="icon">📑</div><a href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/mel-nef-afm-cdl" target="_blank">MEL / NEF / AFM / CDL</a></div>
+        <div class="card"><div class="icon">⚠️</div><a href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/bta" target="_blank">BTA</a></div>
+        <div class="card"><div class="icon">ℹ️</div><a href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/bti" target="_blank">BTI</a></div>
+        <div class="card"><div class="icon">📝</div><a href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/itt" target="_blank">ITT</a></div>
+        <div class="card"><div class="icon">📄</div><a href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/ptt" target="_blank">PTT</a></div>
+        <div class="card"><div class="icon">🔍</div><a href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/iq" target="_blank">IQ</a></div>
+
+    </div>
+</div>
+
+<!-- EXTRA -->
+<div class="section" id="extra">
+    <h2>🔵 Recursos Adicionais</h2>
+    <div class="grid">
+
+        <div class="card"><div class="icon">📊</div>
+            <a href="https://datastudio.google.com/u/0/reporting/53a98689-6da5-47ab-be45-678dd4633daa/page/p_7gh7oq4ndd" target="_blank">
+                MOC Management Data
+            </a>
+        </div>
+
+        <div class="card"><div class="icon">📘</div>
+            <a href="https://drive.google.com/file/d/1S7iyQxgVwphpboxgb1Xnho1n6iIN522V/view?usp=sharing" target="_blank">
+                Manual Procedimentos MOC
+            </a>
+        </div>
+
+        <div class="card"><div class="icon">🧪</div>
+            <a href="https://drive.google.com/file/d/1jEIF7yKC0t9bFA_Wkj8s4Z4ZWqxIvXlj/view" target="_blank">
+                Efetividade Softwares BTI-GEN-00-025
+            </a>
+        </div>
+
+        <div class="card"><div class="icon">🌐</div>
+            <a href="https://portal.latam.com/" target="_blank">
+                Portal LATAM
+            </a>
+        </div>
+
+        <div class="card"><div class="icon">⚙️</div>
+            <a href="https://sites.google.com/latam.com/lc-line-control/master-caution-master-warning/latam-delta-overall-compression-efficiency" target="_blank">
+                Delta Overall Compression Efficiency
+            </a>
+        </div>
+
+        <div class="card"><div class="icon">🔍</div>
+            <a href="https://script.google.com/a/macros/latam.com/s/AKfycbyZJL5BaNkcSOxFidFTQszqcqYCth0xoJ-reU7La0xqRT6JrvFZuuKrWmiD6EIFnm1q/exec" target="_blank">
+                Histórico Antecedentes
+            </a>
+        </div>
+
+        <div class="card"><div class="icon">📊</div>
+            <a href="https://datastudio.google.com/u/0/reporting/1rLUa2IErQ-fI172csXDY18MX4LCEwREU/page/lIkR" target="_blank">
+                CCM MEL
+            </a>
+        </div>
+
+    </div>
+</div>
+
+</div>
+</body>
+</html>
+```

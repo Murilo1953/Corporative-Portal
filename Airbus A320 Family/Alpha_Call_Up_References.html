@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A320 Alpha Call-Up List — Technical Guide</title>
+<style>
+:root{--bg:#081018;--side:#0c151e;--panel:#101b25;--panel2:#162431;--line:#2a3d4d;--text:#eaf1f6;--muted:#9fb1be;--accent:#52b8ff;--green:#72d9b3;--amber:#f2b94b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 "Segoe UI",Arial,sans-serif}a{color:inherit;text-decoration:none}
+.sidebar{position:fixed;inset:0 auto 0 0;width:285px;background:var(--side);border-right:1px solid var(--line);padding:24px 18px;overflow:auto}
+.brand{font-size:20px;font-weight:780}.sub{font-size:12px;color:var(--muted);margin-top:5px}.nav{margin-top:20px}.nav a{display:block;padding:8px 10px;border-radius:8px;color:#dce8ef}.nav a:hover{background:var(--panel2)}
+.letters{display:grid;grid-template-columns:repeat(5,1fr);gap:5px;margin-top:16px}.letters button{border:1px solid var(--line);background:#111f2a;color:var(--accent);border-radius:6px;padding:6px 2px;cursor:pointer}
+.main{margin-left:285px;padding:34px;max-width:1600px}.hero{background:linear-gradient(135deg,#14283a,#0e1720);border:1px solid var(--line);border-radius:17px;padding:28px}
+.hero h1{margin:2px 0 7px;font-size:31px}.hero p{max-width:950px;color:#c7d3dc}.kicker{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:800}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.badge{border:1px solid #31536d;background:#162837;border-radius:999px;padding:6px 9px;font-size:12px}
+.searchbar{position:sticky;top:0;z-index:30;padding:12px 0 14px;background:rgba(8,16,24,.97)}.searchbar input{width:100%;padding:13px 14px;background:#0e1821;color:var(--text);border:1px solid var(--line);border-radius:10px;font-size:15px}
+.section{scroll-margin-top:75px;margin:22px 0;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}.section h2{margin:3px 0 16px;font-size:22px}
+.info-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}.card{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:14px}.card b{color:var(--green)}.card p{margin:6px 0 0;color:var(--muted);font-size:12px}
+.format{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}.format div{background:#0d171f;border:1px solid var(--line);border-radius:9px;padding:12px;text-align:center}.format strong{display:block;color:var(--amber);font-size:16px}.format span{font-size:11px;color:var(--muted)}
+.tablewrap{overflow:auto;max-height:70vh;border:1px solid var(--line);border-radius:10px}table{width:100%;border-collapse:collapse}th,td{padding:9px 9px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;font-size:12px}th{position:sticky;top:0;background:#142431;z-index:2;text-transform:uppercase;font-size:10px;letter-spacing:.05em}tr:hover td{background:#13202b}.alpha{font-weight:800;color:var(--green)}code{color:#bfe6ff;white-space:normal}
+.pdfbox{height:78vh;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:white}.pdfbox iframe{width:100%;height:100%;border:0}.pdf-link{display:inline-block;margin-top:10px;color:#bfe6ff;background:#10283a;border:1px solid #35536a;border-radius:7px;padding:7px 10px;font-size:12px}
+.note{border-left:4px solid var(--amber);background:#1b1810;border-radius:8px;padding:13px 15px;margin:18px 0}.hidden{display:none!important}.top{position:fixed;right:18px;bottom:18px;background:#172837;border:1px solid #365974;padding:10px 12px;border-radius:10px}.footer{font-size:12px;color:var(--muted);padding:20px 0 60px}
+@media(max-width:900px){.sidebar{position:static;width:auto;border-right:0;border-bottom:1px solid var(--line)}.main{margin:0;padding:18px}.format{grid-template-columns:1fr 1fr}}
+</style></head>
+<body id="top">
+<aside class="sidebar"><div class="brand">A320 Alpha Call-Up</div><div class="sub">FDIMU / DMU Technical Guide</div>
+<nav class="nav"><a href="#overview">Overview</a><a href="#format">Parameter Number</a><a href="#index">Quick Index</a></nav>
+<div class="letters"><button type="button" data-letter="A">A</button><button type="button" data-letter="C">C</button><button type="button" data-letter="D">D</button><button type="button" data-letter="E">E</button><button type="button" data-letter="F">F</button><button type="button" data-letter="G">G</button><button type="button" data-letter="H">H</button><button type="button" data-letter="I">I</button><button type="button" data-letter="L">L</button><button type="button" data-letter="M">M</button><button type="button" data-letter="N">N</button><button type="button" data-letter="O">O</button><button type="button" data-letter="P">P</button><button type="button" data-letter="R">R</button><button type="button" data-letter="S">S</button><button type="button" data-letter="T">T</button><button type="button" data-letter="U">U</button><button type="button" data-letter="V">V</button><button type="button" data-letter="W">W</button><button type="button" data-letter="Y">Y</button><button type="button" data-letter="Z">Z</button></div></aside>
+
+<main class="main">
+<section class="hero" id="overview"><div class="kicker">A320-251N • A320neo / CFM LEAP-1A</div><h1>Alpha Call-Up List</h1>
+<p>The FDIMU/DMU receives parameters from multiple aircraft systems over ARINC 429 buses. An Alpha Call-Up mnemonic entered on the MCDU displays the current value of the associated parameter, including multiple system values where applicable.</p>
+<div class="badges"><span class="badge">FDIMU / DMU</span><span class="badge">ARINC 429</span><span class="badge">MCDU</span><span class="badge">16-page source list</span><span class="badge">115 quick-index entries</span></div></section>
+
+<section class="section"><div class="kicker">Column meaning</div><h2>How to Read the List</h2>
+<div class="info-grid">
+<div class="card"><b>Alpha Call-Up</b><p>Mnemonic entered on the MCDU to display the current parameter value.</p></div>
+<div class="card"><b>Source</b><p>Originating component and, where applicable, system number.</p></div>
+<div class="card"><b>Parameter Number</b><p>Structured as Equipment / System / ARINC Label / SDI.</p></div>
+<div class="card"><b>Unit</b><p>Engineering unit used for the displayed parameter.</p></div>
+<div class="card"><b>Parameter</b><p>System parameter name associated with the Alpha Call-Up.</p></div>
+<div class="card"><b>Comment</b><p>Additional description or interpretation supplied by the list.</p></div>
+</div></section>
+
+<section class="section" id="format"><div class="kicker">Eq / Sys / Lab / SDI</div><h2>Parameter Number Structure</h2>
+<div class="format"><div><strong>Eq</strong><span>Connected bus equipment identifier — hexadecimal</span></div><div><strong>Sys</strong><span>System 1, 2 or 3</span></div><div><strong>Lab</strong><span>ARINC 429 label — octal</span></div><div><strong>SDI</strong><span>00, 01, 10 or 11 source/destination identifier</span></div></div></section>
+
+<div class="searchbar"><input id="search" type="search" placeholder="Search Alpha, source, parameter, unit or comment: N1, EGT, FQIC, OIL, IRS, 07B.1.346..."></div>
+
+<section class="section" id="index"><div class="kicker">Searchable quick-reference</div><h2>Alpha Call-Up Index</h2>
+<div class="note"><strong>Scope:</strong> searchable quick-reference index of Alpha Call-Up parameters.</div>
+<div class="tablewrap"><table id="alphaTable"><thead><tr><th>Alpha</th><th>Source</th><th>Parameter Number</th><th>Unit</th><th>Parameter</th><th>Comment</th></tr></thead><tbody><tr class="searchable" data-search="acid fdiu 017.1.301/302/303.00 — acid(1 to 9) aircraft identification / tail number">
+    <td class="alpha">ACID</td><td>FDIU</td>
+    <td><code>017.1.301/302/303.00</code></td><td>—</td>
+    <td>ACID(1 TO 9)</td><td>Aircraft Identification / Tail Number</td></tr>
+<tr class="searchable" data-search="afpa eiu 1 / 2 07b.1/2.272.xx discrete afpa.1 / .2 alpha floor protection">
+    <td class="alpha">AFPA</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.272.XX</code></td><td>DISCRETE</td>
+    <td>AFPA.1 / .2</td><td>Alpha Floor Protection</td></tr>
+<tr class="searchable" data-search="ahri apu 1 07a.1.132 / 135.01 hours ahri / ahri2 apu operating hours">
+    <td class="alpha">AHRI</td><td>APU 1</td>
+    <td><code>07A.1.132 / 135.01</code></td><td>HOURS</td>
+    <td>AHRI / AHRI2</td><td>APU Operating Hours</td></tr>
+<tr class="searchable" data-search="aill fcdc 1 / 2 06c.1.310.01 / 06c.2.310.10 deg aill aileron position left">
+    <td class="alpha">AILL</td><td>FCDC 1 / 2</td>
+    <td><code>06C.1.310.01 / 06C.2.310.10</code></td><td>DEG</td>
+    <td>AILL</td><td>Aileron Position Left</td></tr>
+<tr class="searchable" data-search="ailr fcdc 1 / 2 06c.1.330.01 / 06c.2.330.10 deg ailr aileron position right">
+    <td class="alpha">AILR</td><td>FCDC 1 / 2</td>
+    <td><code>06C.1.330.01 / 06C.2.330.10</code></td><td>DEG</td>
+    <td>AILR</td><td>Aileron Position Right</td></tr>
+<tr class="searchable" data-search="alt adc 1 / 2 006.1.203.01 / 006.2.203.10 ft alt altitude (1013.25 mbar)">
+    <td class="alpha">ALT</td><td>ADC 1 / 2</td>
+    <td><code>006.1.203.01 / 006.2.203.10</code></td><td>FT</td>
+    <td>ALT</td><td>Altitude (1013.25 mbar)</td></tr>
+<tr class="searchable" data-search="alt3 fwc 026.1.203.11 ft alt3.1 standard altitude">
+    <td class="alpha">ALT3</td><td>FWC</td>
+    <td><code>026.1.203.11</code></td><td>FT</td>
+    <td>ALT3.1</td><td>Standard Altitude</td></tr>
+<tr class="searchable" data-search="aoa adc 1 / 2 006.1.241.01 / 006.2.241.10 deg aoa1 / aoa2 corrected angle of attack">
+    <td class="alpha">AOA</td><td>ADC 1 / 2</td>
+    <td><code>006.1.241.01 / 006.2.241.10</code></td><td>DEG</td>
+    <td>AOA1 / AOA2</td><td>Corrected Angle of Attack</td></tr>
+<tr class="searchable" data-search="aoa3 fwc 026.1.241.11 deg aoa3.1 corrected angle of attack">
+    <td class="alpha">AOA3</td><td>FWC</td>
+    <td><code>026.1.241.11</code></td><td>DEG</td>
+    <td>AOA3.1</td><td>Corrected Angle of Attack</td></tr>
+<tr class="searchable" data-search="apu apu 1 07a.1.037.01 discrete adw1b111 apu bleed valve open">
+    <td class="alpha">APU</td><td>APU 1</td>
+    <td><code>07A.1.037.01</code></td><td>DISCRETE</td>
+    <td>ADW1B111</td><td>APU Bleed Valve Open</td></tr>
+<tr class="searchable" data-search="apums sdac 1 / 2 029.1/2.002.11 discrete — apu master switch off">
+    <td class="alpha">APUMS</td><td>SDAC 1 / 2</td>
+    <td><code>029.1/2.002.11</code></td><td>DISCRETE</td>
+    <td>—</td><td>APU Master Switch Off</td></tr>
+<tr class="searchable" data-search="as eiu 1 / 2 07b.1/2.277.xx discrete as.1 / as.2 autostart / autorelight display">
+    <td class="alpha">AS</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.277.XX</code></td><td>DISCRETE</td>
+    <td>AS.1 / AS.2</td><td>AUTOSTART / AUTORELIGHT Display</td></tr>
+<tr class="searchable" data-search="asn apu 1 07a.1.050.01 — asn apu serial number">
+    <td class="alpha">ASN</td><td>APU 1</td>
+    <td><code>07A.1.050.01</code></td><td>—</td>
+    <td>ASN</td><td>APU Serial Number</td></tr>
+<tr class="searchable" data-search="cas adc 1 / 2 006.1.206.01 / 006.2.206.10 kts cas computed airspeed">
+    <td class="alpha">CAS</td><td>ADC 1 / 2</td>
+    <td><code>006.1.206.01 / 006.2.206.10</code></td><td>KTS</td>
+    <td>CAS</td><td>Computed Airspeed</td></tr>
+<tr class="searchable" data-search="cas3 fwc 026.1.206.11 kts cas3.1 computed airspeed">
+    <td class="alpha">CAS3</td><td>FWC</td>
+    <td><code>026.1.206.11</code></td><td>KTS</td>
+    <td>CAS3.1</td><td>Computed Airspeed</td></tr>
+<tr class="searchable" data-search="cg fmc 1 / 2 002.1/2.077.00 %mac cg center of gravity">
+    <td class="alpha">CG</td><td>FMC 1 / 2</td>
+    <td><code>002.1/2.077.00</code></td><td>%MAC</td>
+    <td>CG</td><td>Center of Gravity</td></tr>
+<tr class="searchable" data-search="cot pc/acsc 1 / 2 08e.1.123.11 / 08e.2.123.00 deg c cot1 / cot2 pack compressor outlet temperature">
+    <td class="alpha">COT</td><td>PC/ACSC 1 / 2</td>
+    <td><code>08E.1.123.11 / 08E.2.123.00</code></td><td>DEG C</td>
+    <td>COT1 / COT2</td><td>Pack Compressor Outlet Temperature</td></tr>
+<tr class="searchable" data-search="date — — mmmdd date date alpha call-up">
+    <td class="alpha">DATE</td><td>—</td>
+    <td><code>—</code></td><td>MMMDD</td>
+    <td>DATE</td><td>Date Alpha Call-Up</td></tr>
+<tr class="searchable" data-search="dc eiu 1 / 2 07b.1/2.171.xx — dc1 / dc2 oil debris monitoring chip count">
+    <td class="alpha">DC</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.171.XX</code></td><td>—</td>
+    <td>DC1 / DC2</td><td>Oil Debris Monitoring Chip Count</td></tr>
+<tr class="searchable" data-search="ealt eiu 1 / 2 07b.1/2.203.xx feet ealt.1 / .2 altitude">
+    <td class="alpha">EALT</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.203.XX</code></td><td>FEET</td>
+    <td>EALT.1 / .2</td><td>Altitude</td></tr>
+<tr class="searchable" data-search="ecyc — — cycles ecyc1 / ecyc2 engine cycles">
+    <td class="alpha">ECYC</td><td>—</td>
+    <td><code>—</code></td><td>CYCLES</td>
+    <td>ECYC1 / ECYC2</td><td>Engine Cycles</td></tr>
+<tr class="searchable" data-search="egt eiu 1 / 2 07b.1/2.345.xx deg c egt.1 / egt.2 selected cockpit exhaust gas temperature">
+    <td class="alpha">EGT</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.345.XX</code></td><td>DEG C</td>
+    <td>EGT.1 / EGT.2</td><td>Selected Cockpit Exhaust Gas Temperature</td></tr>
+<tr class="searchable" data-search="egt1 eiu 1 / 2 07b.1/2.123.xx deg c egt1.1 / egt1.2 egt temperature sensor #1 probe">
+    <td class="alpha">EGT1</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.123.XX</code></td><td>DEG C</td>
+    <td>EGT1.1 / EGT1.2</td><td>EGT Temperature Sensor #1 Probe</td></tr>
+<tr class="searchable" data-search="egt2 eiu 1 / 2 07b.1/2.124.xx deg c egt2.1 / egt2.2 egt temperature sensor #2 probe">
+    <td class="alpha">EGT2</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.124.XX</code></td><td>DEG C</td>
+    <td>EGT2.1 / EGT2.2</td><td>EGT Temperature Sensor #2 Probe</td></tr>
+<tr class="searchable" data-search="egt3 eiu 1 / 2 07b.1/2.125.xx deg c egt3.1 / egt3.2 egt temperature sensor #3 probe">
+    <td class="alpha">EGT3</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.125.XX</code></td><td>DEG C</td>
+    <td>EGT3.1 / EGT3.2</td><td>EGT Temperature Sensor #3 Probe</td></tr>
+<tr class="searchable" data-search="egt4 eiu 1 / 2 07b.1/2.126.xx deg c egt4.1 / egt4.2 egt temperature sensor #4 probe">
+    <td class="alpha">EGT4</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.126.XX</code></td><td>DEG C</td>
+    <td>EGT4.1 / EGT4.2</td><td>EGT Temperature Sensor #4 Probe</td></tr>
+<tr class="searchable" data-search="egt5 eiu 1 / 2 07b.1/2.150.xx deg c egt5.1 / egt5.2 egt temperature sensor #5 probe">
+    <td class="alpha">EGT5</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.150.XX</code></td><td>DEG C</td>
+    <td>EGT5.1 / EGT5.2</td><td>EGT Temperature Sensor #5 Probe</td></tr>
+<tr class="searchable" data-search="egt6 eiu 1 / 2 07b.1/2.151.xx deg c egt6.1 / egt6.2 egt temperature sensor #6 probe">
+    <td class="alpha">EGT6</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.151.XX</code></td><td>DEG C</td>
+    <td>EGT6.1 / EGT6.2</td><td>EGT Temperature Sensor #6 Probe</td></tr>
+<tr class="searchable" data-search="egt7 eiu 1 / 2 07b.1/2.152.xx deg c egt7.1 / egt7.2 egt temperature sensor #7 probe">
+    <td class="alpha">EGT7</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.152.XX</code></td><td>DEG C</td>
+    <td>EGT7.1 / EGT7.2</td><td>EGT Temperature Sensor #7 Probe</td></tr>
+<tr class="searchable" data-search="egt8 eiu 1 / 2 07b.1/2.153.xx deg c egt8.1 / egt8.2 egt temperature sensor #8 probe">
+    <td class="alpha">EGT8</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.153.XX</code></td><td>DEG C</td>
+    <td>EGT8.1 / EGT8.2</td><td>EGT Temperature Sensor #8 Probe</td></tr>
+<tr class="searchable" data-search="egta apu 1 07a.1.175.01 deg c egta apu egt">
+    <td class="alpha">EGTA</td><td>APU 1</td>
+    <td><code>07A.1.175.01</code></td><td>DEG C</td>
+    <td>EGTA</td><td>APU EGT</td></tr>
+<tr class="searchable" data-search="ehrs — — hours ehrs1p1 / ehrs2p1 flight hours engine 1 / 2">
+    <td class="alpha">EHRS</td><td>—</td>
+    <td><code>—</code></td><td>HOURS</td>
+    <td>EHRS1P1 / EHRS2P1</td><td>Flight Hours Engine 1 / 2</td></tr>
+<tr class="searchable" data-search="elev fcdc 1 / 2 06c.1/2.314/334 deg elev1 / elev2 elevator position left / right">
+    <td class="alpha">ELEV</td><td>FCDC 1 / 2</td>
+    <td><code>06C.1/2.314/334</code></td><td>DEG</td>
+    <td>ELEV1 / ELEV2</td><td>Elevator Position Left / Right</td></tr>
+<tr class="searchable" data-search="ert eiu 1 / 2 07b.1/2.050.xx hours ert.1 / ert.2 engine running time">
+    <td class="alpha">ERT</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.050.XX</code></td><td>HOURS</td>
+    <td>ERT.1 / ERT.2</td><td>Engine Running Time</td></tr>
+<tr class="searchable" data-search="esn eiu 1 / 2 07b.1/2.046/047.xx — esn1.1–esn2.2 engine serial number">
+    <td class="alpha">ESN</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.046/047.XX</code></td><td>—</td>
+    <td>ESN1.1–ESN2.2</td><td>Engine Serial Number</td></tr>
+<tr class="searchable" data-search="etat eiu 1 / 2 07b.1/2.211.xx deg c etat.1 / etat.2 tat selected">
+    <td class="alpha">ETAT</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.211.XX</code></td><td>DEG C</td>
+    <td>ETAT.1 / ETAT.2</td><td>TAT Selected</td></tr>
+<tr class="searchable" data-search="fcv pc/acsc 1 / 2 08e.1.062.11 / 08e.2.062.00 discrete psw1111 / psw1112 flow control valve status close">
+    <td class="alpha">FCV</td><td>PC/ACSC 1 / 2</td>
+    <td><code>08E.1.062.11 / 08E.2.062.00</code></td><td>DISCRETE</td>
+    <td>PSW1111 / PSW1112</td><td>Flow Control Valve Status Close</td></tr>
+<tr class="searchable" data-search="fd fqic 05a.2.272.10 kg/l fdint1 / fdint2 fuel density left / right tank">
+    <td class="alpha">FD</td><td>FQIC</td>
+    <td><code>05A.2.272.10</code></td><td>KG/L</td>
+    <td>FDINT1 / FDINT2</td><td>Fuel Density Left / Right Tank</td></tr>
+<tr class="searchable" data-search="ff eiu 1 / 2 07b.1/2.244.xx pph ff.1 / ff.2 engine fuel flow">
+    <td class="alpha">FF</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.244.XX</code></td><td>PPH</td>
+    <td>FF.1 / FF.2</td><td>Engine Fuel Flow</td></tr>
+<tr class="searchable" data-search="ffdp eiu 1 / 2 07b.1/2.157.xx psid ffdp.1 / ffdp.2 fuel filter delta pressure">
+    <td class="alpha">FFDP</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.157.XX</code></td><td>PSID</td>
+    <td>FFDP.1 / FFDP.2</td><td>Fuel Filter Delta Pressure</td></tr>
+<tr class="searchable" data-search="flap — — deg flaplc / flaprc flap actual position left / right">
+    <td class="alpha">FLAP</td><td>—</td>
+    <td><code>—</code></td><td>DEG</td>
+    <td>FLAPLC / FLAPRC</td><td>Flap Actual Position Left / Right</td></tr>
+<tr class="searchable" data-search="flon eiu 1 / 2 07b.1/2.277.xx discrete flon.1 / flon.2 fuel on">
+    <td class="alpha">FLON</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.277.XX</code></td><td>DISCRETE</td>
+    <td>FLON.1 / FLON.2</td><td>Fuel On</td></tr>
+<tr class="searchable" data-search="flt fmgc 1 / 2 001.1/2.233–236.00 flt num flt(...) flight number">
+    <td class="alpha">FLT</td><td>FMGC 1 / 2</td>
+    <td><code>001.1/2.233–236.00</code></td><td>FLT NUM</td>
+    <td>FLT(...)</td><td>Flight Number</td></tr>
+<tr class="searchable" data-search="fmp eiu 1 / 2 07b.1/2.163.xx psia fmp.1 / fmp.2 selected fuel manifold pressure">
+    <td class="alpha">FMP</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.163.XX</code></td><td>PSIA</td>
+    <td>FMP.1 / FMP.2</td><td>Selected Fuel Manifold Pressure</td></tr>
+<tr class="searchable" data-search="fmv eiu 1 / 2 07b.1/2.347.xx % fmv.1 / fmv.2 selected fmv position">
+    <td class="alpha">FMV</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.347.XX</code></td><td>%</td>
+    <td>FMV.1 / FMV.2</td><td>Selected FMV Position</td></tr>
+<tr class="searchable" data-search="fsov eiu 1 / 2 07b.1/2.270.xx discrete pse01.x.14 fuel shutoff valve">
+    <td class="alpha">FSOV</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.270.XX</code></td><td>DISCRETE</td>
+    <td>PSE01.x.14</td><td>Fuel Shutoff Valve</td></tr>
+<tr class="searchable" data-search="ft fqic 05a.2.177/201.10 deg c ft1 / ft2 fuel temperature rh / lh inner cell">
+    <td class="alpha">FT</td><td>FQIC</td>
+    <td><code>05A.2.177/201.10</code></td><td>DEG C</td>
+    <td>FT1 / FT2</td><td>Fuel Temperature RH / LH Inner Cell</td></tr>
+<tr class="searchable" data-search="gle sdac 1 / 2 029.1/2.077 % gle... engine generator load">
+    <td class="alpha">GLE</td><td>SDAC 1 / 2</td>
+    <td><code>029.1/2.077</code></td><td>%</td>
+    <td>GLE...</td><td>Engine Generator Load</td></tr>
+<tr class="searchable" data-search="gls dmc 1 / 2 025.1/2.174.01/10 ddm gls1 / gls2 ils glideslope deviation">
+    <td class="alpha">GLS</td><td>DMC 1 / 2</td>
+    <td><code>025.1/2.174.01/10</code></td><td>DDM</td>
+    <td>GLS1 / GLS2</td><td>ILS Glideslope Deviation</td></tr>
+<tr class="searchable" data-search="gs irs 1 / 2 004.1.312.01 / 004.2.312.10 kts gs1 ground speed">
+    <td class="alpha">GS</td><td>IRS 1 / 2</td>
+    <td><code>004.1.312.01 / 004.2.312.10</code></td><td>KTS</td>
+    <td>GS1</td><td>Ground Speed</td></tr>
+<tr class="searchable" data-search="gw fmc 1 / 2 002.1/2.075.00 kg/lbs gwkg gross weight">
+    <td class="alpha">GW</td><td>FMC 1 / 2</td>
+    <td><code>002.1/2.075.00</code></td><td>KG/LBS</td>
+    <td>GWKG</td><td>Gross Weight</td></tr>
+<tr class="searchable" data-search="hots eiu 1 / 2 07b.1/2.270.xx discrete hots.1 / hots.2 start egt overtemperature detected">
+    <td class="alpha">HOTS</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.270.XX</code></td><td>DISCRETE</td>
+    <td>HOTS.1 / HOTS.2</td><td>Start EGT Overtemperature Detected</td></tr>
+<tr class="searchable" data-search="hpsf eiu 1 / 2 07b.1/2.270.xx discrete hpsf.1 / hpsf.2 hpsov position fault">
+    <td class="alpha">HPSF</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.270.XX</code></td><td>DISCRETE</td>
+    <td>HPSF.1 / HPSF.2</td><td>HPSOV Position Fault</td></tr>
+<tr class="searchable" data-search="ia lt irs 1 / 2 004.1/2.361.dd ft ialt.1 / ialt.2 inertial altitude">
+    <td class="alpha">IA LT</td><td>IRS 1 / 2</td>
+    <td><code>004.1/2.361.DD</code></td><td>FT</td>
+    <td>IALT.1 / IALT.2</td><td>Inertial Altitude</td></tr>
+<tr class="searchable" data-search="igv apu 1 07a.1.130.01 deg igv igv position">
+    <td class="alpha">IGV</td><td>APU 1</td>
+    <td><code>07A.1.130.01</code></td><td>DEG</td>
+    <td>IGV</td><td>IGV Position</td></tr>
+<tr class="searchable" data-search="ivv irs 1 / 2 004.1.365.01 / 004.2.365.10 ft/min ivv01 / ivv02 inertial vertical speed">
+    <td class="alpha">IVV</td><td>IRS 1 / 2</td>
+    <td><code>004.1.365.01 / 004.2.365.10</code></td><td>FT/MIN</td>
+    <td>IVV01 / IVV02</td><td>Inertial Vertical Speed</td></tr>
+<tr class="searchable" data-search="lata sdac 1 / 2 029.1/2.332.01 g lata1 lateral acceleration">
+    <td class="alpha">LATA</td><td>SDAC 1 / 2</td>
+    <td><code>029.1/2.332.01</code></td><td>G</td>
+    <td>LATA1</td><td>Lateral Acceleration</td></tr>
+<tr class="searchable" data-search="loc dmc 1 / 2 025.1/2.173.01/10 ddm loc1 / loc2 ils localizer">
+    <td class="alpha">LOC</td><td>DMC 1 / 2</td>
+    <td><code>025.1/2.173.01/10</code></td><td>DDM</td>
+    <td>LOC1 / LOC2</td><td>ILS Localizer</td></tr>
+<tr class="searchable" data-search="lona sdac 1 / 2 029.1/2.331.01 g lona1 longitudinal acceleration">
+    <td class="alpha">LONA</td><td>SDAC 1 / 2</td>
+    <td><code>029.1/2.331.01</code></td><td>G</td>
+    <td>LONA1</td><td>Longitudinal Acceleration</td></tr>
+<tr class="searchable" data-search="mn adc 1 / 2 006.1.205.01 / 006.2.205.10 mach mn mach">
+    <td class="alpha">MN</td><td>ADC 1 / 2</td>
+    <td><code>006.1.205.01 / 006.2.205.10</code></td><td>MACH</td>
+    <td>MN</td><td>Mach</td></tr>
+<tr class="searchable" data-search="n1 eiu 1 / 2 07b.1/2.346.xx % n1 n1.1 / n1.2 n1 indicated">
+    <td class="alpha">N1</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.346.XX</code></td><td>% N1</td>
+    <td>N1.1 / N1.2</td><td>N1 Indicated</td></tr>
+<tr class="searchable" data-search="n1act eiu 1 / 2 07b.1/2.054.xx % n1act.1 / .2 n1 actual selected">
+    <td class="alpha">N1ACT</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.054.XX</code></td><td>%</td>
+    <td>N1ACT.1 / .2</td><td>N1 Actual Selected</td></tr>
+<tr class="searchable" data-search="n1c eiu 1 / 2 07b.1/2.341.xx % n1 n1c1 / n1c2 n1 command">
+    <td class="alpha">N1C</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.341.XX</code></td><td>% N1</td>
+    <td>N1C1 / N1C2</td><td>N1 Command</td></tr>
+<tr class="searchable" data-search="n1mx eiu 1 / 2 07b.1/2.342.xx % rpm n1mx.1 / .2 n1 maximum">
+    <td class="alpha">N1MX</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.342.XX</code></td><td>% RPM</td>
+    <td>N1MX.1 / .2</td><td>N1 Maximum</td></tr>
+<tr class="searchable" data-search="n2 eiu 1 / 2 07b.1/2.344.xx % n2 n2.1 / n2.2 selected n2 actual">
+    <td class="alpha">N2</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.344.XX</code></td><td>% N2</td>
+    <td>N2.1 / N2.2</td><td>Selected N2 Actual</td></tr>
+<tr class="searchable" data-search="na apu 1 07a.1.176.01 % rpm na apu rpm">
+    <td class="alpha">NA</td><td>APU 1</td>
+    <td><code>07A.1.176.01</code></td><td>% RPM</td>
+    <td>NA</td><td>APU RPM</td></tr>
+<tr class="searchable" data-search="ofdp eiu 1 / 2 07b.1/2.160.xx psid ofdp.1 / .2 oil filter delta pressure">
+    <td class="alpha">OFDP</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.160.XX</code></td><td>PSID</td>
+    <td>OFDP.1 / .2</td><td>Oil Filter Delta Pressure</td></tr>
+<tr class="searchable" data-search="oip eiu 1 / 2 07b.1/2.317.xx psid oip.1 / oip.2 engine oil pressure">
+    <td class="alpha">OIP</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.317.XX</code></td><td>PSID</td>
+    <td>OIP.1 / OIP.2</td><td>Engine Oil Pressure</td></tr>
+<tr class="searchable" data-search="oiq sdac 1 / 2 029.1/2.073.11/00 quart oiq1 / oiq2 engine oil quantity">
+    <td class="alpha">OIQ</td><td>SDAC 1 / 2</td>
+    <td><code>029.1/2.073.11/00</code></td><td>QUART</td>
+    <td>OIQ1 / OIQ2</td><td>Engine Oil Quantity</td></tr>
+<tr class="searchable" data-search="oit fwc 1 / 2 026.1/2.316.01/10 deg c oit1 / oit2 engine oil temperature">
+    <td class="alpha">OIT</td><td>FWC 1 / 2</td>
+    <td><code>026.1/2.316.01/10</code></td><td>DEG C</td>
+    <td>OIT1 / OIT2</td><td>Engine Oil Temperature</td></tr>
+<tr class="searchable" data-search="ota apu 1 07a.1.247.01 deg c ota apu oil sump temperature">
+    <td class="alpha">OTA</td><td>APU 1</td>
+    <td><code>07A.1.247.01</code></td><td>DEG C</td>
+    <td>OTA</td><td>APU Oil Sump Temperature</td></tr>
+<tr class="searchable" data-search="ovp press 1 / 2 05c.1.153.01 / 05c.2.153.10 % ovp outflow valve position">
+    <td class="alpha">OVP</td><td>PRESS 1 / 2</td>
+    <td><code>05C.1.153.01 / 05C.2.153.10</code></td><td>%</td>
+    <td>OVP</td><td>Outflow Valve Position</td></tr>
+<tr class="searchable" data-search="p0 eiu 1 / 2 07b.1/2.114.xx psia p0.1 / p0.2 selected ambient pressure">
+    <td class="alpha">P0</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.114.XX</code></td><td>PSIA</td>
+    <td>P0.1 / P0.2</td><td>Selected Ambient Pressure</td></tr>
+<tr class="searchable" data-search="p25 eiu 07b.1.262.xx psia p25.1 / p25.2 total air pressure — station 2.5">
+    <td class="alpha">P25</td><td>EIU</td>
+    <td><code>07B.1.262.XX</code></td><td>PSIA</td>
+    <td>P25.1 / P25.2</td><td>Total Air Pressure — Station 2.5</td></tr>
+<tr class="searchable" data-search="p3 eiu 1 / 2 07b.1.264.xx psia p3.1 / p3.2 selected ps3">
+    <td class="alpha">P3</td><td>EIU 1 / 2</td>
+    <td><code>07B.1.264.XX</code></td><td>PSIA</td>
+    <td>P3.1 / P3.2</td><td>Selected PS3</td></tr>
+<tr class="searchable" data-search="pbv pc/acsc 1 / 2 08e.1.112.11 / 08e.2.112.00 % pbv1 / pbv2 pack bypass valve position">
+    <td class="alpha">PBV</td><td>PC/ACSC 1 / 2</td>
+    <td><code>08E.1.112.11 / 08E.2.112.00</code></td><td>%</td>
+    <td>PBV1 / PBV2</td><td>Pack Bypass Valve Position</td></tr>
+<tr class="searchable" data-search="pdc press 1 / 2 05c.1.144.01 / 05c.2.144.10 psi pdc cabin differential pressure">
+    <td class="alpha">PDC</td><td>PRESS 1 / 2</td>
+    <td><code>05C.1.144.01 / 05C.2.144.10</code></td><td>PSI</td>
+    <td>PDC</td><td>Cabin Differential Pressure</td></tr>
+<tr class="searchable" data-search="pf pc/acsc 1 / 2 08e.1.126.11 / 08e.2.126.00 kg/sec pflkg / pfrkg pack flow">
+    <td class="alpha">PF</td><td>PC/ACSC 1 / 2</td>
+    <td><code>08E.1.126.11 / 08E.2.126.00</code></td><td>KG/SEC</td>
+    <td>PFLKG / PFRKG</td><td>Pack Flow</td></tr>
+<tr class="searchable" data-search="ph — — phase phnumprt flight phase (dmu)">
+    <td class="alpha">PH</td><td>—</td>
+    <td><code>—</code></td><td>PHASE</td>
+    <td>PHNUMPRT</td><td>Flight Phase (DMU)</td></tr>
+<tr class="searchable" data-search="pt apu 1 07a.1.166.01 bar pt bleed air pressure">
+    <td class="alpha">PT</td><td>APU 1</td>
+    <td><code>07A.1.166.01</code></td><td>BAR</td>
+    <td>PT</td><td>Bleed Air Pressure</td></tr>
+<tr class="searchable" data-search="ptch irs 1 / 2 004.1.324.01 / 004.2.324.10 deg ptch1 / ptch2 pitch angle">
+    <td class="alpha">PTCH</td><td>IRS 1 / 2</td>
+    <td><code>004.1.324.01 / 004.2.324.10</code></td><td>DEG</td>
+    <td>PTCH1 / PTCH2</td><td>Pitch Angle</td></tr>
+<tr class="searchable" data-search="ralt dmc 1 / 2 025.1/2.164.01/10 ft ralt1 / ralt2 radio height">
+    <td class="alpha">RALT</td><td>DMC 1 / 2</td>
+    <td><code>025.1/2.164.01/10</code></td><td>FT</td>
+    <td>RALT1 / RALT2</td><td>Radio Height</td></tr>
+<tr class="searchable" data-search="ri pc/acsc 1 / 2 08e.1.130.11 / 08e.2.130.00 % ri1 / ri2 pack ram air inlet position">
+    <td class="alpha">RI</td><td>PC/ACSC 1 / 2</td>
+    <td><code>08E.1.130.11 / 08E.2.130.00</code></td><td>%</td>
+    <td>RI1 / RI2</td><td>Pack RAM Air Inlet Position</td></tr>
+<tr class="searchable" data-search="roll irs 1 / 2 004.1.325.01 / 004.2.325.10 deg roll roll angle">
+    <td class="alpha">ROLL</td><td>IRS 1 / 2</td>
+    <td><code>004.1.325.01 / 004.2.325.10</code></td><td>DEG</td>
+    <td>ROLL</td><td>Roll Angle</td></tr>
+<tr class="searchable" data-search="rudd sdac 1 / 2 029.1/2.312.00 deg rudd rudder position">
+    <td class="alpha">RUDD</td><td>SDAC 1 / 2</td>
+    <td><code>029.1/2.312.00</code></td><td>DEG</td>
+    <td>RUDD</td><td>Rudder Position</td></tr>
+<tr class="searchable" data-search="rudt fac 1 / 2 029.1/2.313.00 deg rudt rudder trim">
+    <td class="alpha">RUDT</td><td>FAC 1 / 2</td>
+    <td><code>029.1/2.313.00</code></td><td>DEG</td>
+    <td>RUDT</td><td>Rudder Trim</td></tr>
+<tr class="searchable" data-search="sap eiu 1 / 2 07b.1/2.165.xx psia sap.1 / sap.2 starter air pressure delta-p">
+    <td class="alpha">SAP</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.165.XX</code></td><td>PSIA</td>
+    <td>SAP.1 / SAP.2</td><td>Starter Air Pressure Delta-P</td></tr>
+<tr class="searchable" data-search="sat adc 1 / 2 006.1.213.01 / 006.2.213.10 deg c sat static air temperature">
+    <td class="alpha">SAT</td><td>ADC 1 / 2</td>
+    <td><code>006.1.213.01 / 006.2.213.10</code></td><td>DEG C</td>
+    <td>SAT</td><td>Static Air Temperature</td></tr>
+<tr class="searchable" data-search="slat sfcc 1 / 2 01b.1.127.01 / 01b.2.127.10 deg slatlc slat actual position">
+    <td class="alpha">SLAT</td><td>SFCC 1 / 2</td>
+    <td><code>01B.1.127.01 / 01B.2.127.10</code></td><td>DEG</td>
+    <td>SLATLC</td><td>Slat Actual Position</td></tr>
+<tr class="searchable" data-search="slp fac 1 / 2 00a.1/2.226.00 deg slp1 / slp2 estimated sideslip">
+    <td class="alpha">SLP</td><td>FAC 1 / 2</td>
+    <td><code>00A.1/2.226.00</code></td><td>DEG</td>
+    <td>SLP1 / SLP2</td><td>Estimated Sideslip</td></tr>
+<tr class="searchable" data-search="sta — — seconds sta apu start time">
+    <td class="alpha">STA</td><td>—</td>
+    <td><code>—</code></td><td>SECONDS</td>
+    <td>STA</td><td>APU Start Time</td></tr>
+<tr class="searchable" data-search="stab fcdc 1 / 2 06c.1.315.01 / 06c.2.315.10 deg stab stabilizer position">
+    <td class="alpha">STAB</td><td>FCDC 1 / 2</td>
+    <td><code>06C.1.315.01 / 06C.2.315.10</code></td><td>DEG</td>
+    <td>STAB</td><td>Stabilizer Position</td></tr>
+<tr class="searchable" data-search="t12 eiu 1 / 2 07b.1/2.130.xx deg c t12.1 / .2 fan inlet temperature">
+    <td class="alpha">T12</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.130.XX</code></td><td>DEG C</td>
+    <td>T12.1 / .2</td><td>Fan Inlet Temperature</td></tr>
+<tr class="searchable" data-search="t25 eiu 1 / 2 07b.1/2.263.xx deg c t25.1 / .2 total air temperature — station 2.5">
+    <td class="alpha">T25</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.263.XX</code></td><td>DEG C</td>
+    <td>T25.1 / .2</td><td>Total Air Temperature — Station 2.5</td></tr>
+<tr class="searchable" data-search="t3 eiu 1 / 2 07b.1/2.265.xx deg c t3.1 / t3.2 engine selected t3 temperature">
+    <td class="alpha">T3</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.265.XX</code></td><td>DEG C</td>
+    <td>T3.1 / T3.2</td><td>Engine Selected T3 Temperature</td></tr>
+<tr class="searchable" data-search="tat adc 1 / 2 006.1.211.01 / 006.2.211.10 deg c tat total air temperature">
+    <td class="alpha">TAT</td><td>ADC 1 / 2</td>
+    <td><code>006.1.211.01 / 006.2.211.10</code></td><td>DEG C</td>
+    <td>TAT</td><td>Total Air Temperature</td></tr>
+<tr class="searchable" data-search="thdg irs 1 / 2 004.1.044.01 / 004.2.044.10 deg thdf1 / thdf2 true heading">
+    <td class="alpha">THDG</td><td>IRS 1 / 2</td>
+    <td><code>004.1.044.01 / 004.2.044.10</code></td><td>DEG</td>
+    <td>THDF1 / THDF2</td><td>True Heading</td></tr>
+<tr class="searchable" data-search="tla eiu 1 / 2 07b.1/2.133.xx deg tla.1 / tla.2 thrust lever angle">
+    <td class="alpha">TLA</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.133.XX</code></td><td>DEG</td>
+    <td>TLA.1 / TLA.2</td><td>Thrust Lever Angle</td></tr>
+<tr class="searchable" data-search="tn fwc 1 / 2 026.1/2.322.01/10 deg c tn1 / tn2 engine nacelle temperature">
+    <td class="alpha">TN</td><td>FWC 1 / 2</td>
+    <td><code>026.1/2.322.01/10</code></td><td>DEG C</td>
+    <td>TN1 / TN2</td><td>Engine Nacelle Temperature</td></tr>
+<tr class="searchable" data-search="tp pc/acsc 1 / 2 08e.1.121.11 / 08e.2.121.00 deg c tp1 / tp2 pack outlet temperature">
+    <td class="alpha">TP</td><td>PC/ACSC 1 / 2</td>
+    <td><code>08E.1.121.11 / 08E.2.121.00</code></td><td>DEG C</td>
+    <td>TP1 / TP2</td><td>Pack Outlet Temperature</td></tr>
+<tr class="searchable" data-search="utc — — hhmmss utc utc for alpha call-up">
+    <td class="alpha">UTC</td><td>—</td>
+    <td><code>—</code></td><td>HHMMSS</td>
+    <td>UTC</td><td>UTC for Alpha Call-Up</td></tr>
+<tr class="searchable" data-search="vacc irs 1 / 2 004.1.364.01 / 004.2.364.10 g vacc1 / vacc2 vertical acceleration">
+    <td class="alpha">VACC</td><td>IRS 1 / 2</td>
+    <td><code>004.1.364.01 / 004.2.364.10</code></td><td>G</td>
+    <td>VACC1 / VACC2</td><td>Vertical Acceleration</td></tr>
+<tr class="searchable" data-search="vscb press 1 / 2 05c.1.150.01 ft/min vscb cabin vertical speed">
+    <td class="alpha">VSCB</td><td>PRESS 1 / 2</td>
+    <td><code>05C.1.150.01</code></td><td>FT/MIN</td>
+    <td>VSCB</td><td>Cabin Vertical Speed</td></tr>
+<tr class="searchable" data-search="vsv eiu 1 / 2 07b.1/2.072.xx deg vsv.1 / vsv.2 selected variable stator vane position">
+    <td class="alpha">VSV</td><td>EIU 1 / 2</td>
+    <td><code>07B.1/2.072.XX</code></td><td>DEG</td>
+    <td>VSV.1 / VSV.2</td><td>Selected Variable Stator Vane Position</td></tr>
+<tr class="searchable" data-search="waiv sdac 029.1/2.001.00/11 discrete rhw / lhw wing anti-ice valve closed">
+    <td class="alpha">WAIV</td><td>SDAC</td>
+    <td><code>029.1/2.001.00/11</code></td><td>DISCRETE</td>
+    <td>RHW / LHW</td><td>Wing Anti-Ice Valve Closed</td></tr>
+<tr class="searchable" data-search="wb apu 1 07a.1.123.01 kg/sec wbkg bleed air flow">
+    <td class="alpha">WB</td><td>APU 1</td>
+    <td><code>07A.1.123.01</code></td><td>KG/SEC</td>
+    <td>WBKG</td><td>Bleed Air Flow</td></tr>
+<tr class="searchable" data-search="wd irs 1 / 2 004.1.316.01 / 004.2.316.10 deg wd1 / wd2 wind direction — true">
+    <td class="alpha">WD</td><td>IRS 1 / 2</td>
+    <td><code>004.1.316.01 / 004.2.316.10</code></td><td>DEG</td>
+    <td>WD1 / WD2</td><td>Wind Direction — True</td></tr>
+<tr class="searchable" data-search="wfq fqic 05a.2.257/261.10 kg wfqkg1 / wfqkg2 fuel quantity — inner cell">
+    <td class="alpha">WFQ</td><td>FQIC</td>
+    <td><code>05A.2.257/261.10</code></td><td>KG</td>
+    <td>WFQKG1 / WFQKG2</td><td>Fuel Quantity — Inner Cell</td></tr>
+<tr class="searchable" data-search="ws irs 1 / 2 004.1.315.01 / 004.2.315.10 kts ws2 wind speed">
+    <td class="alpha">WS</td><td>IRS 1 / 2</td>
+    <td><code>004.1.315.01 / 004.2.315.10</code></td><td>KTS</td>
+    <td>WS2</td><td>Wind Speed</td></tr>
+<tr class="searchable" data-search="ws1 bscu 1 / 2 06e.1.320.01 / 06e.2.320.10 m/s — wheel 1 speed">
+    <td class="alpha">WS1</td><td>BSCU 1 / 2</td>
+    <td><code>06E.1.320.01 / 06E.2.320.10</code></td><td>M/S</td>
+    <td>—</td><td>Wheel 1 Speed</td></tr>
+<tr class="searchable" data-search="ws2 bscu 1 / 2 06e.1.321.01 / 06e.2.321.10 m/s — wheel 2 speed">
+    <td class="alpha">WS2</td><td>BSCU 1 / 2</td>
+    <td><code>06E.1.321.01 / 06E.2.321.10</code></td><td>M/S</td>
+    <td>—</td><td>Wheel 2 Speed</td></tr>
+<tr class="searchable" data-search="ws3 bscu 1 / 2 06e.1.322.01 / 06e.2.322.10 m/s — wheel 3 speed">
+    <td class="alpha">WS3</td><td>BSCU 1 / 2</td>
+    <td><code>06E.1.322.01 / 06E.2.322.10</code></td><td>M/S</td>
+    <td>—</td><td>Wheel 3 Speed</td></tr>
+<tr class="searchable" data-search="ws4 bscu 1 / 2 06e.1.323.01 / 06e.2.323.10 m/s — wheel 4 speed">
+    <td class="alpha">WS4</td><td>BSCU 1 / 2</td>
+    <td><code>06E.1.323.01 / 06E.2.323.10</code></td><td>M/S</td>
+    <td>—</td><td>Wheel 4 Speed</td></tr>
+<tr class="searchable" data-search="yaw irs 1 / 2 004.1.330.01 / 004.2.330.10 deg/sec yaw body axis yaw rate">
+    <td class="alpha">YAW</td><td>IRS 1 / 2</td>
+    <td><code>004.1.330.01 / 004.2.330.10</code></td><td>DEG/SEC</td>
+    <td>YAW</td><td>Body Axis Yaw Rate</td></tr>
+<tr class="searchable" data-search="zcb press 1 / 2 05c.1.151.01 / 05c.2.151.10 ft zcb cabin altitude">
+    <td class="alpha">ZCB</td><td>PRESS 1 / 2</td>
+    <td><code>05C.1.151.01 / 05C.2.151.10</code></td><td>FT</td>
+    <td>ZCB</td><td>Cabin Altitude</td></tr></tbody></table></div></section>
+
+
+
+<div class="footer">A320 Alpha Call-Up Technical Guide — searchable technical quick-reference. Source identifies the reference aircraft as A320neo / CFM LEAP-1A.</div>
+</main><a class="top" href="#top">↑ Top</a>
+<script>
+const q=document.getElementById('search');
+function filter(v){
+ const s=v.trim().toLowerCase();
+ document.querySelectorAll('.searchable').forEach(r=>r.classList.toggle('hidden',s&&!r.dataset.search.includes(s)));
+}
+q.addEventListener('input',()=>filter(q.value));
+document.querySelectorAll('.letters button').forEach(b=>b.addEventListener('click',()=>{q.value=b.dataset.letter;filter(b.dataset.letter);document.getElementById('index').scrollIntoView();}));
+</script></body></html>

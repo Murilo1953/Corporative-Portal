@@ -1,0 +1,402 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A320 ECAM SD Pages — Visual Technical Guide</title>
+<style>
+:root {
+ --bg:#081018;--side:#0c151e;--panel:#101b25;--panel2:#162431;
+ --line:#2a3d4d;--text:#eaf1f6;--muted:#9fb1be;--accent:#52b8ff;
+ --green:#72d9b3;--amber:#f2b94b;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 "Segoe UI",Arial,sans-serif}
+a{color:inherit;text-decoration:none}
+.sidebar{position:fixed;inset:0 auto 0 0;width:285px;background:var(--side);border-right:1px solid var(--line);padding:24px 18px;overflow:auto}
+.brand{font-size:20px;font-weight:760}
+.sub{font-size:12px;color:var(--muted);margin-top:5px}
+.nav{margin-top:20px}
+.nav a{display:block;padding:8px 10px;border-radius:8px;color:#dce8ef}
+.nav a:hover{background:var(--panel2)}
+.page-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:16px}
+.page-grid a{text-align:center;padding:7px 2px;border:1px solid var(--line);border-radius:7px;background:#111f2a;color:var(--accent);font-size:11px}
+.main{margin-left:285px;padding:34px;max-width:1500px}
+.hero{background:linear-gradient(135deg,#14283a,#0e1720);border:1px solid var(--line);border-radius:17px;padding:28px}
+.hero h1{margin:0 0 7px;font-size:31px}
+.hero p{max-width:920px;color:#c7d3dc}
+.kicker{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:800}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.badge{border:1px solid #31536d;background:#162837;border-radius:999px;padding:6px 9px;font-size:12px}
+.note{border-left:4px solid var(--amber);background:#0e1a24;border-radius:8px;padding:12px 14px;margin:18px 0}
+.section{scroll-margin-top:18px;margin:22px 0;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}
+.section-head{display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap}
+.section h2{margin:2px 0 0;font-size:24px}
+.subtitle{color:var(--muted);font-size:13px;margin-top:3px}
+.figure-link{display:inline-block;font-size:12px;padding:7px 10px;border-radius:8px;border:1px solid #35536a;background:#10283a;color:#bfe6ff}
+
+.content-grid{display:grid;grid-template-columns:minmax(380px,1.2fr) minmax(280px,.8fr);gap:15px;margin-top:15px}
+.figure{margin:0;background:#0a1219;border:1px solid var(--line);border-radius:11px;padding:10px}
+.figure img{display:block;max-width:100%;height:auto;margin:auto;border-radius:6px;background:white}
+.figure figcaption{font-size:11px;color:var(--muted);text-align:center;margin-top:8px}
+.data-card{background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:15px}
+.data-card h3{margin:0 0 8px;font-size:16px;color:var(--green)}
+.data-card ul{padding-left:20px;margin:0;columns:1}
+.data-card li{font-size:13px;color:#c7d3dc;margin:4px 0;break-inside:avoid}
+.top{position:fixed;right:18px;bottom:18px;background:#172837;border:1px solid #365974;padding:10px 12px;border-radius:10px}
+.footer{font-size:12px;color:var(--muted);padding:20px 0 60px}
+@media(max-width:950px){
+ .sidebar{position:static;width:auto;border-right:0;border-bottom:1px solid var(--line)}
+ .main{margin:0;padding:18px}
+ .content-grid{grid-template-columns:1fr}
+}
+@media print{
+ .sidebar,.top,.figure-link,
+ .main{margin:0;padding:0}
+ body{background:white;color:black}
+ .hero,.section,.figure,.data-card{background:white;color:black;border-color:#bbb}
+ .hero p,.subtitle,.figure figcaption,.data-card li,.sub{color:#555}
+}
+
+.ref-list{
+  display:grid;
+  gap:6px;
+  margin-top:4px;
+}
+.ref-row{
+  display:grid;
+  grid-template-columns:34px 1fr;
+  gap:9px;
+  align-items:start;
+  padding:7px 8px;
+  border-bottom:1px solid var(--line);
+}
+.ref-row:last-child{border-bottom:0}
+.ref-num{
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#102c42;
+  border:1px solid #3c6787;
+  color:var(--accent);
+  font-weight:800;
+  font-size:12px;
+}
+.ref-row.unnumbered .ref-num{
+  color:var(--muted);
+  background:#111a22;
+  border-color:var(--line);
+}
+.ref-text{
+  color:#c7d3dc;
+  font-size:13px;
+  padding-top:4px;
+}
+
+</style>
+</head>
+<body id="top">
+<aside class="sidebar">
+  <div class="brand">A320 ECAM SD Pages</div>
+  <div class="sub">Visual Technical Guide</div>
+  <nav class="nav">
+    <a href="#overview">Overview</a>
+    <a href="#eng">ENG</a><a href="#bleed">BLEED</a><a href="#press">PRESS</a><a href="#elec">ELEC</a><a href="#hyd">HYD</a><a href="#fuel">FUEL</a><a href="#apu">APU</a><a href="#cond">COND</a><a href="#door">DOOR / OXY</a><a href="#wheel">WHEEL</a><a href="#fctl">F/CTL</a>
+  </nav>
+  <div class="page-grid">
+    <a href="#eng">ENG</a><a href="#bleed">BLEED</a><a href="#press">PRESS</a><a href="#elec">ELEC</a><a href="#hyd">HYD</a><a href="#fuel">FUEL</a><a href="#apu">APU</a><a href="#cond">COND</a><a href="#door">DOOR / OXY</a><a href="#wheel">WHEEL</a><a href="#fctl">F/CTL</a>
+  </div>
+</aside>
+
+<main class="main">
+<section class="hero" id="overview">
+  <div class="kicker">Airbus A320 • ECAM</div>
+  <h1>System Display Pages</h1>
+  <p>The System Display is normally presented on the lower ECAM display unit. It provides 11 system pages with aircraft-system synoptics, plus STATUS; CRUISE is automatically displayed in flight.</p>
+  <div class="badges">
+    <span class="badge">ENG</span><span class="badge">BLEED</span><span class="badge">PRESS</span>
+    <span class="badge">ELEC</span><span class="badge">HYD</span><span class="badge">FUEL</span>
+    <span class="badge">APU</span><span class="badge">COND</span><span class="badge">DOOR/OXY</span>
+    <span class="badge">WHEEL</span><span class="badge">F/CTL</span>
+  </div>
+</section>
+
+<div class="note">
+<strong>Use:</strong> each SD page can be called manually with the corresponding pushbutton on the ECAM Control Panel. Each figure below is displayed directly. The “Displayed information” references are numbered to correspond with the figure callouts.
+</div>
+
+
+<section class="section" id="eng">
+  <div class="section-head">
+    <div>
+      <div class="kicker">ECAM System Display</div>
+      <h2>ENG</h2>
+      <div class="subtitle">Engine Page</div>
+    </div>
+    <a class="figure-link" href="https://www.aviationhunt.com/wp-content/uploads/2023/11/a320-ecam-sd-eng-page.webp" target="_blank" rel="noopener">Open figure ↗</a>
+  </div>
+
+  <div class="content-grid">
+    <figure class="figure">
+      <a href="https://www.aviationhunt.com/wp-content/uploads/2023/11/a320-ecam-sd-eng-page.webp" target="_blank" rel="noopener">
+        <img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/11/a320-ecam-sd-eng-page.webp" alt="A320 ECAM ENG SD Page">
+      </a>
+      <figcaption>ENG SD Page — click image to open separately.</figcaption>
+    </figure>
+
+    <div class="data-card">
+      <h3>Displayed information</h3><div class="ref-list"><div class="ref-row"><span class="ref-num">1</span><span class="ref-text">Oil Pressure Indication</span></div><div class="ref-row"><span class="ref-num">2</span><span class="ref-text">Oil Quantity Indication</span></div><div class="ref-row"><span class="ref-num">3</span><span class="ref-text">Fuel Used Indication</span></div><div class="ref-row"><span class="ref-num">4</span><span class="ref-text">N1 / N2 Vibration Indication</span></div><div class="ref-row"><span class="ref-num">5</span><span class="ref-text">Oil Filter CLOG Indication</span></div><div class="ref-row"><span class="ref-num">6</span><span class="ref-text">Fuel Filter CLOG Indication</span></div><div class="ref-row"><span class="ref-num">7</span><span class="ref-text">Starting Sequence Indications</span></div><div class="ref-row"><span class="ref-num">8</span><span class="ref-text">Nacelle Temperature</span></div><div class="ref-row"><span class="ref-num">9</span><span class="ref-text">Engine Oil Temperature</span></div><div class="ref-row"><span class="ref-num">10</span><span class="ref-text">Ice Protection Indication</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="bleed">
+  <div class="section-head">
+    <div>
+      <div class="kicker">ECAM System Display</div>
+      <h2>BLEED</h2>
+      <div class="subtitle">Air Bleed Page</div>
+    </div>
+    <a class="figure-link" href="https://www.aviationhunt.com/wp-content/uploads/2023/11/a320-ecam-sd-bleed-page.webp" target="_blank" rel="noopener">Open figure ↗</a>
+  </div>
+
+  <div class="content-grid">
+    <figure class="figure">
+      <a href="https://www.aviationhunt.com/wp-content/uploads/2023/11/a320-ecam-sd-bleed-page.webp" target="_blank" rel="noopener">
+        <img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/11/a320-ecam-sd-bleed-page.webp" alt="A320 ECAM BLEED SD Page">
+      </a>
+      <figcaption>BLEED SD Page — click image to open separately.</figcaption>
+    </figure>
+
+    <div class="data-card">
+      <h3>Displayed information</h3><div class="ref-list"><div class="ref-row"><span class="ref-num">1</span><span class="ref-text">Cold-air duct supply</span></div><div class="ref-row"><span class="ref-num">2</span><span class="ref-text">Emer RAM air-valve</span></div><div class="ref-row"><span class="ref-num">3</span><span class="ref-text">Pack outlet temperature</span></div><div class="ref-row"><span class="ref-num">4</span><span class="ref-text">Pack turbine bypass-valve</span></div><div class="ref-row"><span class="ref-num">5</span><span class="ref-text">Pack compressor outlet-temperature</span></div><div class="ref-row"><span class="ref-num">6</span><span class="ref-text">Pack flow</span></div><div class="ref-row"><span class="ref-num">7</span><span class="ref-text">Pack flow-control valve</span></div><div class="ref-row"><span class="ref-num">8</span><span class="ref-text">Wing ANTI ICE indication</span></div><div class="ref-row"><span class="ref-num">9</span><span class="ref-text">Wing anti-ice valve not closed</span></div><div class="ref-row"><span class="ref-num">10</span><span class="ref-text">ENG pre-cooler inlet pressure</span></div><div class="ref-row"><span class="ref-num">11</span><span class="ref-text">ENG precooler outlet temperature</span></div><div class="ref-row"><span class="ref-num">12</span><span class="ref-text">ENG number</span></div><div class="ref-row"><span class="ref-num">13</span><span class="ref-text">ENG bleed valve</span></div><div class="ref-row"><span class="ref-num">14</span><span class="ref-text">ENG HP bleed-valve</span></div><div class="ref-row"><span class="ref-num">15</span><span class="ref-text">Crossbleed valve</span></div><div class="ref-row"><span class="ref-num">16</span><span class="ref-text">APU bleed valve</span></div><div class="ref-row"><span class="ref-num">17</span><span class="ref-text">Ground supply</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="press">
+  <div class="section-head">
+    <div>
+      <div class="kicker">ECAM System Display</div>
+      <h2>PRESS</h2>
+      <div class="subtitle">Cabin Pressurization Page</div>
+    </div>
+    <a class="figure-link" href="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-cab-press-page.webp" target="_blank" rel="noopener">Open figure ↗</a>
+  </div>
+
+  <div class="content-grid">
+    <figure class="figure">
+      <a href="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-cab-press-page.webp" target="_blank" rel="noopener">
+        <img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-cab-press-page.webp" alt="A320 ECAM PRESS SD Page">
+      </a>
+      <figcaption>PRESS SD Page — click image to open separately.</figcaption>
+    </figure>
+
+    <div class="data-card">
+      <h3>Displayed information</h3><div class="ref-list"><div class="ref-row"><span class="ref-num">1</span><span class="ref-text">Cabin differential pressure (ΔP indication)</span></div><div class="ref-row"><span class="ref-num">2</span><span class="ref-text">Cabin vertical speed</span></div><div class="ref-row"><span class="ref-num">3</span><span class="ref-text">Landing field elevation indication</span></div><div class="ref-row"><span class="ref-num">4</span><span class="ref-text">Cabin altitude</span></div><div class="ref-row"><span class="ref-num">5</span><span class="ref-text">Mode MAN Indication</span></div><div class="ref-row"><span class="ref-num">6</span><span class="ref-text">Safety Valve indication</span></div><div class="ref-row"><span class="ref-num">7</span><span class="ref-text">Active System Indication SYS 1(2)</span></div><div class="ref-row"><span class="ref-num">8</span><span class="ref-text">PACK 1(2) indication and Flow control indications from the packs (triangles)</span></div><div class="ref-row"><span class="ref-num">9</span><span class="ref-text">Outflow valves indications</span></div><div class="ref-row"><span class="ref-num">10</span><span class="ref-text">Extract Valve indication</span></div><div class="ref-row"><span class="ref-num">11</span><span class="ref-text">VENT Indication</span></div><div class="ref-row"><span class="ref-num">12</span><span class="ref-text">INLET Valve indication</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="elec">
+  <div class="section-head">
+    <div>
+      <div class="kicker">ECAM System Display</div>
+      <h2>ELEC</h2>
+      <div class="subtitle">Electrical Page</div>
+    </div>
+    <a class="figure-link" href="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-elec-page.webp" target="_blank" rel="noopener">Open figure ↗</a>
+  </div>
+
+  <div class="content-grid">
+    <figure class="figure">
+      <a href="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-elec-page.webp" target="_blank" rel="noopener">
+        <img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-elec-page.webp" alt="A320 ECAM ELEC SD Page">
+      </a>
+      <figcaption>ELEC SD Page — click image to open separately.</figcaption>
+    </figure>
+
+    <div class="data-card">
+      <h3>Displayed information</h3><div class="ref-list"><div class="ref-row"><span class="ref-num">1</span><span class="ref-text">Battery indications</span></div><div class="ref-row"><span class="ref-num">2</span><span class="ref-text">Battery charge/discharge indication</span></div><div class="ref-row"><span class="ref-num">3</span><span class="ref-text">DC BAT indication</span></div><div class="ref-row"><span class="ref-num">4</span><span class="ref-text">Bus bar indication</span></div><div class="ref-row"><span class="ref-num">5</span><span class="ref-text">TR 1(2) indication</span></div><div class="ref-row"><span class="ref-num">6</span><span class="ref-text">ESS TR indication</span></div><div class="ref-row"><span class="ref-num">7</span><span class="ref-text">EMER GEN indication</span></div><div class="ref-row"><span class="ref-num">8</span><span class="ref-text">GEN 1(2) indications</span></div><div class="ref-row"><span class="ref-num">9</span><span class="ref-text">APU GEN indications</span></div><div class="ref-row"><span class="ref-num">10</span><span class="ref-text">EXT PWR indications</span></div><div class="ref-row"><span class="ref-num">11</span><span class="ref-text">IDG indications</span></div><div class="ref-row"><span class="ref-num">12</span><span class="ref-text">GALLEY SHED indication</span></div><div class="ref-row"><span class="ref-num">13</span><span class="ref-text">RISE indication</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="hyd">
+  <div class="section-head">
+    <div>
+      <div class="kicker">ECAM System Display</div>
+      <h2>HYD</h2>
+      <div class="subtitle">Hydraulic Page</div>
+    </div>
+    <a class="figure-link" href="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-hyd-page.webp" target="_blank" rel="noopener">Open figure ↗</a>
+  </div>
+
+  <div class="content-grid">
+    <figure class="figure">
+      <a href="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-hyd-page.webp" target="_blank" rel="noopener">
+        <img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-hyd-page.webp" alt="A320 ECAM HYD SD Page">
+      </a>
+      <figcaption>HYD SD Page — click image to open separately.</figcaption>
+    </figure>
+
+    <div class="data-card">
+      <h3>Displayed information</h3><div class="ref-list"><div class="ref-row"><span class="ref-num">1</span><span class="ref-text">Hydraulic system status</span></div><div class="ref-row"><span class="ref-num">2</span><span class="ref-text">Hydraulic pressure</span></div><div class="ref-row"><span class="ref-num">3</span><span class="ref-text">Yellow electrical pump</span></div><div class="ref-row"><span class="ref-num">4</span><span class="ref-text">ELEC indication</span></div><div class="ref-row"><span class="ref-num">5</span><span class="ref-text">OVHT indication</span></div><div class="ref-row"><span class="ref-num">6</span><span class="ref-text">ENG pump (Yellow / Green)</span></div><div class="ref-row"><span class="ref-num">7</span><span class="ref-text">Fire valve (Yellow / Green)</span></div><div class="ref-row"><span class="ref-num">8</span><span class="ref-text">Reservoir Level</span></div><div class="ref-row"><span class="ref-num">9</span><span class="ref-text">BLUE ELEC Pump</span></div><div class="ref-row"><span class="ref-num">10</span><span class="ref-text">RAT link to the BLUE system</span></div><div class="ref-row"><span class="ref-num">11</span><span class="ref-text">Hydraulic links</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="fuel">
+  <div class="section-head">
+    <div>
+      <div class="kicker">ECAM System Display</div>
+      <h2>FUEL</h2>
+      <div class="subtitle">Fuel Page</div>
+    </div>
+    <a class="figure-link" href="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-fuel-page.webp" target="_blank" rel="noopener">Open figure ↗</a>
+  </div>
+
+  <div class="content-grid">
+    <figure class="figure">
+      <a href="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-fuel-page.webp" target="_blank" rel="noopener">
+        <img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-fuel-page.webp" alt="A320 ECAM FUEL SD Page">
+      </a>
+      <figcaption>FUEL SD Page — click image to open separately.</figcaption>
+    </figure>
+
+    <div class="data-card">
+      <h3>Displayed information</h3><div class="ref-list"><div class="ref-row"><span class="ref-num">1</span><span class="ref-text">Fuel On Board (FOB)</span></div><div class="ref-row"><span class="ref-num">2</span><span class="ref-text">Inner tank fuel temperature LH (RH)</span></div><div class="ref-row"><span class="ref-num">3</span><span class="ref-text">Outer tank fuel temperature LH (RH)</span></div><div class="ref-row"><span class="ref-num">4</span><span class="ref-text">Transfer valve LH (RH)</span></div><div class="ref-row"><span class="ref-num">5</span><span class="ref-text">Outer tank fuel quantity LH (RH)</span></div><div class="ref-row"><span class="ref-num">6</span><span class="ref-text">Inner tank fuel quantity LH (RH)</span></div><div class="ref-row"><span class="ref-num">7</span><span class="ref-text">Center to inner tank transfer</span></div><div class="ref-row"><span class="ref-num">8</span><span class="ref-text">Left and Right tank pumps 1 and 2</span></div><div class="ref-row"><span class="ref-num">9</span><span class="ref-text">APU fuel LP valve</span></div><div class="ref-row"><span class="ref-num">10</span><span class="ref-text">Engine 1 (2) fire valve (or LP valve)</span></div><div class="ref-row"><span class="ref-num">11</span><span class="ref-text">Fuel used – Engine 1 (2)</span></div><div class="ref-row"><span class="ref-num">12</span><span class="ref-text">Engine number</span></div><div class="ref-row"><span class="ref-num">13</span><span class="ref-text">ACT fuel quantity</span></div><div class="ref-row"><span class="ref-num">14</span><span class="ref-text">Forward ACT isolation valve</span></div><div class="ref-row"><span class="ref-num">15</span><span class="ref-text">Total fuel used</span></div><div class="ref-row"><span class="ref-num">16</span><span class="ref-text">Fuel crossfeed valve</span></div><div class="ref-row"><span class="ref-num">17</span><span class="ref-text">Center tank fuel quantity</span></div><div class="ref-row"><span class="ref-num">18</span><span class="ref-text">Center tank pumps</span></div><div class="ref-row"><span class="ref-num">19</span><span class="ref-text">Total fuel flow</span></div><div class="ref-row"><span class="ref-num">20</span><span class="ref-text">Additional Center Tank (ACT) transfer</span></div><div class="ref-row unnumbered"><span class="ref-num">—</span><span class="ref-text">Fuel links</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="apu">
+  <div class="section-head">
+    <div>
+      <div class="kicker">ECAM System Display</div>
+      <h2>APU</h2>
+      <div class="subtitle">Auxiliary Power Unit Page</div>
+    </div>
+    <a class="figure-link" href="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-apu-page.webp" target="_blank" rel="noopener">Open figure ↗</a>
+  </div>
+
+  <div class="content-grid">
+    <figure class="figure">
+      <a href="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-apu-page.webp" target="_blank" rel="noopener">
+        <img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-apu-page.webp" alt="A320 ECAM APU SD Page">
+      </a>
+      <figcaption>APU SD Page — click image to open separately.</figcaption>
+    </figure>
+
+    <div class="data-card">
+      <h3>Displayed information</h3><div class="ref-list"><div class="ref-row"><span class="ref-num">1</span><span class="ref-text">AVAIL</span></div><div class="ref-row"><span class="ref-num">2</span><span class="ref-text">APU bleed air valve position</span></div><div class="ref-row"><span class="ref-num">3</span><span class="ref-text">APU bleed air pressure</span></div><div class="ref-row"><span class="ref-num">4</span><span class="ref-text">APU GEN line contactor indication</span></div><div class="ref-row"><span class="ref-num">5</span><span class="ref-text">APU GEN parameters</span></div><div class="ref-row"><span class="ref-num">6</span><span class="ref-text">FUEL LO PR</span></div><div class="ref-row"><span class="ref-num">7</span><span class="ref-text">FLAP OPEN</span></div><div class="ref-row"><span class="ref-num">8</span><span class="ref-text">APU N</span></div><div class="ref-row"><span class="ref-num">9</span><span class="ref-text">APU EGT</span></div><div class="ref-row"><span class="ref-num">10</span><span class="ref-text">LOW OIL LEVEL</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="cond">
+  <div class="section-head">
+    <div>
+      <div class="kicker">ECAM System Display</div>
+      <h2>COND</h2>
+      <div class="subtitle">Air Conditioning Page</div>
+    </div>
+    <a class="figure-link" href="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-cond-page.webp" target="_blank" rel="noopener">Open figure ↗</a>
+  </div>
+
+  <div class="content-grid">
+    <figure class="figure">
+      <a href="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-cond-page.webp" target="_blank" rel="noopener">
+        <img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-cond-page.webp" alt="A320 ECAM COND SD Page">
+      </a>
+      <figcaption>COND SD Page — click image to open separately.</figcaption>
+    </figure>
+
+    <div class="data-card">
+      <h3>Displayed information</h3><div class="ref-list"><div class="ref-row"><span class="ref-num">1</span><span class="ref-text">Zone Trim Air Valve Position</span></div><div class="ref-row"><span class="ref-num">2</span><span class="ref-text">Duct Temperature</span></div><div class="ref-row"><span class="ref-num">3</span><span class="ref-text">Zone Temperature</span></div><div class="ref-row"><span class="ref-num">4</span><span class="ref-text">Cabin Recirculation Fan Status</span></div><div class="ref-row"><span class="ref-num">5</span><span class="ref-text">Pack Control Mode</span></div><div class="ref-row"><span class="ref-num">6</span><span class="ref-text">TEMP Unit Indication</span></div><div class="ref-row"><span class="ref-num">7</span><span class="ref-text">Hot Air Shutoff Valve</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="door">
+  <div class="section-head">
+    <div>
+      <div class="kicker">ECAM System Display</div>
+      <h2>DOOR / OXY</h2>
+      <div class="subtitle">Doors / Oxygen Page</div>
+    </div>
+    <a class="figure-link" href="https://www.aviationhunt.com/wp-content/uploads/2023/11/a320-ecam-sd-door-oxy-page.webp" target="_blank" rel="noopener">Open figure ↗</a>
+  </div>
+
+  <div class="content-grid">
+    <figure class="figure">
+      <a href="https://www.aviationhunt.com/wp-content/uploads/2023/11/a320-ecam-sd-door-oxy-page.webp" target="_blank" rel="noopener">
+        <img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/11/a320-ecam-sd-door-oxy-page.webp" alt="A320 ECAM DOOR / OXY SD Page">
+      </a>
+      <figcaption>DOOR / OXY SD Page — click image to open separately.</figcaption>
+    </figure>
+
+    <div class="data-card">
+      <h3>Displayed information</h3><div class="ref-list"><div class="ref-row"><span class="ref-num">1</span><span class="ref-text">Cabin Doors</span></div><div class="ref-row"><span class="ref-num">2</span><span class="ref-text">Avionic Doors</span></div><div class="ref-row"><span class="ref-num">3</span><span class="ref-text">Cargo Doors</span></div><div class="ref-row"><span class="ref-num">4</span><span class="ref-text">BULK Cargo Door</span></div><div class="ref-row"><span class="ref-num">5</span><span class="ref-text">Emergency Exit</span></div><div class="ref-row"><span class="ref-num">6</span><span class="ref-text">Door Name</span></div><div class="ref-row"><span class="ref-num">7</span><span class="ref-text">Slide Indication</span></div><div class="ref-row"><span class="ref-num">8</span><span class="ref-text">Crew Oxygen</span></div><div class="ref-row"><span class="ref-num">9</span><span class="ref-text">REGUL LO PR Indication</span></div><div class="ref-row"><span class="ref-num">10</span><span class="ref-text">Cabin V/S (displayed only in flight)</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="wheel">
+  <div class="section-head">
+    <div>
+      <div class="kicker">ECAM System Display</div>
+      <h2>WHEEL</h2>
+      <div class="subtitle">Landing Gear / Wheels / Brakes Page</div>
+    </div>
+    <a class="figure-link" href="https://www.aviationhunt.com/wp-content/uploads/2023/11/a320-ecam-sd-wheel-page.webp" target="_blank" rel="noopener">Open figure ↗</a>
+  </div>
+
+  <div class="content-grid">
+    <figure class="figure">
+      <a href="https://www.aviationhunt.com/wp-content/uploads/2023/11/a320-ecam-sd-wheel-page.webp" target="_blank" rel="noopener">
+        <img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/11/a320-ecam-sd-wheel-page.webp" alt="A320 ECAM WHEEL SD Page">
+      </a>
+      <figcaption>WHEEL SD Page — click image to open separately.</figcaption>
+    </figure>
+
+    <div class="data-card">
+      <h3>Displayed information</h3><div class="ref-list"><div class="ref-row"><span class="ref-num">1</span><span class="ref-text">L/G position</span></div><div class="ref-row"><span class="ref-num">2</span><span class="ref-text">L/G door operation</span></div><div class="ref-row"><span class="ref-num">3</span><span class="ref-text">UP LOCK message</span></div><div class="ref-row"><span class="ref-num">4</span><span class="ref-text">Spoilers position indication</span></div><div class="ref-row"><span class="ref-num">5</span><span class="ref-text">Nose L/G doors operation</span></div><div class="ref-row"><span class="ref-num">6</span><span class="ref-text">Nose L/G operation</span></div><div class="ref-row"><span class="ref-num">7</span><span class="ref-text">NOSE WHEEL STEERING Message</span></div><div class="ref-row"><span class="ref-num">8</span><span class="ref-text">Brake temperature</span></div><div class="ref-row"><span class="ref-num">9</span><span class="ref-text">Wheel number</span></div><div class="ref-row"><span class="ref-num">10</span><span class="ref-text">Tire pressure indication (optional)</span></div><div class="ref-row"><span class="ref-num">11</span><span class="ref-text">Brake release</span></div><div class="ref-row"><span class="ref-num">12</span><span class="ref-text">Braking Messages</span></div><div class="ref-row"><span class="ref-num">13</span><span class="ref-text">L/G CTL Message</span></div><div class="ref-row"><span class="ref-num">14</span><span class="ref-text">Hydraulic status</span></div><div class="ref-row"><span class="ref-num">15</span><span class="ref-text">Hottest brake indication</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="fctl">
+  <div class="section-head">
+    <div>
+      <div class="kicker">ECAM System Display</div>
+      <h2>F/CTL</h2>
+      <div class="subtitle">Flight Controls Page</div>
+    </div>
+    <a class="figure-link" href="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-fctl-page.webp" target="_blank" rel="noopener">Open figure ↗</a>
+  </div>
+
+  <div class="content-grid">
+    <figure class="figure">
+      <a href="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-fctl-page.webp" target="_blank" rel="noopener">
+        <img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-fctl-page.webp" alt="A320 ECAM F/CTL SD Page">
+      </a>
+      <figcaption>F/CTL SD Page — click image to open separately.</figcaption>
+    </figure>
+
+    <div class="data-card">
+      <h3>Displayed information</h3><div class="ref-list"><div class="ref-row"><span class="ref-num">1</span><span class="ref-text">Spoilers status (left)</span></div><div class="ref-row"><span class="ref-num">2</span><span class="ref-text">Hydraulic system pressure indication</span></div><div class="ref-row"><span class="ref-num">3</span><span class="ref-text">Spoilers status (right)</span></div><div class="ref-row"><span class="ref-num">4</span><span class="ref-text">FCDC Message</span></div><div class="ref-row"><span class="ref-num">5</span><span class="ref-text">Aileron position</span></div><div class="ref-row"><span class="ref-num">6</span><span class="ref-text">Servo control hydraulic pressure</span></div><div class="ref-row"><span class="ref-num">7</span><span class="ref-text">Servo control electrical status</span></div><div class="ref-row"><span class="ref-num">8</span><span class="ref-text">Aileron scale</span></div><div class="ref-row"><span class="ref-num">9</span><span class="ref-text">SEC computer operation</span></div><div class="ref-row"><span class="ref-num">10</span><span class="ref-text">Horizontal stabilizer hydraulic pressure</span></div><div class="ref-row"><span class="ref-num">11</span><span class="ref-text">Elevator (right) hydraulic pressure</span></div><div class="ref-row"><span class="ref-num">12</span><span class="ref-text">Elevator (right) electrical status</span></div><div class="ref-row"><span class="ref-num">13</span><span class="ref-text">Elevator (right) scale</span></div><div class="ref-row"><span class="ref-num">14</span><span class="ref-text">Elevator (right) position</span></div><div class="ref-row"><span class="ref-num">15</span><span class="ref-text">Rudder scale</span></div><div class="ref-row"><span class="ref-num">16</span><span class="ref-text">Rudder trim position</span></div><div class="ref-row"><span class="ref-num">17</span><span class="ref-text">Rudder position</span></div><div class="ref-row"><span class="ref-num">18</span><span class="ref-text">Rudder hydraulic status</span></div><div class="ref-row"><span class="ref-num">19</span><span class="ref-text">Trimmable horizontal stabilizer position</span></div><div class="ref-row"><span class="ref-num">20</span><span class="ref-text">Elevator (left)</span></div><div class="ref-row"><span class="ref-num">21</span><span class="ref-text">Trimmable horizontal stabilizer control</span></div><div class="ref-row"><span class="ref-num">22</span><span class="ref-text">ELAC operation</span></div><div class="ref-row"><span class="ref-num">23</span><span class="ref-text">Aileron indication (left)</span></div></div>
+    </div>
+  </div>
+</section>
+
+
+<div class="footer">A320 ECAM SD Pages — visual quick-reference with numbered display references. Confirm approved Airbus documentation and aircraft effectivity for maintenance use.</div>
+</main>
+<a class="top" href="#top">↑ Top</a>
+</body>
+</html>

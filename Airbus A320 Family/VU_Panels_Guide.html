@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Airbus A320 VU Panels — Technical Index</title>
+<style>
+:root{--bg:#081018;--side:#0c151e;--panel:#101b25;--panel2:#162431;--line:#2a3d4d;--text:#eaf1f6;--muted:#9fb1be;--accent:#52b8ff;--green:#72d9b3;--warn:#f2b94b}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 "Segoe UI",Arial,sans-serif}
+.sidebar{position:fixed;inset:0 auto 0 0;width:290px;background:var(--side);border-right:1px solid var(--line);padding:24px 18px;overflow:auto}
+.brand{font-size:20px;font-weight:760} .sub{color:var(--muted);font-size:12px;margin-top:4px}
+.nav{margin-top:20px} .nav a{display:block;color:#dce8ef;text-decoration:none;padding:9px 10px;border-radius:8px}
+.nav a:hover{background:var(--panel2)}
+.main{margin-left:290px;padding:34px;max-width:1600px}
+.hero{background:linear-gradient(135deg,#14283a,#0e1720);border:1px solid var(--line);border-radius:17px;padding:28px}
+.hero h1{margin:0 0 7px;font-size:31px} .hero p{max-width:900px;color:#c7d3dc}
+.kicker{font-size:11px;text-transform:uppercase;letter-spacing:.13em;color:var(--accent);font-weight:800}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px} .badge{border:1px solid #31536d;background:#162837;border-radius:999px;padding:6px 9px;font-size:12px}
+.searchbar{position:sticky;top:0;z-index:20;background:rgba(8,16,24,.97);padding:12px 0 14px}
+.searchbar input{width:100%;padding:13px 14px;background:#0e1821;color:var(--text);border:1px solid var(--line);border-radius:10px;font-size:15px}
+.section{scroll-margin-top:75px;margin:22px 0;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:23px}
+.section h2{margin:3px 0 17px;font-size:23px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:11px}
+.card{position:relative;background:var(--panel2);border:1px solid var(--line);border-radius:11px;padding:15px;min-height:96px}
+.card:hover{border-color:#447496;transform:translateY(-1px)}
+.vu{font-size:20px;font-weight:800;color:var(--green)} .desc{margin-top:5px;color:#d8e3ea;font-size:13px}
+.opt{position:absolute;top:9px;right:9px;font-size:9px;color:#ffe0a1;border:1px solid #6b5528;background:#2b2518;border-radius:999px;padding:3px 6px}
+.note{border-left:4px solid var(--warn);background:#0e1a24;border-radius:8px;padding:12px 14px;margin:18px 0}
+.hidden{display:none!important} .top{position:fixed;right:18px;bottom:18px;background:#172837;border:1px solid #365974;color:white;text-decoration:none;padding:10px 12px;border-radius:10px}
+.footer{font-size:12px;color:var(--muted);padding:20px 0 60px}
+@media(max-width:900px){.sidebar{position:static;width:auto;border-right:0;border-bottom:1px solid var(--line)}.main{margin:0;padding:18px}}
+@media print{.sidebar,.searchbar,.top{display:none}.main{margin:0;padding:0}body{background:white;color:black}.hero,.section,.card{background:white;color:black;border-color:#bbb}.hero p,.sub{color:#555}}
+</style>
+</head>
+<body id="top">
+<aside class="sidebar">
+<div class="brand">A320 VU Panels</div>
+<div class="sub">Technical Location Index</div>
+<nav class="nav"><a href="#overview">Overview</a><a href="#overhead-system-panels">Overhead &amp; System Panels</a><a href="#instrument-glareshield">Instrument &amp; Glareshield</a><a href="#pedestal-consoles">Pedestal &amp; Consoles</a><a href="#avionics-racks-shelves">Avionics Racks &amp; Shelves</a><a href="#electrical-cb-relay">Electrical / CB / Relay</a><a href="#crew-cockpit-misc">Crew / Cockpit Misc.</a><a href="#cabin-cargo-utility">Cabin / Cargo / Utility</a><a href="#other-panels">Other Panels</a></nav>
+</aside>
+<main class="main">
+<section class="hero" id="overview">
+<div class="kicker">Airbus A320</div>
+<h1>VU Panels — Technical Index</h1>
+<p>Elegant quick-reference index of A320 VU panel designations, grouped by cockpit, avionics, electrical, cabin and cargo areas for faster maintenance lookup.</p>
+<div class="badges"><span class="badge">131 entries</span><span class="badge">Cockpit</span><span class="badge">Avionics</span><span class="badge">Circuit Breakers</span><span class="badge">Cabin / Cargo</span></div>
+</section>
+<div class="searchbar"><input id="search" type="search" placeholder="Search VU or description: 49VU, AIR COND, REAR C/B, 83VU, FLAPS..."></div>
+<div class="note"><strong>Applicability:</strong> entries marked with an asterisk in the source are shown as <strong>IF INSTALLED</strong>. Confirm aircraft effectivity in approved documentation before maintenance use.</div>
+
+<section class="section" id="overhead-system-panels">
+  <div class="kicker">A320 VU Panel Index</div>
+  <h2>Overhead &amp; System Panels</h2>
+  <div class="grid">
+        <article class="card searchable" data-search="20vu overhead pnl overhead &amp; system panels">
+          <div class="vu">20VU</div>
+          <div class="desc">OVERHEAD PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="21vu overhead ctl &amp; ind pnl overhead &amp; system panels">
+          <div class="vu">21VU</div>
+          <div class="desc">OVERHEAD CTL &amp; IND PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="22vu overhead ctl &amp; ind pnl overhead &amp; system panels">
+          <div class="vu">22VU</div>
+          <div class="desc">OVERHEAD CTL &amp; IND PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="25vu overhead ctl &amp; ind pnl overhead &amp; system panels">
+          <div class="vu">25VU</div>
+          <div class="desc">OVERHEAD CTL &amp; IND PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="27vu overhead ctl &amp; ind panel overhead &amp; system panels">
+          <div class="vu">27VU</div>
+          <div class="desc">OVERHEAD CTL &amp; IND PANEL</div>
+          
+        </article>
+        <article class="card searchable" data-search="30vu air cond pnl overhead &amp; system panels">
+          <div class="vu">30VU</div>
+          <div class="desc">AIR COND PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="35vu elec pnl overhead &amp; system panels">
+          <div class="vu">35VU</div>
+          <div class="desc">ELEC PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="40vu hyd/fuel pnl overhead &amp; system panels">
+          <div class="vu">40VU</div>
+          <div class="desc">HYD/FUEL PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="41vu adirs msu panel overhead &amp; system panels">
+          <div class="vu">41VU</div>
+          <div class="desc">ADIRS MSU PANEL</div>
+          
+        </article>
+        <article class="card searchable" data-search="45vu doors panels overhead &amp; system panels">
+          <div class="vu">45VU</div>
+          <div class="desc">DOORS PANELS</div>
+          
+        </article>
+        <article class="card searchable" data-search="48vu overhead ctl &amp; ind pnl overhead &amp; system panels">
+          <div class="vu">48VU</div>
+          <div class="desc">OVERHEAD CTL &amp; IND PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="50vu maintenance pnl overhead &amp; system panels">
+          <div class="vu">50VU</div>
+          <div class="desc">MAINTENANCE PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="52vu fms load pnl overhead &amp; system panels">
+          <div class="vu">52VU</div>
+          <div class="desc">FMS LOAD PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="55vu elt pnl overhead &amp; system panels">
+          <div class="vu">55VU</div>
+          <div class="desc">ELT PNL</div>
+          
+        </article></div>
+</section>
+<section class="section" id="instrument-glareshield">
+  <div class="kicker">A320 VU Panel Index</div>
+  <h2>Instrument &amp; Glareshield</h2>
+  <div class="grid">
+        <article class="card searchable" data-search="2vu l instrument pnl instrument &amp; glareshield">
+          <div class="vu">2VU</div>
+          <div class="desc">L INSTRUMENT PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="6vu r instrument pnl instrument &amp; glareshield">
+          <div class="vu">6VU</div>
+          <div class="desc">R INSTRUMENT PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="10vu main instrument panels instrument &amp; glareshield">
+          <div class="vu">10VU</div>
+          <div class="desc">MAIN INSTRUMENT PANELS</div>
+          
+        </article>
+        <article class="card searchable" data-search="130vu f/o glareshield pnl instrument &amp; glareshield">
+          <div class="vu">130VU</div>
+          <div class="desc">F/O GLARESHIELD PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="131vu capt glareshield pnl instrument &amp; glareshield">
+          <div class="vu">131VU</div>
+          <div class="desc">CAPT GLARESHIELD PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="301vu capt lighting/loudspeaker ctl pnl instrument &amp; glareshield">
+          <div class="vu">301VU</div>
+          <div class="desc">CAPT LIGHTING/LOUDSPEAKER CTL PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="400vu r center instrument pnl instrument &amp; glareshield">
+          <div class="vu">400VU</div>
+          <div class="desc">R CENTER INSTRUMENT PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="401vu l center instrument pnl instrument &amp; glareshield">
+          <div class="vu">401VU</div>
+          <div class="desc">L CENTER INSTRUMENT PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="402vu landing gear ctl &amp; ind pnl instrument &amp; glareshield">
+          <div class="vu">402VU</div>
+          <div class="desc">LANDING GEAR CTL &amp; IND PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="403vu terr on nd pnl instrument &amp; glareshield">
+          <div class="vu">403VU</div>
+          <div class="desc">TERR ON ND PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="500vu f/o lighting/loudspeaker ctl pnl instrument &amp; glareshield">
+          <div class="vu">500VU</div>
+          <div class="desc">F/O LIGHTING/LOUDSPEAKER CTL PNL</div>
+          
+        </article></div>
+</section>
+<section class="section" id="pedestal-consoles">
+  <div class="kicker">A320 VU Panel Index</div>
+  <h2>Pedestal &amp; Consoles</h2>
+  <div class="grid">
+        <article class="card searchable" data-search="1vu l fwd console pedestal &amp; consoles">
+          <div class="vu">1VU</div>
+          <div class="desc">L FWD CONSOLE</div>
+          
+        </article>
+        <article class="card searchable" data-search="7vu r fwd console pedestal &amp; consoles">
+          <div class="vu">7VU</div>
+          <div class="desc">R FWD CONSOLE</div>
+          
+        </article>
+        <article class="card searchable" data-search="8vu switching pnl pedestal &amp; consoles">
+          <div class="vu">8VU</div>
+          <div class="desc">SWITCHING PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="11vu center pedestal pedestal &amp; consoles">
+          <div class="vu">11VU</div>
+          <div class="desc">CENTER PEDESTAL</div>
+          
+        </article>
+        <article class="card searchable" data-search="101vu l side console pedestal &amp; consoles">
+          <div class="vu">101VU</div>
+          <div class="desc">L SIDE CONSOLE</div>
+          
+        </article>
+        <article class="card searchable" data-search="110vu rud trim/parking brk pnl pedestal &amp; consoles">
+          <div class="vu">110VU</div>
+          <div class="desc">RUD TRIM/PARKING BRK PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="114vu flaps pnl pedestal &amp; consoles">
+          <div class="vu">114VU</div>
+          <div class="desc">FLAPS PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="115vu eng pnl pedestal &amp; consoles">
+          <div class="vu">115VU</div>
+          <div class="desc">ENG PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="210vu lever assembly-throttle control, r pedestal &amp; consoles">
+          <div class="vu">210VU</div>
+          <div class="desc">LEVER ASSEMBLY-THROTTLE CONTROL, R</div>
+          
+        </article>
+        <article class="card searchable" data-search="211vu lever assembly-throttle control, l pedestal &amp; consoles">
+          <div class="vu">211VU</div>
+          <div class="desc">LEVER ASSEMBLY-THROTTLE CONTROL, L</div>
+          
+        </article>
+        <article class="card searchable" data-search="700vu r side console pedestal &amp; consoles">
+          <div class="vu">700VU</div>
+          <div class="desc">R SIDE CONSOLE</div>
+          
+        </article></div>
+</section>
+<section class="section" id="avionics-racks-shelves">
+  <div class="kicker">A320 VU Panel Index</div>
+  <h2>Avionics Racks &amp; Shelves</h2>
+  <div class="grid">
+        <article class="card searchable" data-search="80vu aft electronics rack avionics racks &amp; shelves">
+          <div class="vu">80VU</div>
+          <div class="desc">AFT ELECTRONICS RACK</div>
+          
+        </article>
+        <article class="card searchable" data-search="81vu shelf avionics racks &amp; shelves">
+          <div class="vu">81VU</div>
+          <div class="desc">SHELF</div>
+          
+        </article>
+        <article class="card searchable" data-search="82vu shelf avionics racks &amp; shelves">
+          <div class="vu">82VU</div>
+          <div class="desc">SHELF</div>
+          
+        </article>
+        <article class="card searchable" data-search="83vu shelf avionics racks &amp; shelves">
+          <div class="vu">83VU</div>
+          <div class="desc">SHELF</div>
+          
+        </article>
+        <article class="card searchable" data-search="84vu shelf avionics racks &amp; shelves">
+          <div class="vu">84VU</div>
+          <div class="desc">SHELF</div>
+          
+        </article>
+        <article class="card searchable" data-search="85vu shelf avionics racks &amp; shelves">
+          <div class="vu">85VU</div>
+          <div class="desc">SHELF</div>
+          
+        </article>
+        <article class="card searchable" data-search="86vu shelf avionics racks &amp; shelves">
+          <div class="vu">86VU</div>
+          <div class="desc">SHELF</div>
+          
+        </article>
+        <article class="card searchable" data-search="87vu shelf avionics racks &amp; shelves">
+          <div class="vu">87VU</div>
+          <div class="desc">SHELF</div>
+          
+        </article>
+        <article class="card searchable" data-search="88vu shelf avionics racks &amp; shelves">
+          <div class="vu">88VU</div>
+          <div class="desc">SHELF</div>
+          
+        </article>
+        <article class="card searchable" data-search="91vu shelf avionics racks &amp; shelves">
+          <div class="vu">91VU</div>
+          <div class="desc">SHELF</div>
+          
+        </article>
+        <article class="card searchable" data-search="92vu shelf avionics racks &amp; shelves">
+          <div class="vu">92VU</div>
+          <div class="desc">SHELF</div>
+          
+        </article>
+        <article class="card searchable" data-search="93vu shelf avionics racks &amp; shelves">
+          <div class="vu">93VU</div>
+          <div class="desc">SHELF</div>
+          
+        </article>
+        <article class="card searchable" data-search="94vu shelf avionics racks &amp; shelves">
+          <div class="vu">94VU</div>
+          <div class="desc">SHELF</div>
+          
+        </article>
+        <article class="card searchable" data-search="95vu shelf avionics racks &amp; shelves">
+          <div class="vu">95VU</div>
+          <div class="desc">SHELF</div>
+          
+        </article>
+        <article class="card searchable" data-search="96vu shelf avionics racks &amp; shelves">
+          <div class="vu">96VU</div>
+          <div class="desc">SHELF</div>
+          
+        </article>
+        <article class="card searchable" data-search="109vu shelf-weather radar avionics racks &amp; shelves">
+          <div class="vu">109VU</div>
+          <div class="desc">SHELF-WEATHER RADAR</div>
+          
+        </article></div>
+</section>
+<section class="section" id="electrical-cb-relay">
+  <div class="kicker">A320 VU Panel Index</div>
+  <h2>Electrical / CB / Relay</h2>
+  <div class="grid">
+        <article class="card searchable" data-search="49vu overhead c/b pnl electrical / cb / relay">
+          <div class="vu">49VU</div>
+          <div class="desc">OVERHEAD C/B PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="103vu relay box electrical / cb / relay">
+          <div class="vu">103VU</div>
+          <div class="desc">RELAY BOX</div>
+          
+        </article>
+        <article class="card searchable" data-search="105vu power center-battery electrical / cb / relay">
+          <div class="vu">105VU</div>
+          <div class="desc">POWER CENTER-BATTERY</div>
+          
+        </article>
+        <article class="card searchable" data-search="106vu power center-ac/dc emergency electrical / cb / relay">
+          <div class="vu">106VU</div>
+          <div class="desc">POWER CENTER-AC/DC EMERGENCY</div>
+          
+        </article>
+        <article class="card searchable" data-search="107vu contactor box electrical / cb / relay">
+          <div class="vu">107VU</div>
+          <div class="desc">CONTACTOR BOX</div>
+          
+        </article>
+        <article class="card searchable" data-search="108vu ext pwr pnl electrical / cb / relay">
+          <div class="vu">108VU</div>
+          <div class="desc">EXT PWR PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="121vu rear c/b panel electrical / cb / relay">
+          <div class="vu">121VU</div>
+          <div class="desc">REAR C/B PANEL</div>
+          
+        </article>
+        <article class="card searchable" data-search="122vu rear c/b pnl electrical / cb / relay">
+          <div class="vu">122VU</div>
+          <div class="desc">REAR C/B PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="123vu rear c/b pnl electrical / cb / relay">
+          <div class="vu">123VU</div>
+          <div class="desc">REAR C/B PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="124vu rear c/b pnl electrical / cb / relay">
+          <div class="vu">124VU</div>
+          <div class="desc">REAR C/B PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="125vu rear c/b pnl electrical / cb / relay">
+          <div class="vu">125VU</div>
+          <div class="desc">REAR C/B PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="186vu plate-relay electrical / cb / relay">
+          <div class="vu">186VU</div>
+          <div class="desc">PLATE-RELAY</div>
+          
+        </article>
+        <article class="card searchable" data-search="187vu plate-relay electrical / cb / relay">
+          <div class="vu">187VU</div>
+          <div class="desc">PLATE-RELAY</div>
+          
+        </article>
+        <article class="card searchable" data-search="188vu plate-relay electrical / cb / relay">
+          <div class="vu">188VU</div>
+          <div class="desc">PLATE-RELAY</div>
+          
+        </article>
+        <article class="card searchable" data-search="200vu plate-galley contactor electrical / cb / relay">
+          <div class="vu">200VU</div>
+          <div class="desc">PLATE-GALLEY CONTACTOR</div>
+          
+        </article>
+        <article class="card searchable" data-search="802vu act relay panel electrical / cb / relay">
+          <div class="vu">802VU</div>
+          <div class="desc">ACT RELAY PANEL</div>
+          
+        </article>
+        <article class="card searchable" data-search="2000vu c/b pnl electrical / cb / relay">
+          <div class="vu">2000VU</div>
+          <div class="desc">C/B PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="2001vu c/b pnl electrical / cb / relay">
+          <div class="vu">2001VU</div>
+          <div class="desc">C/B PNL</div>
+          <div class="opt">IF INSTALLED</div>
+        </article></div>
+</section>
+<section class="section" id="crew-cockpit-misc">
+  <div class="kicker">A320 VU Panel Index</div>
+  <h2>Crew / Cockpit Misc.</h2>
+  <div class="grid">
+        <article class="card searchable" data-search="15vu fourth occupant jack pnl crew / cockpit misc.">
+          <div class="vu">15VU</div>
+          <div class="desc">FOURTH OCCUPANT JACK PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="16vu f/o hand mic pnl crew / cockpit misc.">
+          <div class="vu">16VU</div>
+          <div class="desc">F/O HAND MIC PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="17vu capt hand mic pnl crew / cockpit misc.">
+          <div class="vu">17VU</div>
+          <div class="desc">CAPT HAND MIC PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="18vu controller-side stick, f/o crew / cockpit misc.">
+          <div class="vu">18VU</div>
+          <div class="desc">CONTROLLER-SIDE STICK, F/O</div>
+          
+        </article>
+        <article class="card searchable" data-search="19vu controller-side stick, capt crew / cockpit misc.">
+          <div class="vu">19VU</div>
+          <div class="desc">CONTROLLER-SIDE STICK, CAPT</div>
+          
+        </article>
+        <article class="card searchable" data-search="54vu reading lt pnl crew / cockpit misc.">
+          <div class="vu">54VU</div>
+          <div class="desc">READING LT PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="56vu camera control pnl crew / cockpit misc.">
+          <div class="vu">56VU</div>
+          <div class="desc">CAMERA CONTROL PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="60vu f/o jack pnl crew / cockpit misc.">
+          <div class="vu">60VU</div>
+          <div class="desc">F/O JACK PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="61vu capt jack pnl crew / cockpit misc.">
+          <div class="vu">61VU</div>
+          <div class="desc">CAPT JACK PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="62vu third occupant jack pnl crew / cockpit misc.">
+          <div class="vu">62VU</div>
+          <div class="desc">THIRD OCCUPANT JACK PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="63vu avionics compartment jack pnl crew / cockpit misc.">
+          <div class="vu">63VU</div>
+          <div class="desc">AVIONICS COMPARTMENT JACK PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="64vu third occupant jack panel crew / cockpit misc.">
+          <div class="vu">64VU</div>
+          <div class="desc">THIRD OCCUPANT JACK PANEL</div>
+          
+        </article>
+        <article class="card searchable" data-search="65vu capt additional jack panel crew / cockpit misc.">
+          <div class="vu">65VU</div>
+          <div class="desc">CAPT ADDITIONAL JACK PANEL</div>
+          
+        </article>
+        <article class="card searchable" data-search="66vu f/o additional jack panel crew / cockpit misc.">
+          <div class="vu">66VU</div>
+          <div class="desc">F/O ADDITIONAL JACK PANEL</div>
+          
+        </article>
+        <article class="card searchable" data-search="113vu vip com panel crew / cockpit misc.">
+          <div class="vu">113VU</div>
+          <div class="desc">VIP COM PANEL</div>
+          
+        </article>
+        <article class="card searchable" data-search="119vu cockpit door panels crew / cockpit misc.">
+          <div class="vu">119VU</div>
+          <div class="desc">COCKPIT DOOR PANELS</div>
+          
+        </article>
+        <article class="card searchable" data-search="180vu hand grip-side stick, f/o crew / cockpit misc.">
+          <div class="vu">180VU</div>
+          <div class="desc">HAND GRIP-SIDE STICK, F/O</div>
+          
+        </article>
+        <article class="card searchable" data-search="191vu hand grip-side stick, capt crew / cockpit misc.">
+          <div class="vu">191VU</div>
+          <div class="desc">HAND GRIP-SIDE STICK, CAPT</div>
+          
+        </article>
+        <article class="card searchable" data-search="452vu r dome lt pnl crew / cockpit misc.">
+          <div class="vu">452VU</div>
+          <div class="desc">R DOME LT PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="453vu l dome lt pnl crew / cockpit misc.">
+          <div class="vu">453VU</div>
+          <div class="desc">L DOME LT PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="502vu foot rest, capt crew / cockpit misc.">
+          <div class="vu">502VU</div>
+          <div class="desc">FOOT REST, CAPT</div>
+          
+        </article>
+        <article class="card searchable" data-search="502vu foot rest, f/o crew / cockpit misc.">
+          <div class="vu">502VU</div>
+          <div class="desc">FOOT REST, F/O</div>
+          
+        </article>
+        <article class="card searchable" data-search="619vu l remote atc crew / cockpit misc.">
+          <div class="vu">619VU</div>
+          <div class="desc">L REMOTE ATC</div>
+          
+        </article>
+        <article class="card searchable" data-search="620vu r remote atc crew / cockpit misc.">
+          <div class="vu">620VU</div>
+          <div class="desc">R REMOTE ATC</div>
+          
+        </article>
+        <article class="card searchable" data-search="704vu third occupant console crew / cockpit misc.">
+          <div class="vu">704VU</div>
+          <div class="desc">THIRD OCCUPANT CONSOLE</div>
+          
+        </article></div>
+</section>
+<section class="section" id="cabin-cargo-utility">
+  <div class="kicker">A320 VU Panel Index</div>
+  <h2>Cabin / Cargo / Utility</h2>
+  <div class="grid">
+        <article class="card searchable" data-search="2004vu latch-doorsill cabin / cargo / utility">
+          <div class="vu">2004VU</div>
+          <div class="desc">LATCH-DOORSILL</div>
+          
+        </article>
+        <article class="card searchable" data-search="2005vu fan assy-radio altimeter transceiver 1 cabin / cargo / utility">
+          <div class="vu">2005VU</div>
+          <div class="desc">FAN ASSY-RADIO ALTIMETER TRANSCEIVER 1</div>
+          
+        </article>
+        <article class="card searchable" data-search="2006vu valve pnl-cargo compt door cabin / cargo / utility">
+          <div class="vu">2006VU</div>
+          <div class="desc">VALVE PNL-CARGO COMPT DOOR</div>
+          
+        </article>
+        <article class="card searchable" data-search="2007vu capacity-unit cabin / cargo / utility">
+          <div class="vu">2007VU</div>
+          <div class="desc">CAPACITY-UNIT</div>
+          <div class="opt">IF INSTALLED</div>
+        </article>
+        <article class="card searchable" data-search="2010vu adapter-deu cabin / cargo / utility">
+          <div class="vu">2010VU</div>
+          <div class="desc">ADAPTER-DEU</div>
+          <div class="opt">IF INSTALLED</div>
+        </article>
+        <article class="card searchable" data-search="2011vu adapter-deu cabin / cargo / utility">
+          <div class="vu">2011VU</div>
+          <div class="desc">ADAPTER-DEU</div>
+          <div class="opt">IF INSTALLED</div>
+        </article>
+        <article class="card searchable" data-search="2014vu adapter-deu cabin / cargo / utility">
+          <div class="vu">2014VU</div>
+          <div class="desc">ADAPTER-DEU</div>
+          <div class="opt">IF INSTALLED</div>
+        </article>
+        <article class="card searchable" data-search="2015vu adapter-deu cabin / cargo / utility">
+          <div class="vu">2015VU</div>
+          <div class="desc">ADAPTER-DEU</div>
+          <div class="opt">IF INSTALLED</div>
+        </article>
+        <article class="card searchable" data-search="2020vu ctl pnl-cargo loading system cabin / cargo / utility">
+          <div class="vu">2020VU</div>
+          <div class="desc">CTL PNL-CARGO LOADING SYSTEM</div>
+          
+        </article>
+        <article class="card searchable" data-search="2021vu control panel-waste water level ind cabin / cargo / utility">
+          <div class="vu">2021VU</div>
+          <div class="desc">CONTROL PANEL-WASTE WATER LEVEL IND</div>
+          
+        </article>
+        <article class="card searchable" data-search="2022vu ctl pnl-waste water level ind cabin / cargo / utility">
+          <div class="vu">2022VU</div>
+          <div class="desc">CTL PNL-WASTE WATER LEVEL IND</div>
+          
+        </article>
+        <article class="card searchable" data-search="2023vu ctl pnl-water quantity indicating cabin / cargo / utility">
+          <div class="vu">2023VU</div>
+          <div class="desc">CTL PNL-WATER QUANTITY INDICATING</div>
+          
+        </article>
+        <article class="card searchable" data-search="2024vu ctl pnl-cargo compt lighting cabin / cargo / utility">
+          <div class="vu">2024VU</div>
+          <div class="desc">CTL PNL-CARGO COMPT LIGHTING</div>
+          
+        </article>
+        <article class="card searchable" data-search="2025vu ctl pnl-wheel well light/interphone cabin / cargo / utility">
+          <div class="vu">2025VU</div>
+          <div class="desc">CTL PNL-WHEEL WELL LIGHT/INTERPHONE</div>
+          
+        </article>
+        <article class="card searchable" data-search="2027vu ctl pnl-cargo compt door locking indicating cabin / cargo / utility">
+          <div class="vu">2027VU</div>
+          <div class="desc">CTL PNL-CARGO COMPT DOOR LOCKING INDICATING</div>
+          <div class="opt">IF INSTALLED</div>
+        </article>
+        <article class="card searchable" data-search="2036vu psiu-lavatory cabin / cargo / utility">
+          <div class="vu">2036VU</div>
+          <div class="desc">PSIU-LAVATORY</div>
+          <div class="opt">IF INSTALLED</div>
+        </article>
+        <article class="card searchable" data-search="2037vu psiu pnl-attnd cabin / cargo / utility">
+          <div class="vu">2037VU</div>
+          <div class="desc">PSIU PNL-ATTND</div>
+          <div class="opt">IF INSTALLED</div>
+        </article>
+        <article class="card searchable" data-search="2038vu pcb-psiu cabin / cargo / utility">
+          <div class="vu">2038VU</div>
+          <div class="desc">PCB-PSIU</div>
+          <div class="opt">IF INSTALLED</div>
+        </article>
+        <article class="card searchable" data-search="2039vu psiu cabin / cargo / utility">
+          <div class="vu">2039VU</div>
+          <div class="desc">PSIU</div>
+          <div class="opt">IF INSTALLED</div>
+        </article>
+        <article class="card searchable" data-search="2040vu psiu cabin / cargo / utility">
+          <div class="vu">2040VU</div>
+          <div class="desc">PSIU</div>
+          <div class="opt">IF INSTALLED</div>
+        </article>
+        <article class="card searchable" data-search="2042vu psiu cabin / cargo / utility">
+          <div class="vu">2042VU</div>
+          <div class="desc">PSIU</div>
+          
+        </article>
+        <article class="card searchable" data-search="2043vu medical outlet panel cabin / cargo / utility">
+          <div class="vu">2043VU</div>
+          <div class="desc">MEDICAL OUTLET PANEL</div>
+          
+        </article>
+        <article class="card searchable" data-search="2062vu sw pnl-light, single cabin / cargo / utility">
+          <div class="vu">2062VU</div>
+          <div class="desc">SW PNL-LIGHT, SINGLE</div>
+          <div class="opt">IF INSTALLED</div>
+        </article>
+        <article class="card searchable" data-search="2063vu sw pnl-light, double cabin / cargo / utility">
+          <div class="vu">2063VU</div>
+          <div class="desc">SW PNL-LIGHT, DOUBLE</div>
+          
+        </article>
+        <article class="card searchable" data-search="3700vu info pnl-pax cabin / cargo / utility">
+          <div class="vu">3700VU</div>
+          <div class="desc">INFO PNL-PAX</div>
+          
+        </article>
+        <article class="card searchable" data-search="3701vu info pnl-pax cabin / cargo / utility">
+          <div class="vu">3701VU</div>
+          <div class="desc">INFO PNL-PAX</div>
+          
+        </article>
+        <article class="card searchable" data-search="3714vu ceiling panel cabin / cargo / utility">
+          <div class="vu">3714VU</div>
+          <div class="desc">CEILING PANEL</div>
+          
+        </article></div>
+</section>
+<section class="section" id="other-panels">
+  <div class="kicker">A320 VU Panel Index</div>
+  <h2>Other Panels</h2>
+  <div class="grid">
+        <article class="card searchable" data-search="23vu flt ctl pnl other panels">
+          <div class="vu">23VU</div>
+          <div class="desc">FLT CTL PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="24vu flt ctl pnl other panels">
+          <div class="vu">24VU</div>
+          <div class="desc">FLT CTL PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="51vu fuel pnl other panels">
+          <div class="vu">51VU</div>
+          <div class="desc">FUEL PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="70vu ann lt test unit other panels">
+          <div class="vu">70VU</div>
+          <div class="desc">ANN LT TEST UNIT</div>
+          
+        </article>
+        <article class="card searchable" data-search="111vu flood lt/integ ltg pnl other panels">
+          <div class="vu">111VU</div>
+          <div class="desc">FLOOD LT/INTEG LTG PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="112vu flood lt pnl other panels">
+          <div class="vu">112VU</div>
+          <div class="desc">FLOOD LT PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="117vu data loader panel other panels">
+          <div class="vu">117VU</div>
+          <div class="desc">DATA LOADER PANEL</div>
+          
+        </article>
+        <article class="card searchable" data-search="120vu rear pnl other panels">
+          <div class="vu">120VU</div>
+          <div class="desc">REAR PNL</div>
+          
+        </article>
+        <article class="card searchable" data-search="800vu ctl pnl-refuel/defuel other panels">
+          <div class="vu">800VU</div>
+          <div class="desc">CTL PNL-REFUEL/DEFUEL</div>
+          
+        </article></div>
+</section>
+<div class="footer">A320 VU Panels — technical quick-reference index.</div>
+</main>
+<a class="top" href="#top">↑ Top</a>
+<script>
+const q=document.getElementById('search');
+q.addEventListener('input',()=>{
+ const s=q.value.trim().toLowerCase();
+ document.querySelectorAll('.searchable').forEach(c=>c.classList.toggle('hidden',s && !c.dataset.search.includes(s)));
+});
+</script>
+</body></html>

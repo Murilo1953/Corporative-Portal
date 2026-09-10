@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MEL Day Validity Calculator — UTC</title>
+<style>
+:root{
+ --bg:#081018;--panel:#101b25;--panel2:#162431;--line:#2a3d4d;
+ --text:#eaf1f6;--muted:#9fb1be;--accent:#52b8ff;--green:#72d9b3;
+ --amber:#f2b94b;--red:#ff7373;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 "Segoe UI",Arial,sans-serif}
+main{max-width:1050px;margin:auto;padding:30px}
+.hero{background:linear-gradient(135deg,#14283a,#0e1720);border:1px solid var(--line);border-radius:17px;padding:27px}
+.kicker{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:800}
+h1{margin:3px 0 6px;font-size:30px}.hero p{margin:0;color:#c7d3dc}
+.clock{margin-top:15px;display:inline-block;padding:8px 11px;background:#102331;border:1px solid #31536d;border-radius:8px;color:var(--accent);font-weight:700}
+.card{margin-top:20px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}
+label{display:block;color:var(--muted);font-size:12px;margin:0 0 6px}
+input{width:100%;background:#0d171f;color:var(--text);border:1px solid var(--line);border-radius:9px;padding:12px;font-size:15px}
+.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-top:15px}
+.cat{border:1px solid var(--line);background:var(--panel2);color:var(--text);border-radius:10px;padding:13px;cursor:pointer;font-weight:800}
+.cat:hover,.cat.active{border-color:var(--accent);background:#123047;color:#c8ecff}
+.cat small{display:block;font-weight:400;color:var(--muted)}
+#aBox{display:none;margin-top:15px}
+.result{display:none;margin-top:18px;border:1px solid var(--line);border-radius:12px;background:#0c161e;padding:18px}
+.result-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.metric{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:13px}
+.metric span{display:block;color:var(--muted);font-size:11px;text-transform:uppercase}
+.metric strong{display:block;margin-top:4px;font-size:18px}
+.status{margin-top:12px;padding:11px;border-radius:8px;font-weight:800;text-align:center}
+.valid{background:#102a21;color:var(--green);border:1px solid #31594a}
+.due{background:#302617;color:var(--amber);border:1px solid #6c5730}
+.expired{background:#30191b;color:var(--red);border:1px solid #6d393e}
+.info{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:18px}
+.info div{background:var(--panel2);border:1px solid var(--line);border-radius:9px;padding:13px}
+.info b{color:var(--accent)}.info p{margin:5px 0 0;color:var(--muted);font-size:12px}
+.warning{margin-top:18px;border-left:4px solid var(--amber);background:#1b1810;border-radius:8px;padding:13px 15px;color:#ded5c1}
+.footer{color:var(--muted);font-size:11px;margin-top:20px}
+@media(max-width:700px){.cats,.result-grid,.info{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.cats,.result-grid,.info{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+<section class="hero">
+ <div class="kicker">Aircraft Maintenance • UTC</div>
+ <h1>MEL Day Validity Calculator</h1>
+ <p>Calendar-day calculator for MEL repair categories A, B, C and D.</p>
+ <div class="clock" id="clock">UTC —</div>
+</section>
+
+<section class="card">
+ <label for="discovery">Defect Discovery Date (UTC)</label>
+ <input id="discovery" type="date">
+
+ <div class="cats">
+  <button class="cat" data-cat="A">CAT A<small>As specified by MEL</small></button>
+  <button class="cat" data-cat="B">CAT B<small>3 calendar days</small></button>
+  <button class="cat" data-cat="C">CAT C<small>10 calendar days</small></button>
+  <button class="cat" data-cat="D">CAT D<small>120 calendar days</small></button>
+ </div>
+
+ <div id="aBox">
+  <label for="aDays">CAT A repair interval (calendar days specified by MEL)</label>
+  <input id="aDays" type="number" min="1" step="1" placeholder="Example: 5">
+ </div>
+
+ <div class="result" id="result">
+   <div class="result-grid">
+    <div class="metric"><span>Category</span><strong id="rCat">—</strong></div>
+    <div class="metric"><span>Discovery Date UTC</span><strong id="rDisc">—</strong></div>
+    <div class="metric"><span>Last Valid Calendar Day</span><strong id="rDue">—</strong></div>
+   </div>
+   <div class="status" id="status">—</div>
+ </div>
+</section>
+
+<section class="card">
+ <div class="kicker">Repair Categories</div>
+ <div class="info">
+  <div><b>CAT A</b><p>Repair interval is the interval stated in the remarks column of the applicable MEL item.</p></div>
+  <div><b>CAT B</b><p>3 consecutive calendar days, excluding the day the malfunction was recorded.</p></div>
+  <div><b>CAT C</b><p>10 consecutive calendar days, excluding the day the malfunction was recorded.</p></div>
+  <div><b>CAT D</b><p>120 consecutive calendar days, excluding the day the malfunction was recorded.</p></div>
+ </div>
+ <div class="warning"><strong>Important:</strong> calendar-day aid only. It does not evaluate MEL applicability, maintenance/operational procedures, flight-hour/cycle limits, landing limits, or extensions. Use the current approved operator MEL and applicable authority/operator procedures for an actual dispatch decision.</div>
+</section>
+<div class="footer">Standalone/offline calculator. All date comparisons are made in UTC.</div>
+</main>
+
+<script>
+let selected=null;
+const disc=document.getElementById('discovery'), aDays=document.getElementById('aDays');
+
+function utcDateString(d){
+ return d.getUTCFullYear()+'-'+String(d.getUTCMonth()+1).padStart(2,'0')+'-'+String(d.getUTCDate()).padStart(2,'0');
+}
+function pretty(s){
+ const [y,m,d]=s.split('-').map(Number);
+ return String(d).padStart(2,'0')+'/'+String(m).padStart(2,'0')+'/'+y;
+}
+function todayUTC(){
+ const n=new Date();
+ return new Date(Date.UTC(n.getUTCFullYear(),n.getUTCMonth(),n.getUTCDate()));
+}
+function calculate(){
+ if(!selected || !disc.value) return;
+ let days={B:3,C:10,D:120}[selected];
+ if(selected==='A'){
+   days=parseInt(aDays.value,10);
+   if(!days || days<1){document.getElementById('result').style.display='none';return;}
+ }
+ const [y,m,d]=disc.value.split('-').map(Number);
+ const discovery=new Date(Date.UTC(y,m-1,d));
+ // Discovery day is excluded; day 1 is the following UTC calendar day.
+ const due=new Date(discovery);
+ due.setUTCDate(due.getUTCDate()+days);
+
+ document.getElementById('rCat').textContent='CAT '+selected;
+ document.getElementById('rDisc').textContent=pretty(disc.value);
+ document.getElementById('rDue').textContent=pretty(utcDateString(due));
+
+ const t=todayUTC(), status=document.getElementById('status');
+ if(t.getTime()<due.getTime()){status.className='status valid';status.textContent='VALID — rectification deadline has not yet been reached';}
+ else if(t.getTime()===due.getTime()){status.className='status due';status.textContent='DUE TODAY — last valid calendar day';}
+ else {status.className='status expired';status.textContent='EXPIRED — calculated calendar-day interval has passed';}
+ document.getElementById('result').style.display='block';
+}
+document.querySelectorAll('.cat').forEach(b=>b.onclick=()=>{
+ selected=b.dataset.cat;
+ document.querySelectorAll('.cat').forEach(x=>x.classList.remove('active'));
+ b.classList.add('active');
+ document.getElementById('aBox').style.display=selected==='A'?'block':'none';
+ calculate();
+});
+disc.onchange=calculate;aDays.oninput=calculate;
+function tick(){
+ const n=new Date();
+ document.getElementById('clock').textContent='UTC '+n.toISOString().slice(0,19).replace('T',' ')+' Z';
+}
+tick();setInterval(tick,1000);
+</script>
+</body></html>

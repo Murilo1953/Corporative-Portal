@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A320 CFDS BITE — System Tests & Reports</title>
+<style>
+:root{--bg:#081018;--side:#0c151e;--panel:#101b25;--panel2:#162431;--line:#2a3d4d;--text:#eaf1f6;--muted:#9fb1be;--accent:#52b8ff;--green:#72d9b3;--warn:#f2b94b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 "Segoe UI",Arial,sans-serif}
+a{color:inherit;text-decoration:none}
+.sidebar{position:fixed;inset:0 auto 0 0;width:285px;background:var(--side);border-right:1px solid var(--line);padding:24px 18px;overflow:auto}
+.brand{font-size:20px;font-weight:760}.sub{font-size:12px;color:var(--muted);margin-top:5px}
+.nav{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:5px}
+.nav a{padding:7px 8px;border-radius:7px;color:#dce8ef;font-size:12px;background:#101d27;border:1px solid transparent}
+.nav a:hover{border-color:#35546b}
+.main{margin-left:285px;padding:34px;max-width:1550px}
+.hero{background:linear-gradient(135deg,#14283a,#0e1720);border:1px solid var(--line);border-radius:17px;padding:28px}
+.hero h1{margin:0 0 7px;font-size:31px}.hero p{max-width:920px;color:#c7d3dc}
+.kicker{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:800}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.badge{border:1px solid #31536d;background:#162837;border-radius:999px;padding:6px 9px;font-size:12px}
+.searchbar{position:sticky;top:0;z-index:30;padding:12px 0 14px;background:rgba(8,16,24,.97)}
+.searchbar input{width:100%;padding:13px 14px;background:#0e1821;color:var(--text);border:1px solid var(--line);border-radius:10px;font-size:15px}
+.note{border-left:4px solid var(--accent);background:#0e1a24;border-radius:8px;padding:12px 14px;margin:18px 0}
+.note.warn{border-left-color:var(--warn)}
+.section{scroll-margin-top:76px;margin:22px 0;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:23px}
+.section h2{margin:3px 0 17px;font-size:23px}
+.figgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(360px,1fr));gap:14px}
+.fig{margin:0;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:12px}
+.fig img{display:block;width:100%;height:auto;border-radius:7px;background:white}
+.fig figcaption{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-top:10px;flex-wrap:wrap}
+.fig figcaption span{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+.figlink{color:#bfe6ff;background:#10283a;border:1px solid #35536a;border-radius:7px;padding:7px 9px;font-size:12px}
+.reportgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.report{background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:13px}
+.report b{color:var(--green)}.report p{margin:5px 0 0;color:var(--muted);font-size:12px}
+.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse}
+th,td{padding:11px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;line-height:1.5}
+th{background:#152431;font-size:12px;text-transform:uppercase;letter-spacing:.055em}
+tr:hover td{background:#13202b}
+.hidden{display:none!important}
+.top{position:fixed;right:18px;bottom:18px;background:#172837;border:1px solid #365974;padding:10px 12px;border-radius:10px}
+.footer{font-size:12px;color:var(--muted);padding:20px 0 60px}
+@media(max-width:900px){.sidebar{position:static;width:auto;border-right:0;border-bottom:1px solid var(--line)}.main{margin:0;padding:18px}.figgrid{grid-template-columns:1fr}}
+@media print{.sidebar,.searchbar,.top,.figlink{display:none}.main{margin:0;padding:0}body{background:white;color:black}.hero,.section,.fig,.report{background:white;color:black;border-color:#bbb}.hero p,.fig figcaption span,.report p,.sub{color:#555}}
+</style>
+</head>
+<body id="top">
+<aside class="sidebar">
+ <div class="brand">A320 CFDS BITE</div>
+ <div class="sub">System Tests & Reports</div>
+ <nav class="nav">
+  <a href="#overview">Overview</a>
+  <a href="#figures">Figures</a>
+  <a href="#reports">Reports</a>
+  <a href="#sys-1">AIR COND</a><a href="#sys-2">AFS</a><a href="#sys-3">COM</a><a href="#sys-4">ELEC</a><a href="#sys-5">FIRE PROT</a><a href="#sys-6">F/CTL</a><a href="#sys-7">FUEL</a><a href="#sys-8">ICE &amp; RAIN</a><a href="#sys-9">INST</a><a href="#sys-10">L/G</a><a href="#sys-11">NAV</a><a href="#sys-12">PNEU</a><a href="#sys-13">APU</a><a href="#sys-14">ENG</a><a href="#sys-15">INERTING</a><a href="#sys-16">INFO SYS</a><a href="#sys-17">TOILET</a>
+ </nav>
+</aside>
+<main class="main">
+<section class="hero" id="overview">
+ <div class="kicker">Centralized Fault Display System</div>
+ <h1>CFDS BITE — System Report / Test Guide</h1>
+ <p>Quick-reference navigator for the A320 CFDS maintenance pages available through the MCDU. The CFDIU collects BITE fault information from connected aircraft systems, stores maintenance data and provides access to reports and system tests.</p>
+ <div class="badges"><span class="badge">CFDIU</span><span class="badge">MCDU</span><span class="badge">BITE</span><span class="badge">Ground Test</span><span class="badge">System Report/Test</span></div>
+</section>
+<div class="searchbar"><input id="search" type="search" placeholder="Search system, LRU or test: FADEC, BSCU, ADR, TSD, GND SCAN, CLASS 3..."></div>
+<div class="note warn"><strong>Ground operation:</strong> the interactive/menu-mode BITE test is available on the ground. Follow approved maintenance documentation and aircraft configuration requirements before initiating tests.</div>
+
+<section class="section" id="figures">
+ <div class="kicker">MCDU visual reference</div><h2>SYSTEM REPORT / TEST Pages</h2>
+ <div class="figgrid">
+<figure class="fig">
+ <a href="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-mcdu-cfds-report-test-page1.webp" target="_blank" rel="noopener">
+  <img src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-mcdu-cfds-report-test-page1.webp" alt="SYSTEM REPORT / TEST — Page 1" loading="lazy">
+ </a>
+ <figcaption>
+  <div><strong>SYSTEM REPORT / TEST — Page 1</strong><span>AIR COND, AFS, COM, ELEC, FIRE PROT, F/CTL, FUEL, ICE &amp; RAIN, INST, L/G and NAV.</span></div>
+  <a class="figlink" href="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-mcdu-cfds-report-test-page1.webp" target="_blank" rel="noopener">Open figure ↗</a>
+ </figcaption>
+</figure>
+
+
+<figure class="fig">
+ <a href="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-mcdu-cfds-report-test-page2.webp" target="_blank" rel="noopener">
+  <img src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-mcdu-cfds-report-test-page2.webp" alt="SYSTEM REPORT / TEST — Page 2" loading="lazy">
+ </a>
+ <figcaption>
+  <div><strong>SYSTEM REPORT / TEST — Page 2</strong><span>PNEU, APU, INFO SYS, ENG, TOILET and INERTING.</span></div>
+  <a class="figlink" href="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-mcdu-cfds-report-test-page2.webp" target="_blank" rel="noopener">Open figure ↗</a>
+ </figcaption>
+</figure>
+</div>
+</section>
+
+<section class="section" id="reports">
+ <div class="kicker">CFDS outputs</div><h2>Maintenance Reports</h2>
+ <div class="reportgrid">
+  <div class="report"><b>Last Leg Report</b><p>Fault information associated with the most recent flight leg.</p></div>
+  <div class="report"><b>Last Leg ECAM Report</b><p>Maintenance correlation with ECAM warning/caution information.</p></div>
+  <div class="report"><b>Previous Leg Report</b><p>Historical fault information from prior legs.</p></div>
+  <div class="report"><b>Avionics Status</b><p>Current avionics maintenance status.</p></div>
+  <div class="report"><b>System Report/Test</b><p>BITE reports and interactive system tests through MCDU.</p></div>
+  <div class="report"><b>Post-Flight Report</b><p>Consolidated maintenance report after flight.</p></div>
+ </div>
+</section>
+
+
+<section class="section searchable" id="sys-1" data-search="air cond">
+ <div class="kicker">SYSTEM REPORT / TEST</div>
+ <h2>AIR COND</h2>
+ <div class="tablewrap">
+ <table>
+  <thead><tr><th>System / LRU</th><th>Available report / test menus</th></tr></thead>
+  <tbody><tr><td><strong>CPC 1</strong></td><td>LLR, PLR, LRU IDENT, TEST/CALIB, CLASS 3</td></tr><tr><td><strong>CPC 2</strong></td><td>LLR, PLR, LRU IDENT, TEST/CALIB, CLASS 3</td></tr><tr><td><strong>TEMP CTL</strong></td><td>LLR, PLR, LRU IDENT, TSD, CLASS 3, TEST, GND REP, SYS DATA</td></tr><tr><td><strong>AEVC</strong></td><td>LLR, TEST, CLASS 3</td></tr><tr><td><strong>AFT CHC</strong></td><td>LLR, PLR, LRU IDENT, LL CLASS 3, GND REP</td></tr><tr><td><strong>FWD CHC</strong></td><td>LLR, PLR, LRU IDENT, LL CLASS 3, GND REP</td></tr><tr><td><strong>CSAS/IGGS</strong></td><td>LLR, PLR, LRU IDENT, GND REP, TSD, CLASS 3, TEST, SPECIFIC DATA</td></tr></tbody>
+ </table>
+ </div>
+</section>
+
+<section class="section searchable" id="sys-2" data-search="afs">
+ <div class="kicker">SYSTEM REPORT / TEST</div>
+ <h2>AFS</h2>
+ <div class="tablewrap">
+ <table>
+  <thead><tr><th>System / LRU</th><th>Available report / test menus</th></tr></thead>
+  <tbody><tr><td><strong>AFS</strong></td><td>LLR, PLR, TSD, GROUND SCAN, AFS TEST, LRU IDENT, LAND TEST, WINDSHEAR TEST</td></tr></tbody>
+ </table>
+ </div>
+</section>
+
+<section class="section searchable" id="sys-3" data-search="com">
+ <div class="kicker">SYSTEM REPORT / TEST</div>
+ <h2>COM</h2>
+ <div class="tablewrap">
+ <table>
+  <thead><tr><th>System / LRU</th><th>Available report / test menus</th></tr></thead>
+  <tbody><tr><td><strong>AMU</strong></td><td>LLR, PLR, LRU IDENT, TSD, TEST, GND REP</td></tr><tr><td><strong>RMP 1 / 2 / 3</strong></td><td>LLR, PLR, LRU IDENT, GND SCAN, TSD, CLASS 3, TEST, GND REP</td></tr><tr><td><strong>CIDS 1 / 2</strong></td><td>LLR, PLR, LRU IDENT, GND SCAN, TSD, CLASS 3, SYS TESTS, EPSU BAT CAP TEST, OP TESTS, GND REP, SYS CONFIG</td></tr><tr><td><strong>HF 1 / 2</strong></td><td>LLR, PLR, LRU IDENT, GND SCAN, TSD, CLASS 3, TEST, GND REP</td></tr><tr><td><strong>VHF 1 / 2 / 3</strong></td><td>LLR, PLR, LRU IDENT, GND SCAN, TSD, CLASS 3, TEST, GND REP, SPECIFIC DATA</td></tr><tr><td><strong>SDU</strong></td><td>Listed in source; detailed menu not specified</td></tr></tbody>
+ </table>
+ </div>
+</section>
+
+<section class="section searchable" id="sys-4" data-search="elec">
+ <div class="kicker">SYSTEM REPORT / TEST</div>
+ <h2>ELEC</h2>
+ <div class="tablewrap">
+ <table>
+  <thead><tr><th>System / LRU</th><th>Available report / test menus</th></tr></thead>
+  <tbody><tr><td><strong>AC GEN</strong></td><td>LLR, PLR, LRU IDENT, TSD, CLASS 3, SYS TEST, GND REP, SPECIFIC DATA</td></tr><tr><td><strong>GCU EMER</strong></td><td>TEST</td></tr><tr><td><strong>BCL 1 / 2</strong></td><td>LLR, TEST, CLASS 3</td></tr><tr><td><strong>TR 1 / 2 / 3</strong></td><td>RESET</td></tr></tbody>
+ </table>
+ </div>
+</section>
+
+<section class="section searchable" id="sys-5" data-search="fire prot">
+ <div class="kicker">SYSTEM REPORT / TEST</div>
+ <h2>FIRE PROT</h2>
+ <div class="tablewrap">
+ <table>
+  <thead><tr><th>System / LRU</th><th>Available report / test menus</th></tr></thead>
+  <tbody><tr><td><strong>FDU 1 / 2</strong></td><td>LLR, TEST, CLASS 3</td></tr><tr><td><strong>FDU APU</strong></td><td>LLR, TEST, CLASS 3</td></tr><tr><td><strong>SDCU</strong></td><td>Listed in source; detailed menu not specified</td></tr></tbody>
+ </table>
+ </div>
+</section>
+
+<section class="section searchable" id="sys-6" data-search="f/ctl">
+ <div class="kicker">SYSTEM REPORT / TEST</div>
+ <h2>F/CTL</h2>
+ <div class="tablewrap">
+ <table>
+  <thead><tr><th>System / LRU</th><th>Available report / test menus</th></tr></thead>
+  <tbody><tr><td><strong>EFCS 1 / 2</strong></td><td>LLR, PLR, LRU IDENT, GND SCAN, CLASS 3, MEMORY, TEST</td></tr><tr><td><strong>SFCC 1 / 2 — SLT/FLP</strong></td><td>LLR, PLR, LRU IDENT, SYS STS, CLASS 3, TEST/RESET, SYS DATA, TSD, ON GND FAULTS</td></tr></tbody>
+ </table>
+ </div>
+</section>
+
+<section class="section searchable" id="sys-7" data-search="fuel">
+ <div class="kicker">SYSTEM REPORT / TEST</div>
+ <h2>FUEL</h2>
+ <div class="tablewrap">
+ <table>
+  <thead><tr><th>System / LRU</th><th>Available report / test menus</th></tr></thead>
+  <tbody><tr><td><strong>FUEL</strong></td><td>LLR, PLR, LRU IDENT, CLASS 3, SELECT CHANNEL 1 / 2</td></tr></tbody>
+ </table>
+ </div>
+</section>
+
+<section class="section searchable" id="sys-8" data-search="ice &amp; rain">
+ <div class="kicker">SYSTEM REPORT / TEST</div>
+ <h2>ICE &amp; RAIN</h2>
+ <div class="tablewrap">
+ <table>
+  <thead><tr><th>System / LRU</th><th>Available report / test menus</th></tr></thead>
+  <tbody><tr><td><strong>WHC 1 / 2</strong></td><td>LLR, TEST, CLASS 3</td></tr><tr><td><strong>PHC 1 / 2 / 3</strong></td><td>LLR, TEST, CLASS 3</td></tr><tr><td><strong>WING ANTI ICE [THRU ECS] / CAB TEMP CONT</strong></td><td>LLR, PLR, LRU IDENT, TSD, CLASS 3, TEST, GND REP, SYS DATA</td></tr></tbody>
+ </table>
+ </div>
+</section>
+
+<section class="section searchable" id="sys-9" data-search="inst">
+ <div class="kicker">SYSTEM REPORT / TEST</div>
+ <h2>INST</h2>
+ <div class="tablewrap">
+ <table>
+  <thead><tr><th>System / LRU</th><th>Available report / test menus</th></tr></thead>
+  <tbody><tr><td><strong>ECAM 1 / 2</strong></td><td>LLR, PLR, LRU IDENT, GND SCAN, CLASS 3, SYS CONFIG, OEB DB</td></tr><tr><td><strong>FDIU</strong></td><td>LLR, PLR, LRU IDENT, GND SCAN, TSD, CLASS 3, TEST, GND REP, SPECIFIC DATA</td></tr><tr><td><strong>DLRB/DLS</strong></td><td>Listed in source; detailed menu not specified</td></tr><tr><td><strong>CFDIU</strong></td><td>LLR, LRU IDENT, GND SCAN, PWR UP TEST</td></tr><tr><td><strong>EIS 1 / 2 / 3 (DMC 1 / 2 / 3)</strong></td><td>LLR, PLR, LRU IDENT, GND SCAN, TSD, CLASS 3, SYS TEST, SWTG/BUS/DU TESTS, GND REP, PIN PROG/STATUS AND XLOAD</td></tr><tr><td><strong>DMU (AIDS)</strong></td><td>LLR, PLR, LRU IDENT, GND SCAN, TSD, CLASS 3, TEST, GND REP, SOFTWARE LOAD STATUS</td></tr><tr><td><strong>PRINTER</strong></td><td>Listed in source; detailed menu not specified</td></tr></tbody>
+ </table>
+ </div>
+</section>
+
+<section class="section searchable" id="sys-10" data-search="l/g">
+ <div class="kicker">SYSTEM REPORT / TEST</div>
+ <h2>L/G</h2>
+ <div class="tablewrap">
+ <table>
+  <thead><tr><th>System / LRU</th><th>Available report / test menus</th></tr></thead>
+  <tbody><tr><td><strong>LGCIU 1 / 2</strong></td><td>LLR, PLR, LRU IDENT, TSD, GND SCAN, TEST, L/G SIMULATION</td></tr><tr><td><strong>BSCU 1 / 2</strong></td><td>LLR, PLR, LRU IDENT, GND SCAN, TSD, CLASS 3, SYS TESTS, GND REP, SPECIFIC DATA</td></tr><tr><td><strong>TPIS</strong></td><td>LLR, PLR, LRU IDENT, REF PR, TEST, GND FAULTS, TSD</td></tr></tbody>
+ </table>
+ </div>
+</section>
+
+<section class="section searchable" id="sys-11" data-search="nav">
+ <div class="kicker">SYSTEM REPORT / TEST</div>
+ <h2>NAV</h2>
+ <div class="tablewrap">
+ <table>
+  <thead><tr><th>System / LRU</th><th>Available report / test menus</th></tr></thead>
+  <tbody><tr><td><strong>ADR 1 / 2 / 3</strong></td><td>LLR, PLR, LRU IDENT, GND SCAN, TSD, CLASS 3, SYS TEST, OUTPUT TESTS, GND REP, INPUT STATUS</td></tr><tr><td><strong>IR 1 / 2 / 3</strong></td><td>LLR, PLR, LRU IDENT, GND SCAN, TSD, CLASS 3, SYS TEST, INTERFACE TEST, GND REP, INPUT STATUS</td></tr><tr><td><strong>RA 1 / 2</strong></td><td>LLR, PLR, LRU IDENT, TSD, SYS TEST, RAMP TEST, GND REP</td></tr><tr><td><strong>DME 1 / 2</strong></td><td>LLR, PLR, LRU IDENT, GND SCAN, TSD, CLASS 3, TEST, GND REP</td></tr><tr><td><strong>MMR 1 / 2</strong></td><td>LLR, PLR, LRU IDENT, GND SCAN, TSD, CLASS 3, SYS TEST, GND REP</td></tr><tr><td><strong>VOR 1 / 2</strong></td><td>LLR, PLR, LRU IDENT, GND SCAN, TSD, CLASS 3, TEST, GND REP</td></tr><tr><td><strong>RADAR 1</strong></td><td>LLR, PLR, LRU IDENT, GND SCAN, TSD, CLASS 3, TEST, GND REP</td></tr><tr><td><strong>ADF 1 / 2</strong></td><td>LLR, PLR, LRU IDENT, GND SCAN, TSD, CLASS 3, TEST, GND REP</td></tr><tr><td><strong>ATC 1 / 2</strong></td><td>LLR, PLR, LRU IDENT, TSD, CLASS 3, TEST, GND REP, DISCRETE CONFIG</td></tr><tr><td><strong>HUD</strong></td><td>Listed in source; detailed menu not specified</td></tr><tr><td><strong>GPWC</strong></td><td>LLR, PLR, LRU IDENT, GND SCAN, TSD, CLASS 3, TEST, GND REP, CURRENT STATUS</td></tr><tr><td><strong>GPSSU 1</strong></td><td>Listed in source; detailed menu not specified</td></tr><tr><td><strong>TCAS</strong></td><td>LLR, PLR, LRU IDENT, GND SCAN, TSD, CLASS 3, TEST, GND REP, DISCRETE CONFIG</td></tr></tbody>
+ </table>
+ </div>
+</section>
+
+<section class="section searchable" id="sys-12" data-search="pneu">
+ <div class="kicker">SYSTEM REPORT / TEST</div>
+ <h2>PNEU</h2>
+ <div class="tablewrap">
+ <table>
+  <thead><tr><th>System / LRU</th><th>Available report / test menus</th></tr></thead>
+  <tbody><tr><td><strong>BMC 1 / 2</strong></td><td>LLR, PLR, LRU IDENT, CURRENT DATA, CLASS 3, TEST</td></tr></tbody>
+ </table>
+ </div>
+</section>
+
+<section class="section searchable" id="sys-13" data-search="apu">
+ <div class="kicker">SYSTEM REPORT / TEST</div>
+ <h2>APU</h2>
+ <div class="tablewrap">
+ <table>
+  <thead><tr><th>System / LRU</th><th>Available report / test menus</th></tr></thead>
+  <tbody><tr><td><strong>APU</strong></td><td>LLR, PLR, LRU IDENT, GND SCAN, TSD, CLASS 3, TEST, SHUTDOWNS, SERVICE DATA</td></tr></tbody>
+ </table>
+ </div>
+</section>
+
+<section class="section searchable" id="sys-14" data-search="eng">
+ <div class="kicker">SYSTEM REPORT / TEST</div>
+ <h2>ENG</h2>
+ <div class="tablewrap">
+ <table>
+  <thead><tr><th>System / LRU</th><th>Available report / test menus</th></tr></thead>
+  <tbody><tr><td><strong>EIU 1 / 2</strong></td><td>LLR, PLR, LRU IDENT, CLASS 3, GND SCAN</td></tr><tr><td><strong>FADEC 1A / 2A / 1B / 2B</strong></td><td>LLR, PLR, LRU IDENT, TSD, CLASS 3, IGN TEST, T/R TEST, FADEC TEST, SCHED MAINT REPORT, SPECIFIC DATA</td></tr><tr><td><strong>EVMU</strong></td><td>LLR, PLR, LRU IDENT, CLASS 3, TEST</td></tr></tbody>
+ </table>
+ </div>
+</section>
+
+<section class="section searchable" id="sys-15" data-search="inerting">
+ <div class="kicker">SYSTEM REPORT / TEST</div>
+ <h2>INERTING</h2>
+ <div class="tablewrap">
+ <table>
+  <thead><tr><th>System / LRU</th><th>Available report / test menus</th></tr></thead>
+  <tbody><tr><td><strong>CSAS/IGGS</strong></td><td>LLR, PLR, LRU IDENT, GND REP, TSD, CLASS 3, TEST, SPECIFIC DATA</td></tr></tbody>
+ </table>
+ </div>
+</section>
+
+<section class="section searchable" id="sys-16" data-search="info sys">
+ <div class="kicker">SYSTEM REPORT / TEST</div>
+ <h2>INFO SYS</h2>
+ <div class="tablewrap">
+ <table>
+  <thead><tr><th>System / LRU</th><th>Available report / test menus</th></tr></thead>
+  <tbody><tr><td><strong>INFO SYS</strong></td><td>Visible on SYSTEM REPORT / TEST Page 2; detailed submenu not listed in the source article.</td></tr></tbody>
+ </table>
+ </div>
+</section>
+
+<section class="section searchable" id="sys-17" data-search="toilet">
+ <div class="kicker">SYSTEM REPORT / TEST</div>
+ <h2>TOILET</h2>
+ <div class="tablewrap">
+ <table>
+  <thead><tr><th>System / LRU</th><th>Available report / test menus</th></tr></thead>
+  <tbody><tr><td><strong>TOILET</strong></td><td>Visible on SYSTEM REPORT / TEST Page 2; detailed submenu not listed in the source article.</td></tr></tbody>
+ </table>
+ </div>
+</section>
+
+
+<section class="section">
+ <div class="kicker">Menu terminology</div><h2>Common CFDS Functions</h2>
+ <div class="reportgrid">
+  <div class="report"><b>LLR / PLR</b><p>Last/Previous Leg Report: identifies LRUs affected by stored failures.</p></div>
+  <div class="report"><b>LRU IDENT</b><p>Displays identification / part-number information for system LRUs.</p></div>
+  <div class="report"><b>GND SCAN</b><p>Runs system monitoring on the ground to help identify a faulty LRU.</p></div>
+  <div class="report"><b>CLASS 3</b><p>Displays class-3 faults detected during the last flight leg.</p></div>
+  <div class="report"><b>SYS CONFIG</b><p>Displays system configuration information.</p></div>
+  <div class="report"><b>TSD / TEST</b><p>System-dependent troubleshooting/test functions available from the BITE menu.</p></div>
+ </div>
+</section>
+
+<div class="footer">A320 CFDS BITE — visual technical quick-reference. Confirm effectivity and current approved AMM/TSM data before maintenance action.</div>
+</main>
+<a class="top" href="#top">↑ Top</a>
+<script>
+const q=document.getElementById('search');
+q.addEventListener('input',()=>{
+ const s=q.value.trim().toLowerCase();
+ document.querySelectorAll('.searchable').forEach(sec=>{
+   let hit=!s || sec.innerText.toLowerCase().includes(s);
+   sec.classList.toggle('hidden',!hit);
+ });
+});
+</script>
+</body></html>

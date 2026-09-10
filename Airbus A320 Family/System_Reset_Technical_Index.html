@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A320 System Reset — Technical Index</title>
+<style>
+:root{--bg:#081018;--side:#0c151e;--panel:#101b25;--panel2:#162431;--line:#2a3d4d;--text:#eaf1f6;--muted:#9fb1be;--accent:#52b8ff;--green:#72d9b3;--amber:#f2b94b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 "Segoe UI",Arial,sans-serif}a{color:inherit;text-decoration:none}
+.sidebar{position:fixed;inset:0 auto 0 0;width:285px;background:var(--side);border-right:1px solid var(--line);padding:24px 18px;overflow:auto}.brand{font-size:20px;font-weight:780}.sub{font-size:12px;color:var(--muted);margin-top:5px}.nav{margin-top:20px;display:grid;grid-template-columns:1fr 1fr;gap:6px}.nav a{padding:8px;text-align:center;background:#111f2a;border:1px solid var(--line);border-radius:7px;color:var(--accent)}
+.main{margin-left:285px;padding:34px;max-width:1450px}.hero{background:linear-gradient(135deg,#14283a,#0e1720);border:1px solid var(--line);border-radius:17px;padding:28px}.hero h1{margin:2px 0 7px;font-size:31px}.hero p{max-width:920px;color:#c7d3dc}.kicker{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:800}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.badge{border:1px solid #31536d;background:#162837;border-radius:999px;padding:6px 9px;font-size:12px}
+.searchbar{position:sticky;top:0;z-index:30;padding:12px 0 14px;background:rgba(8,16,24,.97)}.searchbar input{width:100%;padding:13px 14px;background:#0e1821;color:var(--text);border:1px solid var(--line);border-radius:10px;font-size:15px}
+.note{border-left:4px solid var(--amber);background:#1b1810;border-radius:8px;padding:13px 15px;margin:18px 0}.section{scroll-margin-top:75px;margin:22px 0;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}.section h2{margin:3px 0 16px;font-size:22px}
+.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse}th,td{padding:11px 10px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{background:#142431;font-size:11px;text-transform:uppercase;letter-spacing:.05em}tr:hover td{background:#13202b}.approved{color:var(--green);font-size:12px;border:1px solid #35594d;background:#12261f;border-radius:999px;padding:5px 8px;white-space:nowrap}.hidden{display:none!important}.top{position:fixed;right:18px;bottom:18px;background:#172837;border:1px solid #365974;padding:10px 12px;border-radius:10px}.footer{font-size:12px;color:var(--muted);padding:20px 0 60px}
+@media(max-width:900px){.sidebar{position:static;width:auto;border-right:0;border-bottom:1px solid var(--line)}.main{margin:0;padding:18px}}
+</style></head><body id="top">
+<aside class="sidebar"><div class="brand">A320 System Reset</div><div class="sub">Technical Troubleshooting Index</div><nav class="nav"><a href="#ata-21">ATA 21</a><a href="#ata-22">ATA 22</a><a href="#ata-23">ATA 23</a><a href="#ata-24">ATA 24</a><a href="#ata-26">ATA 26</a><a href="#ata-27">ATA 27</a><a href="#ata-28">ATA 28</a><a href="#ata-30">ATA 30</a><a href="#ata-31">ATA 31</a><a href="#ata-32">ATA 32</a><a href="#ata-34">ATA 34</a></nav></aside>
+<main class="main"><section class="hero"><div class="kicker">Airbus A320 • TSM-oriented index</div><h1>System Reset — ECAM / Computer Index</h1>
+<p>Quick-reference index linking ECAM alerts and system malfunctions to the associated computer or system. Reset execution details are intentionally deferred to the current approved TSM procedure.</p>
+<div class="badges"><span class="badge">ECAM Alert</span><span class="badge">Computer / System</span><span class="badge">ATA Navigation</span><span class="badge">TSM Reference</span></div></section>
+<div class="searchbar"><input id="search" type="search" placeholder="Search: AEVC, FCU, FMGC, FWC, LGCIU, BSCU, TCAS..."></div>
+<div class="note"><strong>System reset ≠ tripped C/B reset.</strong> The source describes system reset (“recycling”) as recovery from transient/intermittent faults and points to TSM Chapter 24 for reset tasks. Use current approved aircraft/operator documentation before any maintenance action.</div>
+<section class="section" id="ata-21">
+      <div class="kicker">SYSTEM RESET INDEX</div><h2>ATA 21 — Air Conditioning</h2>
+      <div class="tablewrap"><table><thead><tr><th>ECAM Alert / System Malfunction</th><th>Computer / System</th><th>Reset Action</th></tr></thead>
+      <tbody><tr class="searchable" data-search="ata 21 — air conditioning vent avncs sys fault aevc">
+        <td>VENT AVNCS SYS FAULT</td><td><strong>AEVC</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr><tr class="searchable" data-search="ata 21 — air conditioning cab pr sys 1 / sys 2 fault cpc">
+        <td>CAB PR SYS 1 / SYS 2 FAULT</td><td><strong>CPC</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr><tr class="searchable" data-search="ata 21 — air conditioning air pack 1 / 2 regul fault; cond trim air sys fault acsc">
+        <td>AIR PACK 1 / 2 REGUL FAULT; COND TRIM AIR SYS FAULT</td><td><strong>ACSC</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr></tbody></table></div></section><section class="section" id="ata-22">
+      <div class="kicker">SYSTEM RESET INDEX</div><h2>ATA 22 — Auto Flight</h2>
+      <div class="tablewrap"><table><thead><tr><th>ECAM Alert / System Malfunction</th><th>Computer / System</th><th>Reset Action</th></tr></thead>
+      <tbody><tr class="searchable" data-search="ata 22 — auto flight auto flt fcu 1 / 2 / 1+2 fault fcu">
+        <td>AUTO FLT FCU 1 / 2 / 1+2 FAULT</td><td><strong>FCU</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr><tr class="searchable" data-search="ata 22 — auto flight afs — one mcdu locked or blank mcdu">
+        <td>AFS — One MCDU locked or blank</td><td><strong>MCDU</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr><tr class="searchable" data-search="ata 22 — auto flight afs — fmgc malfunction / all mcdus locked or blank fmgc">
+        <td>AFS — FMGC malfunction / all MCDUs locked or blank</td><td><strong>FMGC</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr><tr class="searchable" data-search="ata 22 — auto flight auto flt a/thr off fcu">
+        <td>AUTO FLT A/THR OFF</td><td><strong>FCU</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr><tr class="searchable" data-search="ata 22 — auto flight cat 3 dual shown in inop sys without other fac ecam message fac">
+        <td>CAT 3 DUAL shown in INOP SYS without other FAC ECAM message</td><td><strong>FAC</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr></tbody></table></div></section><section class="section" id="ata-23">
+      <div class="kicker">SYSTEM RESET INDEX</div><h2>ATA 23 — Communications</h2>
+      <div class="tablewrap"><table><thead><tr><th>ECAM Alert / System Malfunction</th><th>Computer / System</th><th>Reset Action</th></tr></thead>
+      <tbody><tr class="searchable" data-search="ata 23 — communications com cids 1+2 fault cids">
+        <td>COM CIDS 1+2 FAULT</td><td><strong>CIDS</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr><tr class="searchable" data-search="ata 23 — communications evac horn starts spuriously cids">
+        <td>Evac horn starts spuriously</td><td><strong>CIDS</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr><tr class="searchable" data-search="ata 23 — communications rmp — no function (frozen) rmp">
+        <td>RMP — no function (frozen)</td><td><strong>RMP</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr><tr class="searchable" data-search="ata 23 — communications fap — no function (frozen) fap / pram">
+        <td>FAP — no function (frozen)</td><td><strong>FAP / PRAM</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr><tr class="searchable" data-search="ata 23 — communications satcom malfunction sdu">
+        <td>SATCOM malfunction</td><td><strong>SDU</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr><tr class="searchable" data-search="ata 23 — communications hf datalink / hf hf transceiver">
+        <td>HF Datalink / HF</td><td><strong>HF Transceiver</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr></tbody></table></div></section><section class="section" id="ata-24">
+      <div class="kicker">SYSTEM RESET INDEX</div><h2>ATA 24 — Electrical Power</h2>
+      <div class="tablewrap"><table><thead><tr><th>ECAM Alert / System Malfunction</th><th>Computer / System</th><th>Reset Action</th></tr></thead>
+      <tbody><tr class="searchable" data-search="ata 24 — electrical power ac ext pwr ctl — no external-power supply to aircraft circuits gapcu">
+        <td>AC EXT PWR CTL — no external-power supply to aircraft circuits</td><td><strong>GAPCU</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr></tbody></table></div></section><section class="section" id="ata-26">
+      <div class="kicker">SYSTEM RESET INDEX</div><h2>ATA 26 — Fire Protection</h2>
+      <div class="tablewrap"><table><thead><tr><th>ECAM Alert / System Malfunction</th><th>Computer / System</th><th>Reset Action</th></tr></thead>
+      <tbody><tr class="searchable" data-search="ata 26 — fire protection smoke det fault sdcu">
+        <td>SMOKE DET FAULT</td><td><strong>SDCU</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr><tr class="searchable" data-search="ata 26 — fire protection smoke lavatory det fault cids / cids-sdf">
+        <td>SMOKE LAVATORY DET FAULT</td><td><strong>CIDS / CIDS-SDF</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr><tr class="searchable" data-search="ata 26 — fire protection cargo / lavatory smoke-detection and bottle fault group cids-sdf">
+        <td>Cargo / lavatory smoke-detection and bottle fault group</td><td><strong>CIDS-SDF</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr></tbody></table></div></section><section class="section" id="ata-27">
+      <div class="kicker">SYSTEM RESET INDEX</div><h2>ATA 27 — Flight Controls</h2>
+      <div class="tablewrap"><table><thead><tr><th>ECAM Alert / System Malfunction</th><th>Computer / System</th><th>Reset Action</th></tr></thead>
+      <tbody><tr class="searchable" data-search="ata 27 — flight controls f/ctl elac 1 pitch fault elac">
+        <td>F/CTL ELAC 1 PITCH FAULT</td><td><strong>ELAC</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr><tr class="searchable" data-search="ata 27 — flight controls f/ctl elac 2 pitch fault elac">
+        <td>F/CTL ELAC 2 PITCH FAULT</td><td><strong>ELAC</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr><tr class="searchable" data-search="ata 27 — flight controls f/ctl ail servo fault elac">
+        <td>F/CTL AIL SERVO FAULT</td><td><strong>ELAC</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr><tr class="searchable" data-search="ata 27 — flight controls f/ctl splr fault sec">
+        <td>F/CTL SPLR FAULT</td><td><strong>SEC</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr></tbody></table></div></section><section class="section" id="ata-28">
+      <div class="kicker">SYSTEM RESET INDEX</div><h2>ATA 28 — Fuel</h2>
+      <div class="tablewrap"><table><thead><tr><th>ECAM Alert / System Malfunction</th><th>Computer / System</th><th>Reset Action</th></tr></thead>
+      <tbody><tr class="searchable" data-search="ata 28 — fuel loss of fuel quantity indication / simultaneous transfer-valve alerts with no fuel sd anomaly fqic">
+        <td>Loss of fuel quantity indication / simultaneous transfer-valve alerts with no FUEL SD anomaly</td><td><strong>FQIC</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr></tbody></table></div></section><section class="section" id="ata-30">
+      <div class="kicker">SYSTEM RESET INDEX</div><h2>ATA 30 — Ice &amp; Rain Protection</h2>
+      <div class="tablewrap"><table><thead><tr><th>ECAM Alert / System Malfunction</th><th>Computer / System</th><th>Reset Action</th></tr></thead>
+      <tbody><tr class="searchable" data-search="ata 30 — ice &amp; rain protection anti ice l/r windshield or window whc">
+        <td>ANTI ICE L/R WINDSHIELD or WINDOW</td><td><strong>WHC</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr></tbody></table></div></section><section class="section" id="ata-31">
+      <div class="kicker">SYSTEM RESET INDEX</div><h2>ATA 31 — Indicating / Recording</h2>
+      <div class="tablewrap"><table><thead><tr><th>ECAM Alert / System Malfunction</th><th>Computer / System</th><th>Reset Action</th></tr></thead>
+      <tbody><tr class="searchable" data-search="ata 31 — indicating / recording fws fwc 1 / 2 fault fwc">
+        <td>FWS FWC 1 / 2 FAULT</td><td><strong>FWC</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr></tbody></table></div></section><section class="section" id="ata-32">
+      <div class="kicker">SYSTEM RESET INDEX</div><h2>ATA 32 — Landing Gear</h2>
+      <div class="tablewrap"><table><thead><tr><th>ECAM Alert / System Malfunction</th><th>Computer / System</th><th>Reset Action</th></tr></thead>
+      <tbody><tr class="searchable" data-search="ata 32 — landing gear l/g lgciu 1 / 2 fault lgciu">
+        <td>L/G LGCIU 1 / 2 FAULT</td><td><strong>LGCIU</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr><tr class="searchable" data-search="ata 32 — landing gear wheel n.w steer / n/w strg fault bscu">
+        <td>WHEEL N.W STEER / N/W STRG FAULT</td><td><strong>BSCU</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr><tr class="searchable" data-search="ata 32 — landing gear brakes sys 1 / 2 or bscu channel fault bscu">
+        <td>BRAKES SYS 1 / 2 or BSCU channel fault</td><td><strong>BSCU</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr></tbody></table></div></section><section class="section" id="ata-34">
+      <div class="kicker">SYSTEM RESET INDEX</div><h2>ATA 34 — Navigation</h2>
+      <div class="tablewrap"><table><thead><tr><th>ECAM Alert / System Malfunction</th><th>Computer / System</th><th>Reset Action</th></tr></thead>
+      <tbody><tr class="searchable" data-search="ata 34 — navigation nav-stby-isis malfunction isis">
+        <td>NAV-STBY-ISIS malfunction</td><td><strong>ISIS</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr><tr class="searchable" data-search="ata 34 — navigation nav tcas fault tcas / t2cas / t/tiss">
+        <td>NAV TCAS FAULT</td><td><strong>TCAS / T2CAS / T/TISS</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr><tr class="searchable" data-search="ata 34 — navigation nav gpws fault / gpws terr det fault gpwc">
+        <td>NAV GPWS FAULT / GPWS TERR DET FAULT</td><td><strong>GPWC</strong></td>
+        <td><span class="approved">Consult approved TSM reset procedure</span></td></tr></tbody></table></div></section>
+<div class="footer">A320 System Reset — non-procedural technical index based on the supplied AviationHunt reference.</div>
+</main><a class="top" href="#top">↑ Top</a>
+<script>const q=document.getElementById('search');q.addEventListener('input',()=>{const s=q.value.trim().toLowerCase();document.querySelectorAll('.searchable').forEach(x=>x.classList.toggle('hidden',s&&!x.dataset.search.includes(s)));});</script>
+</body></html>

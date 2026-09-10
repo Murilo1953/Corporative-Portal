@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A320 Avionics Computers — Visual Location Guide</title>
+<style>
+:root{--bg:#081018;--side:#0c151e;--panel:#101b25;--panel2:#162431;--line:#2a3d4d;--text:#eaf1f6;--muted:#9fb1be;--accent:#52b8ff;--green:#72d9b3;--warn:#f2b94b}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 "Segoe UI",Arial,sans-serif}
+a{color:inherit;text-decoration:none}
+.sidebar{position:fixed;inset:0 auto 0 0;width:290px;background:var(--side);border-right:1px solid var(--line);padding:23px 17px;overflow:auto}
+.brand{font-size:20px;font-weight:760}.sub{font-size:12px;color:var(--muted);margin-top:5px}
+.nav{margin-top:20px}.nav>a{display:block;padding:8px 9px;border-radius:7px;color:#dce8ef}.nav>a:hover{background:var(--panel2)}
+.vunav{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-top:14px}
+.vunav a{text-align:center;background:#111f2a;border:1px solid var(--line);border-radius:6px;padding:6px 2px;font-size:11px;color:var(--accent)}
+.main{margin-left:290px;padding:34px;max-width:1600px}
+.hero{background:linear-gradient(135deg,#14283a,#0e1720);border:1px solid var(--line);border-radius:17px;padding:28px}
+.hero h1{margin:0 0 7px;font-size:31px}.hero p{max-width:950px;color:#c7d3dc}
+.kicker{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:800}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.badge{border:1px solid #31536d;background:#162837;border-radius:999px;padding:6px 9px;font-size:12px}
+.searchbar{position:sticky;top:0;z-index:30;padding:12px 0 14px;background:rgba(8,16,24,.97)}
+.searchbar input{width:100%;padding:13px 14px;background:#0e1821;color:var(--text);border:1px solid var(--line);border-radius:10px;font-size:15px}
+.section{scroll-margin-top:75px;margin:22px 0;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:23px}
+.section h2{margin:3px 0 17px;font-size:23px}
+.note{border-left:4px solid var(--accent);background:#0e1a24;border-radius:8px;padding:12px 14px;margin:18px 0}
+.note.warn{border-left-color:var(--warn)}
+.diagram-grid{display:grid;grid-template-columns:1fr;gap:15px}
+.diagram{margin:0;background:#0d171f;border:1px solid var(--line);border-radius:12px;padding:14px}
+.diagram-title{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+.diagram-title strong{display:block;font-size:17px}.diagram-title span{display:block;color:var(--muted);font-size:12px;margin-top:3px}
+.diagram-title a,.srcbtn{font-size:12px;color:#bfe6ff;background:#10283a;border:1px solid #35536a;border-radius:7px;padding:7px 9px}
+.rack-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.rack{background:#152431;border:1px solid #304658;border-radius:9px;padding:10px}
+.rack-title{font-weight:800;color:var(--green);font-size:17px;border-bottom:1px solid #304658;padding-bottom:6px;margin-bottom:6px}
+.rack ul{list-style:none;padding:0;margin:0}.rack li{display:flex;justify-content:space-between;gap:10px;padding:4px 0;border-bottom:1px dashed #273a48;font-size:11px}
+.rack li span{color:#b9cad5;white-space:nowrap}
+.vu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(430px,1fr));gap:14px}
+.vu-card{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:14px;scroll-margin-top:75px;min-width:0}
+.vu-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.vu-head h3{margin:2px 0 10px;font-size:21px}
+.tablewrap{overflow:auto}table{width:100%;border-collapse:collapse}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top;line-height:1.45}
+th{background:#132330;font-size:11px;text-transform:uppercase;letter-spacing:.05em}
+td{font-size:13px}code{color:#bfe6ff;background:#0b141c;border:1px solid #263846;border-radius:5px;padding:2px 5px;white-space:normal}
+.hidden{display:none!important}.top{position:fixed;right:18px;bottom:18px;background:#172837;border:1px solid #365974;padding:10px 12px;border-radius:10px}
+.footer{font-size:12px;color:var(--muted);padding:20px 0 60px}
+@media(max-width:900px){.sidebar{position:static;width:auto;border-right:0;border-bottom:1px solid var(--line)}.main{margin:0;padding:18px}.vu-grid{grid-template-columns:1fr}}
+@media print{.sidebar,.searchbar,.top,.srcbtn,.diagram-title a{display:none}.main{margin:0;padding:0}body{background:white;color:black}.hero,.section,.diagram,.rack,.vu-card{background:white;color:black;border-color:#bbb}.hero p,.diagram-title span,.sub{color:#555}}
+</style>
+</head>
+<body id="top">
+<aside class="sidebar">
+<div class="brand">A320 Avionics Computers</div>
+<div class="sub">Visual Location & FIN Guide</div>
+<nav class="nav">
+<a href="#overview">Overview</a>
+<a href="#diagrams">Location Diagrams</a>
+<a href="#avionics">Avionics Shelves</a>
+<a href="#cockpit">Cockpit Computers</a>
+<a href="#other">Other Locations</a>
+</nav>
+<div class="vunav"><a href="#81vu">81VU</a><a href="#82vu">82VU</a><a href="#83vu">83VU</a><a href="#84vu">84VU</a><a href="#85vu">85VU</a><a href="#86vu">86VU</a><a href="#87vu">87VU</a><a href="#88vu">88VU</a><a href="#91vu">91VU</a><a href="#92vu">92VU</a><a href="#93vu">93VU</a><a href="#94vu">94VU</a><a href="#95vu">95VU</a><a href="#96vu">96VU</a><a href="#109vu">109VU</a></div>
+</aside>
+
+<main class="main">
+<section class="hero" id="overview">
+<div class="kicker">Airbus A320</div>
+<h1>Avionics Computers — Visual Location Guide</h1>
+<p>Quick-reference page for A320 computers by VU shelf, equipment designation and FIN. The source page lists computers in the avionics compartment and cockpit; the location PDF adds rack layouts and other compartments.</p>
+<div class="badges"><span class="badge">81–88VU</span><span class="badge">91–96VU</span><span class="badge">109VU</span><span class="badge">Cockpit</span><span class="badge">Battery / O₂ / Aft Cargo</span></div>
+</section>
+
+<div class="searchbar"><input id="search" type="search" placeholder="Search computer, FIN or VU: FMGC, 1CA1, FWC, 85VU, BSCU, 10GG..."></div>
+
+<div class="note warn"><strong>Figures:</strong> the diagrams below are original schematics recreated from the location data, not copies of the copyrighted source artwork. Each block includes a direct link to the original location reference PDF.</div>
+
+<section class="section" id="diagrams">
+<div class="kicker">Visual reference</div><h2>Computer Location Diagrams</h2>
+<div class="diagram-grid">
+    <figure class="diagram">
+      <div class="diagram-title">
+        <div><strong>Avionics Shelves — Communications / Flight Controls</strong><span>Original schematic based on the computer-location data.</span></div>
+        <a href="https://www.aviationhunt.com/wp-content/uploads/2021/12/a320-computer-location.pdf" target="_blank" rel="noopener">Direct reference ↗</a>
+      </div>
+      <div class="rack-grid">
+        <div class="rack">
+          <div class="rack-title">81VU</div>
+          <ul><li><b>HF TRANSCEIVER 1</b><span>3RE1</span></li><li><b>ATC/MODE S TRANSPONDER 1</b><span>1SH1</span></li><li><b>DME INTERROGATOR 1</b><span>2SD1</span></li><li><b>VOR/MKR RECEIVER 1</b><span>3RS1</span></li><li><b>VHF TRANSCEIVER 3</b><span>1RC3</span></li><li><b>VHF TRANSCEIVER 1</b><span>1RC1</span></li><li><b>AMU</b><span>1RN</span></li><li><b>ADF RECEIVER 1</b><span>2RP1</span></li><li><b>ATSU</b><span>1TX1</span></li></ul>
+        </div>
+        <div class="rack">
+          <div class="rack-title">82VU</div>
+          <ul><li><b>ADF RECEIVER 2</b><span>2RP2</span></li><li><b>VHF TRANSCEIVER 2</b><span>1RC2</span></li><li><b>VOR/MKR RECEIVER 2</b><span>3RS2</span></li><li><b>DME INTERROGATOR 2</b><span>2SD2</span></li><li><b>ATC/MODE S TRANSPONDER 2</b><span>1SH2</span></li><li><b>TCAS COMPUTER</b><span>1SG</span></li><li><b>HF TRANSCEIVER 2</b><span>3RE2</span></li><li><b>ACARS MANAGEMENT UNIT</b><span>1RB</span></li></ul>
+        </div>
+        <div class="rack">
+          <div class="rack-title">83VU</div>
+          <ul><li><b>ELAC 1</b><span>2CE1</span></li><li><b>SEC 1</b><span>1CE1</span></li><li><b>FCDC 1</b><span>3CE1</span></li><li><b>FMGC 1</b><span>1CA1</span></li><li><b>FAC 1</b><span>1CC1</span></li></ul>
+        </div>
+        <div class="rack">
+          <div class="rack-title">84VU</div>
+          <ul><li><b>FAC 2</b><span>1CC2</span></li><li><b>FMGC 2</b><span>1CA2</span></li><li><b>FCDC 2</b><span>3CE2</span></li><li><b>SEC 2</b><span>1CE2</span></li><li><b>ELAC 2</b><span>2CE2</span></li></ul>
+        </div></div>
+    </figure>
+    
+    <figure class="diagram">
+      <div class="diagram-title">
+        <div><strong>Avionics Shelves — Display / Maintenance / Cabin Systems</strong><span>Original schematic based on the computer-location data.</span></div>
+        <a href="https://www.aviationhunt.com/wp-content/uploads/2021/12/a320-computer-location.pdf" target="_blank" rel="noopener">Direct reference ↗</a>
+      </div>
+      <div class="rack-grid">
+        <div class="rack">
+          <div class="rack-title">85VU</div>
+          <ul><li><b>SFCC 1</b><span>21CV</span></li><li><b>EIU 1</b><span>1KS1</span></li><li><b>DMC 1</b><span>1WT1</span></li><li><b>DMC 3</b><span>1WT3</span></li><li><b>FWC 1</b><span>1WW1</span></li><li><b>SDAC 1</b><span>1WV1</span></li></ul>
+        </div>
+        <div class="rack">
+          <div class="rack-title">86VU</div>
+          <ul><li><b>SDAC 2</b><span>1WV2</span></li><li><b>FWC 2</b><span>1WW2</span></li><li><b>DMC 2</b><span>1WT2</span></li><li><b>EIU 2</b><span>1KS2</span></li><li><b>EVMU</b><span>2EV</span></li><li><b>SFCC 2</b><span>22CV</span></li></ul>
+        </div>
+        <div class="rack">
+          <div class="rack-title">87VU</div>
+          <ul><li><b>FDIU</b><span>2TU</span></li><li><b>QAR</b><span>3TU</span></li><li><b>DMU</b><span>1TV</span></li><li><b>CFDIU</b><span>1TW</span></li><li><b>CIDS DIRECTOR 1</b><span>101RH</span></li><li><b>DAR</b><span>2TV</span></li><li><b>FDIMU</b><span>10TV</span></li><li><b>AEVC</b><span>10HQ</span></li></ul>
+        </div>
+        <div class="rack">
+          <div class="rack-title">88VU</div>
+          <ul><li><b>CIDS DIRECTOR 2</b><span>102RH</span></li><li><b>AEVC</b><span>10HQ</span></li><li><b>GPWC</b><span>1WZ</span></li><li><b>ANNOUNCE/MUSIC REPRODUCER</b><span>10RX</span></li><li><b>DIU</b><span>190MH</span></li><li><b>MUX</b><span>8MK</span></li><li><b>AUDIO REPRODUCER</b><span>10MK</span></li><li><b>MEDIA SERVER</b><span>170MH</span></li><li><b>IFE CONTROLLER</b><span>311MK</span></li><li><b>IFE DIGITAL SERVER UNIT(S)</b><span>312MK / 317MK</span></li><li><b>IFE SERVER(S)</b><span>313MK / 314MK / 315MK</span></li><li><b>LEO SATELLITE DATA UNIT</b><span>1005RV1</span></li></ul>
+        </div></div>
+    </figure>
+    
+    <figure class="diagram">
+      <div class="diagram-title">
+        <div><strong>90VU Area — Access Door 811</strong><span>Electrical, landing gear, navigation and air-conditioning computers.</span></div>
+        <a href="https://www.aviationhunt.com/wp-content/uploads/2021/12/a320-computer-location.pdf" target="_blank" rel="noopener">Direct reference ↗</a>
+      </div>
+      <div class="rack-grid">
+        <div class="rack">
+          <div class="rack-title">91VU</div>
+          <ul><li><b>GCU 1</b><span>1XU1</span></li><li><b>GCU 2</b><span>1XU2</span></li><li><b>APU GCU</b><span>1XS</span></li></ul>
+        </div>
+        <div class="rack">
+          <div class="rack-title">92VU</div>
+          <ul><li><b>FLSCU 1</b><span>7QJ</span></li><li><b>FLSCU 2</b><span>9QJ</span></li><li><b>FQIC</b><span>3QT</span></li><li><b>GPCU</b><span>1XG</span></li><li><b>GAPCU</b><span>24XG</span></li></ul>
+        </div>
+        <div class="rack">
+          <div class="rack-title">93VU</div>
+          <ul><li><b>SEC 3</b><span>1CE3</span></li><li><b>LGCIU 1</b><span>5GA1</span></li></ul>
+        </div>
+        <div class="rack">
+          <div class="rack-title">94VU</div>
+          <ul><li><b>LGCIU 2</b><span>5GA2</span></li><li><b>SDCU</b><span>10WQ</span></li><li><b>BSCU</b><span>10GG</span></li><li><b>TIPS DETECTION UNIT</b><span>2GV</span></li><li><b>AFT CARGO HEAT CONTROLLER</b><span>10HC</span></li></ul>
+        </div>
+        <div class="rack">
+          <div class="rack-title">95VU</div>
+          <ul><li><b>ILS RECEIVER 1</b><span>2RT1</span></li><li><b>MMR 1</b><span>40RT1</span></li><li><b>BMC 1</b><span>1HA1</span></li><li><b>CABIN PRESSURE CONTROLLER 1</b><span>11HL</span></li><li><b>PACK 1 TEMP CONTROLLER</b><span>47HH</span></li></ul>
+        </div>
+        <div class="rack">
+          <div class="rack-title">96VU</div>
+          <ul><li><b>PACK 2 TEMP CONTROLLER</b><span>57HH</span></li><li><b>CABIN PRESSURE CONTROLLER 2</b><span>12HL</span></li><li><b>BMC 2</b><span>1HA2</span></li><li><b>ILS RECEIVER 2 / MMR 2</b><span>2RT2 / 40RT2</span></li><li><b>AFT CARGO HEAT CONTROLLER</b><span>10HC</span></li></ul>
+        </div>
+        <div class="rack">
+          <div class="rack-title">109VU</div>
+          <ul><li><b>WEATHER RADAR TRANSCEIVER 1</b><span>1SQ1</span></li><li><b>WEATHER RADAR TRANSCEIVER 2</b><span>1SQ2</span></li></ul>
+        </div></div>
+    </figure>
+    </div>
+</section>
+
+<section class="section" id="avionics">
+<div class="kicker">Avionics compartment</div><h2>Computers by VU Shelf</h2>
+<div class="vu-grid">
+    <article class="vu-card searchable-card" id="81vu" data-search="81vu hf transceiver 1 3re1 if installed atc/mode s transponder 1 1sh1  dme interrogator 1 2sd1  vor/mkr receiver 1 3rs1  vhf transceiver 3 1rc3  vhf transceiver 1 1rc1  amu 1rn  adf receiver 1 2rp1  atsu 1tx1 ">
+      <div class="vu-head">
+        <div><span class="kicker">Avionics shelf</span><h3>81VU</h3></div>
+        <a class="srcbtn" href="https://www.aviationhunt.com/airbus-a320-avionics-computers/" target="_blank" rel="noopener">Source ↗</a>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Computer / LRU</th><th>FIN</th><th>Applicability</th></tr></thead>
+          <tbody><tr><td>HF TRANSCEIVER 1</td><td><code>3RE1</code></td><td>if installed</td></tr><tr><td>ATC/MODE S TRANSPONDER 1</td><td><code>1SH1</code></td><td></td></tr><tr><td>DME INTERROGATOR 1</td><td><code>2SD1</code></td><td></td></tr><tr><td>VOR/MKR RECEIVER 1</td><td><code>3RS1</code></td><td></td></tr><tr><td>VHF TRANSCEIVER 3</td><td><code>1RC3</code></td><td></td></tr><tr><td>VHF TRANSCEIVER 1</td><td><code>1RC1</code></td><td></td></tr><tr><td>AMU</td><td><code>1RN</code></td><td></td></tr><tr><td>ADF RECEIVER 1</td><td><code>2RP1</code></td><td></td></tr><tr><td>ATSU</td><td><code>1TX1</code></td><td></td></tr></tbody>
+        </table>
+      </div>
+    </article>
+    
+    <article class="vu-card searchable-card" id="82vu" data-search="82vu adf receiver 2 2rp2 if installed vhf transceiver 2 1rc2  vor/mkr receiver 2 3rs2  dme interrogator 2 2sd2  atc/mode s transponder 2 1sh2  tcas computer 1sg if installed hf transceiver 2 3re2 if installed acars management unit 1rb if installed">
+      <div class="vu-head">
+        <div><span class="kicker">Avionics shelf</span><h3>82VU</h3></div>
+        <a class="srcbtn" href="https://www.aviationhunt.com/airbus-a320-avionics-computers/" target="_blank" rel="noopener">Source ↗</a>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Computer / LRU</th><th>FIN</th><th>Applicability</th></tr></thead>
+          <tbody><tr><td>ADF RECEIVER 2</td><td><code>2RP2</code></td><td>if installed</td></tr><tr><td>VHF TRANSCEIVER 2</td><td><code>1RC2</code></td><td></td></tr><tr><td>VOR/MKR RECEIVER 2</td><td><code>3RS2</code></td><td></td></tr><tr><td>DME INTERROGATOR 2</td><td><code>2SD2</code></td><td></td></tr><tr><td>ATC/MODE S TRANSPONDER 2</td><td><code>1SH2</code></td><td></td></tr><tr><td>TCAS COMPUTER</td><td><code>1SG</code></td><td>if installed</td></tr><tr><td>HF TRANSCEIVER 2</td><td><code>3RE2</code></td><td>if installed</td></tr><tr><td>ACARS MANAGEMENT UNIT</td><td><code>1RB</code></td><td>if installed</td></tr></tbody>
+        </table>
+      </div>
+    </article>
+    
+    <article class="vu-card searchable-card" id="83vu" data-search="83vu elac 1 2ce1  sec 1 1ce1  fcdc 1 3ce1  fmgc 1 1ca1  fac 1 1cc1 ">
+      <div class="vu-head">
+        <div><span class="kicker">Avionics shelf</span><h3>83VU</h3></div>
+        <a class="srcbtn" href="https://www.aviationhunt.com/airbus-a320-avionics-computers/" target="_blank" rel="noopener">Source ↗</a>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Computer / LRU</th><th>FIN</th><th>Applicability</th></tr></thead>
+          <tbody><tr><td>ELAC 1</td><td><code>2CE1</code></td><td></td></tr><tr><td>SEC 1</td><td><code>1CE1</code></td><td></td></tr><tr><td>FCDC 1</td><td><code>3CE1</code></td><td></td></tr><tr><td>FMGC 1</td><td><code>1CA1</code></td><td></td></tr><tr><td>FAC 1</td><td><code>1CC1</code></td><td></td></tr></tbody>
+        </table>
+      </div>
+    </article>
+    
+    <article class="vu-card searchable-card" id="84vu" data-search="84vu fac 2 1cc2  fmgc 2 1ca2  fcdc 2 3ce2  sec 2 1ce2  elac 2 2ce2 ">
+      <div class="vu-head">
+        <div><span class="kicker">Avionics shelf</span><h3>84VU</h3></div>
+        <a class="srcbtn" href="https://www.aviationhunt.com/airbus-a320-avionics-computers/" target="_blank" rel="noopener">Source ↗</a>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Computer / LRU</th><th>FIN</th><th>Applicability</th></tr></thead>
+          <tbody><tr><td>FAC 2</td><td><code>1CC2</code></td><td></td></tr><tr><td>FMGC 2</td><td><code>1CA2</code></td><td></td></tr><tr><td>FCDC 2</td><td><code>3CE2</code></td><td></td></tr><tr><td>SEC 2</td><td><code>1CE2</code></td><td></td></tr><tr><td>ELAC 2</td><td><code>2CE2</code></td><td></td></tr></tbody>
+        </table>
+      </div>
+    </article>
+    
+    <article class="vu-card searchable-card" id="85vu" data-search="85vu sfcc 1 21cv  eiu 1 1ks1  dmc 1 1wt1  dmc 3 1wt3  fwc 1 1ww1  sdac 1 1wv1 ">
+      <div class="vu-head">
+        <div><span class="kicker">Avionics shelf</span><h3>85VU</h3></div>
+        <a class="srcbtn" href="https://www.aviationhunt.com/airbus-a320-avionics-computers/" target="_blank" rel="noopener">Source ↗</a>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Computer / LRU</th><th>FIN</th><th>Applicability</th></tr></thead>
+          <tbody><tr><td>SFCC 1</td><td><code>21CV</code></td><td></td></tr><tr><td>EIU 1</td><td><code>1KS1</code></td><td></td></tr><tr><td>DMC 1</td><td><code>1WT1</code></td><td></td></tr><tr><td>DMC 3</td><td><code>1WT3</code></td><td></td></tr><tr><td>FWC 1</td><td><code>1WW1</code></td><td></td></tr><tr><td>SDAC 1</td><td><code>1WV1</code></td><td></td></tr></tbody>
+        </table>
+      </div>
+    </article>
+    
+    <article class="vu-card searchable-card" id="86vu" data-search="86vu sdac 2 1wv2  fwc 2 1ww2  dmc 2 1wt2  eiu 2 1ks2  evmu 2ev  sfcc 2 22cv ">
+      <div class="vu-head">
+        <div><span class="kicker">Avionics shelf</span><h3>86VU</h3></div>
+        <a class="srcbtn" href="https://www.aviationhunt.com/airbus-a320-avionics-computers/" target="_blank" rel="noopener">Source ↗</a>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Computer / LRU</th><th>FIN</th><th>Applicability</th></tr></thead>
+          <tbody><tr><td>SDAC 2</td><td><code>1WV2</code></td><td></td></tr><tr><td>FWC 2</td><td><code>1WW2</code></td><td></td></tr><tr><td>DMC 2</td><td><code>1WT2</code></td><td></td></tr><tr><td>EIU 2</td><td><code>1KS2</code></td><td></td></tr><tr><td>EVMU</td><td><code>2EV</code></td><td></td></tr><tr><td>SFCC 2</td><td><code>22CV</code></td><td></td></tr></tbody>
+        </table>
+      </div>
+    </article>
+    
+    <article class="vu-card searchable-card" id="87vu" data-search="87vu fdiu 2tu if installed qar 3tu if installed dmu 1tv if installed cfdiu 1tw  cids director 1 101rh  dar 2tv if installed fdimu 10tv if installed aevc 10hq if installed">
+      <div class="vu-head">
+        <div><span class="kicker">Avionics shelf</span><h3>87VU</h3></div>
+        <a class="srcbtn" href="https://www.aviationhunt.com/airbus-a320-avionics-computers/" target="_blank" rel="noopener">Source ↗</a>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Computer / LRU</th><th>FIN</th><th>Applicability</th></tr></thead>
+          <tbody><tr><td>FDIU</td><td><code>2TU</code></td><td>if installed</td></tr><tr><td>QAR</td><td><code>3TU</code></td><td>if installed</td></tr><tr><td>DMU</td><td><code>1TV</code></td><td>if installed</td></tr><tr><td>CFDIU</td><td><code>1TW</code></td><td></td></tr><tr><td>CIDS DIRECTOR 1</td><td><code>101RH</code></td><td></td></tr><tr><td>DAR</td><td><code>2TV</code></td><td>if installed</td></tr><tr><td>FDIMU</td><td><code>10TV</code></td><td>if installed</td></tr><tr><td>AEVC</td><td><code>10HQ</code></td><td>if installed</td></tr></tbody>
+        </table>
+      </div>
+    </article>
+    
+    <article class="vu-card searchable-card" id="88vu" data-search="88vu cids director 2 102rh  aevc 10hq if installed gpwc 1wz if installed announce/music reproducer 10rx if installed diu 190mh if installed mux 8mk if installed audio reproducer 10mk if installed media server 170mh if installed ife controller 311mk if installed ife digital server unit(s) 312mk / 317mk if installed ife server(s) 313mk / 314mk / 315mk if installed leo satellite data unit 1005rv1 if installed">
+      <div class="vu-head">
+        <div><span class="kicker">Avionics shelf</span><h3>88VU</h3></div>
+        <a class="srcbtn" href="https://www.aviationhunt.com/airbus-a320-avionics-computers/" target="_blank" rel="noopener">Source ↗</a>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Computer / LRU</th><th>FIN</th><th>Applicability</th></tr></thead>
+          <tbody><tr><td>CIDS DIRECTOR 2</td><td><code>102RH</code></td><td></td></tr><tr><td>AEVC</td><td><code>10HQ</code></td><td>if installed</td></tr><tr><td>GPWC</td><td><code>1WZ</code></td><td>if installed</td></tr><tr><td>ANNOUNCE/MUSIC REPRODUCER</td><td><code>10RX</code></td><td>if installed</td></tr><tr><td>DIU</td><td><code>190MH</code></td><td>if installed</td></tr><tr><td>MUX</td><td><code>8MK</code></td><td>if installed</td></tr><tr><td>AUDIO REPRODUCER</td><td><code>10MK</code></td><td>if installed</td></tr><tr><td>MEDIA SERVER</td><td><code>170MH</code></td><td>if installed</td></tr><tr><td>IFE CONTROLLER</td><td><code>311MK</code></td><td>if installed</td></tr><tr><td>IFE DIGITAL SERVER UNIT(S)</td><td><code>312MK / 317MK</code></td><td>if installed</td></tr><tr><td>IFE SERVER(S)</td><td><code>313MK / 314MK / 315MK</code></td><td>if installed</td></tr><tr><td>LEO SATELLITE DATA UNIT</td><td><code>1005RV1</code></td><td>if installed</td></tr></tbody>
+        </table>
+      </div>
+    </article>
+    
+    <article class="vu-card searchable-card" id="91vu" data-search="91vu gcu 1 1xu1  gcu 2 1xu2  apu gcu 1xs if installed">
+      <div class="vu-head">
+        <div><span class="kicker">Avionics shelf</span><h3>91VU</h3></div>
+        <a class="srcbtn" href="https://www.aviationhunt.com/airbus-a320-avionics-computers/" target="_blank" rel="noopener">Source ↗</a>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Computer / LRU</th><th>FIN</th><th>Applicability</th></tr></thead>
+          <tbody><tr><td>GCU 1</td><td><code>1XU1</code></td><td></td></tr><tr><td>GCU 2</td><td><code>1XU2</code></td><td></td></tr><tr><td>APU GCU</td><td><code>1XS</code></td><td>if installed</td></tr></tbody>
+        </table>
+      </div>
+    </article>
+    
+    <article class="vu-card searchable-card" id="92vu" data-search="92vu flscu 1 7qj  flscu 2 9qj  fqic 3qt  gpcu 1xg  gapcu 24xg if installed">
+      <div class="vu-head">
+        <div><span class="kicker">Avionics shelf</span><h3>92VU</h3></div>
+        <a class="srcbtn" href="https://www.aviationhunt.com/airbus-a320-avionics-computers/" target="_blank" rel="noopener">Source ↗</a>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Computer / LRU</th><th>FIN</th><th>Applicability</th></tr></thead>
+          <tbody><tr><td>FLSCU 1</td><td><code>7QJ</code></td><td></td></tr><tr><td>FLSCU 2</td><td><code>9QJ</code></td><td></td></tr><tr><td>FQIC</td><td><code>3QT</code></td><td></td></tr><tr><td>GPCU</td><td><code>1XG</code></td><td></td></tr><tr><td>GAPCU</td><td><code>24XG</code></td><td>if installed</td></tr></tbody>
+        </table>
+      </div>
+    </article>
+    
+    <article class="vu-card searchable-card" id="93vu" data-search="93vu sec 3 1ce3  lgciu 1 5ga1 ">
+      <div class="vu-head">
+        <div><span class="kicker">Avionics shelf</span><h3>93VU</h3></div>
+        <a class="srcbtn" href="https://www.aviationhunt.com/airbus-a320-avionics-computers/" target="_blank" rel="noopener">Source ↗</a>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Computer / LRU</th><th>FIN</th><th>Applicability</th></tr></thead>
+          <tbody><tr><td>SEC 3</td><td><code>1CE3</code></td><td></td></tr><tr><td>LGCIU 1</td><td><code>5GA1</code></td><td></td></tr></tbody>
+        </table>
+      </div>
+    </article>
+    
+    <article class="vu-card searchable-card" id="94vu" data-search="94vu lgciu 2 5ga2  sdcu 10wq if installed bscu 10gg  tips detection unit 2gv if installed aft cargo heat controller 10hc if installed">
+      <div class="vu-head">
+        <div><span class="kicker">Avionics shelf</span><h3>94VU</h3></div>
+        <a class="srcbtn" href="https://www.aviationhunt.com/airbus-a320-avionics-computers/" target="_blank" rel="noopener">Source ↗</a>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Computer / LRU</th><th>FIN</th><th>Applicability</th></tr></thead>
+          <tbody><tr><td>LGCIU 2</td><td><code>5GA2</code></td><td></td></tr><tr><td>SDCU</td><td><code>10WQ</code></td><td>if installed</td></tr><tr><td>BSCU</td><td><code>10GG</code></td><td></td></tr><tr><td>TIPS DETECTION UNIT</td><td><code>2GV</code></td><td>if installed</td></tr><tr><td>AFT CARGO HEAT CONTROLLER</td><td><code>10HC</code></td><td>if installed</td></tr></tbody>
+        </table>
+      </div>
+    </article>
+    
+    <article class="vu-card searchable-card" id="95vu" data-search="95vu ils receiver 1 2rt1  mmr 1 40rt1  bmc 1 1ha1  cabin pressure controller 1 11hl  pack 1 temp controller 47hh if installed">
+      <div class="vu-head">
+        <div><span class="kicker">Avionics shelf</span><h3>95VU</h3></div>
+        <a class="srcbtn" href="https://www.aviationhunt.com/airbus-a320-avionics-computers/" target="_blank" rel="noopener">Source ↗</a>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Computer / LRU</th><th>FIN</th><th>Applicability</th></tr></thead>
+          <tbody><tr><td>ILS RECEIVER 1</td><td><code>2RT1</code></td><td></td></tr><tr><td>MMR 1</td><td><code>40RT1</code></td><td></td></tr><tr><td>BMC 1</td><td><code>1HA1</code></td><td></td></tr><tr><td>CABIN PRESSURE CONTROLLER 1</td><td><code>11HL</code></td><td></td></tr><tr><td>PACK 1 TEMP CONTROLLER</td><td><code>47HH</code></td><td>if installed</td></tr></tbody>
+        </table>
+      </div>
+    </article>
+    
+    <article class="vu-card searchable-card" id="96vu" data-search="96vu pack 2 temp controller 57hh  cabin pressure controller 2 12hl  bmc 2 1ha2  ils receiver 2 / mmr 2 2rt2 / 40rt2  aft cargo heat controller 10hc ">
+      <div class="vu-head">
+        <div><span class="kicker">Avionics shelf</span><h3>96VU</h3></div>
+        <a class="srcbtn" href="https://www.aviationhunt.com/airbus-a320-avionics-computers/" target="_blank" rel="noopener">Source ↗</a>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Computer / LRU</th><th>FIN</th><th>Applicability</th></tr></thead>
+          <tbody><tr><td>PACK 2 TEMP CONTROLLER</td><td><code>57HH</code></td><td></td></tr><tr><td>CABIN PRESSURE CONTROLLER 2</td><td><code>12HL</code></td><td></td></tr><tr><td>BMC 2</td><td><code>1HA2</code></td><td></td></tr><tr><td>ILS RECEIVER 2 / MMR 2</td><td><code>2RT2 / 40RT2</code></td><td></td></tr><tr><td>AFT CARGO HEAT CONTROLLER</td><td><code>10HC</code></td><td></td></tr></tbody>
+        </table>
+      </div>
+    </article>
+    
+    <article class="vu-card searchable-card" id="109vu" data-search="109vu weather radar transceiver 1 1sq1 if installed weather radar transceiver 2 1sq2 if installed">
+      <div class="vu-head">
+        <div><span class="kicker">Avionics shelf</span><h3>109VU</h3></div>
+        <a class="srcbtn" href="https://www.aviationhunt.com/airbus-a320-avionics-computers/" target="_blank" rel="noopener">Source ↗</a>
+      </div>
+      <div class="tablewrap">
+        <table>
+          <thead><tr><th>Computer / LRU</th><th>FIN</th><th>Applicability</th></tr></thead>
+          <tbody><tr><td>WEATHER RADAR TRANSCEIVER 1</td><td><code>1SQ1</code></td><td>if installed</td></tr><tr><td>WEATHER RADAR TRANSCEIVER 2</td><td><code>1SQ2</code></td><td>if installed</td></tr></tbody>
+        </table>
+      </div>
+    </article>
+    </div>
+</section>
+
+<section class="section" id="cockpit">
+<div class="kicker">Cockpit</div><h2>Cockpit-Mounted Computers / Displays</h2>
+<div class="tablewrap"><table><thead><tr><th>Location</th><th>Equipment</th><th>FIN</th></tr></thead><tbody><tr><td><strong>10VU — Main Instrument Panel</strong></td><td>Display Units</td><td><code>2WT1, 2WT2, 3WT1, 3WT2, 4WT1, 4WT2</code></td></tr><tr><td><strong>13VU — Glareshield</strong></td><td>Flight Control Unit (FCU)</td><td><code>2CA</code></td></tr><tr><td><strong>11VU — Center Pedestal</strong></td><td>MCDU 1 / 2</td><td><code>3CA1 / 3CA2</code></td></tr><tr><td><strong>101VU — Left Console</strong></td><td>MCDU 3</td><td><code>3CA3 (if installed)</code></td></tr></tbody></table></div>
+</section>
+
+<section class="section" id="other">
+<div class="kicker">Additional locations</div><h2>Other Computer / Equipment Locations</h2>
+<div class="tablewrap"><table><thead><tr><th>Location</th><th>Equipment</th><th>FIN / Identification</th></tr></thead><tbody><tr><td><strong>ADIRU Rack / Avionics Bay</strong></td><td>ADIRU 1 / 2 / 3</td><td><code>1FP1 / 1FP2 / 1FP3</code></td></tr><tr><td><strong>105VU / 107VU — Battery Compartment</strong></td><td>STAT INV, BCL 1/2, TR 1/2, pump phase detectors, ABCU, BAT 1/2</td><td><code>3XB, 9PB1/2, 1PU1/2, 2707GJ, 3808GX, 95GG, 2PB1/2</code></td></tr><tr><td><strong>106VU — O₂ Compartment</strong></td><td>ESS TR, Emergency CSM/G CU, Emergency/ESS Auto Transformer</td><td><code>1XE, 5XH</code></td></tr><tr><td><strong>Aft Cargo — Access Door 826</strong></td><td>RA 1, RA 2, ECB</td><td><code>2SA1, 2SA2, 59KD</code></td></tr></tbody></table></div>
+<div class="note"><strong>Configuration note:</strong> the source marks several computers as optional or “if installed.” Confirm aircraft effectivity and approved maintenance data before using this as a maintenance reference.</div>
+</section>
+
+<div class="footer">A320 Avionics Computers — visual quick-reference based on AviationHunt location data.</div>
+</main>
+<a class="top" href="#top">↑ Top</a>
+<script>
+const q=document.getElementById('search');
+q.addEventListener('input',()=>{
+ const s=q.value.trim().toLowerCase();
+ document.querySelectorAll('.searchable-card').forEach(c=>c.classList.toggle('hidden',s && !c.dataset.search.includes(s)));
+});
+</script>
+</body></html>

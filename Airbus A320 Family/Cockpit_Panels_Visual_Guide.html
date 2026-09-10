@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>A320 Cockpit Panels — Visual Technical Guide</title>
+<style>
+:root{--bg:#081018;--side:#0c151e;--panel:#101b25;--panel2:#162431;--line:#2a3d4d;--text:#eaf1f6;--muted:#9fb1be;--accent:#52b8ff;--green:#72d9b3}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 "Segoe UI",Arial,sans-serif}
+a{text-decoration:none;color:inherit}
+.sidebar{position:fixed;inset:0 auto 0 0;width:285px;background:var(--side);border-right:1px solid var(--line);padding:24px 18px;overflow:auto}
+.brand{font-size:20px;font-weight:760} .sub{color:var(--muted);font-size:12px;margin-top:5px}
+.nav{margin-top:22px} .nav a{display:block;padding:9px 10px;border-radius:8px;color:#dce8ef}
+.nav a:hover{background:var(--panel2)} .source{margin-top:20px;padding-top:14px;border-top:1px solid var(--line)}
+.source a{display:block;color:var(--accent);font-size:13px;padding:5px 2px}
+.main{margin-left:285px;padding:34px;max-width:1600px}
+.hero{background:linear-gradient(135deg,#14283a,#0e1720);border:1px solid var(--line);border-radius:17px;padding:28px}
+.hero h1{margin:0 0 7px;font-size:31px} .hero p{max-width:900px;color:#c7d3dc}
+.kicker{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--accent);font-weight:800}
+.searchbar{position:sticky;top:0;z-index:30;padding:12px 0 14px;background:rgba(8,16,24,.97)}
+.searchbar input{width:100%;padding:13px 14px;background:#0e1821;color:var(--text);border:1px solid var(--line);border-radius:10px;font-size:15px}
+.note{border-left:4px solid var(--accent);background:#0e1a24;border-radius:8px;padding:12px 14px;margin:18px 0}
+.section{scroll-margin-top:75px;margin:22px 0;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:23px}
+.section h2{margin:3px 0 17px;font-size:23px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(330px,1fr));gap:14px}
+.card{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:15px;min-width:0}
+.cardhead{display:flex;gap:10px;align-items:center;justify-content:space-between} .card h3{margin:0;font-size:18px}
+.groupbadge{font-size:10px;border:1px solid #3a566b;border-radius:999px;padding:4px 7px;color:#bbcad4}
+.card p{color:var(--muted);font-size:13px;min-height:40px}
+.figure{background:#0a1219;border:1px solid #253847;border-radius:9px;padding:8px;margin:10px 0;display:flex;align-items:center;justify-content:center;min-height:150px}
+.figure img{display:block;max-width:100%;max-height:470px;width:auto;height:auto;border-radius:5px}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.btn{display:inline-block;padding:8px 10px;border-radius:8px;font-size:12px;border:1px solid #35536a}
+.figurebtn{background:#10283a;color:#bfe5ff} .refbtn{background:#173027;color:#bcebd9}
+.btn:hover{filter:brightness(1.12)}
+.hidden{display:none!important}
+.top{position:fixed;right:18px;bottom:18px;background:#172837;border:1px solid #365974;padding:10px 12px;border-radius:10px}
+.footer{font-size:12px;color:var(--muted);padding:20px 0 60px}
+@media(max-width:900px){.sidebar{position:static;width:auto;border-right:0;border-bottom:1px solid var(--line)}.main{margin:0;padding:18px}.cards{grid-template-columns:1fr}}
+@media print{.sidebar,.searchbar,.top,.actions{display:none}.main{margin:0;padding:0}body{background:white;color:black}.hero,.section,.card,.figure{background:white;color:black;border-color:#bbb}.card p{color:#555}}
+</style>
+</head>
+<body id="top">
+<aside class="sidebar">
+<div class="brand">A320 Cockpit Panels</div>
+<div class="sub">Visual Technical Guide</div>
+<nav class="nav"><a href="#overview">Overview</a><a href="#overhead">Overhead Panels</a>
+<a href="#glareshield">Glareshield Panels</a>
+<a href="#instrument">Instrument Panels</a>
+<a href="#pedestal">Pedestal Panels</a>
+<a href="#ecam">ECAM Display</a></nav>
+</aside>
+<main class="main">
+<section class="hero" id="overview">
+<div class="kicker">Airbus A320</div>
+<h1>Cockpit Panels — Visual Technical Guide</h1>
+<p>Panel-by-panel visual navigator with each reference figure shown directly in the page for rapid consultation.</p>
+</section>
+<div class="searchbar"><input id="search" type="search" placeholder="Search panel or system: HYD, FIRE, VENTILATION, FCU, ATC/TCAS, ECAM FUEL..."></div>
+<div class="note"><strong>Visual mode:</strong> the reference figures are displayed directly below each panel for quick consultation.</div>
+
+<section class="section" id="overhead">
+  <div class="kicker">Overhead Panels</div>
+  <h2>Overhead Panels</h2>
+  <div class="cards">
+        <article class="card searchable-card" data-search="overhead panels fire fire detection/extinguishing controls">
+          <div class="cardhead"><h3>FIRE</h3><span class="groupbadge">Overhead</span></div>
+          <p>Fire detection/extinguishing controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-fire-45vu.webp" alt="FIRE — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels hyd green, blue and yellow hydraulic controls">
+          <div class="cardhead"><h3>HYD</h3><span class="groupbadge">Overhead</span></div>
+          <p>Green, Blue and Yellow hydraulic controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-hyd-40vu.webp" alt="HYD — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels fuel fuel pumps, transfer and crossfeed controls">
+          <div class="cardhead"><h3>FUEL</h3><span class="groupbadge">Overhead</span></div>
+          <p>Fuel pumps, transfer and crossfeed controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-fuel-40vu.webp" alt="FUEL — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels elec battery, generators, bus ties and external power">
+          <div class="cardhead"><h3>ELEC</h3><span class="groupbadge">Overhead</span></div>
+          <p>Battery, generators, bus ties and external power</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-elec-35vu.webp" alt="ELEC — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels air cond temperature, packs, bleed and crossbleed controls">
+          <div class="cardhead"><h3>AIR COND</h3><span class="groupbadge">Overhead</span></div>
+          <p>Temperature, packs, bleed and crossbleed controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-air-cond-30vu.webp" alt="AIR COND — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels cabin press cabin pressurization and ditching controls">
+          <div class="cardhead"><h3>CABIN PRESS</h3><span class="groupbadge">Overhead</span></div>
+          <p>Cabin pressurization and ditching controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-cabin-press-25vu.webp" alt="CABIN PRESS — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels anti-ice wing/engine anti-ice and probe/window heat">
+          <div class="cardhead"><h3>ANTI-ICE</h3><span class="groupbadge">Overhead</span></div>
+          <p>Wing/engine anti-ice and probe/window heat</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-anti-ice-probe-window-heat-25vu.webp" alt="ANTI-ICE — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels apu apu master/start controls">
+          <div class="cardhead"><h3>APU</h3><span class="groupbadge">Overhead</span></div>
+          <p>APU master/start controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-apu-25vu.webp" alt="APU — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels ext lt exterior lighting controls">
+          <div class="cardhead"><h3>EXT LT</h3><span class="groupbadge">Overhead</span></div>
+          <p>Exterior lighting controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-ext-lt-25vu.webp" alt="EXT LT — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels int lt cockpit integral lighting controls">
+          <div class="cardhead"><h3>INT LT</h3><span class="groupbadge">Overhead</span></div>
+          <p>Cockpit integral lighting controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-int-lt-panel-25vu.webp" alt="INT LT — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels signs seat belt / no smoking / emergency exit light controls">
+          <div class="cardhead"><h3>SIGNS</h3><span class="groupbadge">Overhead</span></div>
+          <p>Seat belt / no smoking / emergency exit light controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-signs-25vu.webp" alt="SIGNS — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels cb pnl overhead circuit breaker panel">
+          <div class="cardhead"><h3>CB PNL</h3><span class="groupbadge">Overhead</span></div>
+          <p>Overhead circuit breaker panel</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-cb-panel.webp" alt="CB PNL — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels ckpt door cockpit door overhead controls">
+          <div class="cardhead"><h3>CKPT DOOR</h3><span class="groupbadge">Overhead</span></div>
+          <p>Cockpit door overhead controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-ckpt-door-cont-panel.webp" alt="CKPT DOOR — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels elt emergency locator transmitter controls">
+          <div class="cardhead"><h3>ELT</h3><span class="groupbadge">Overhead</span></div>
+          <p>Emergency Locator Transmitter controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-elt-panel.webp" alt="ELT — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels data loading data loading selector panel">
+          <div class="cardhead"><h3>DATA LOADING</h3><span class="groupbadge">Overhead</span></div>
+          <p>Data loading selector panel</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-fms-load-panel.webp" alt="DATA LOADING — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels maint maintenance panel">
+          <div class="cardhead"><h3>MAINT</h3><span class="groupbadge">Overhead</span></div>
+          <p>Maintenance panel</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-maint-50vu.webp" alt="MAINT — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels 3rd acp third occupant audio control panel">
+          <div class="cardhead"><h3>3rd ACP</h3><span class="groupbadge">Overhead</span></div>
+          <p>Third occupant Audio Control Panel</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-ped-acp.webp" alt="3rd ACP — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels adirs air data / inertial reference controls">
+          <div class="cardhead"><h3>ADIRS</h3><span class="groupbadge">Overhead</span></div>
+          <p>Air Data / Inertial Reference controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-adirs-26vu.webp" alt="ADIRS — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels calls crew / ground call controls">
+          <div class="cardhead"><h3>CALLS</h3><span class="groupbadge">Overhead</span></div>
+          <p>Crew / ground call controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-calls-21vu.webp" alt="CALLS — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels cargo smoke cargo smoke detection/extinguisher controls">
+          <div class="cardhead"><h3>CARGO SMOKE</h3><span class="groupbadge">Overhead</span></div>
+          <p>Cargo smoke detection/extinguisher controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-cargo-smoke-22vu.webp" alt="CARGO SMOKE — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels emer elec emergency electrical power controls">
+          <div class="cardhead"><h3>EMER ELEC</h3><span class="groupbadge">Overhead</span></div>
+          <p>Emergency electrical power controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-emer-elec-pwr-21vu.webp" alt="EMER ELEC — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels eng man start engine manual start controls">
+          <div class="cardhead"><h3>ENG MAN START</h3><span class="groupbadge">Overhead</span></div>
+          <p>Engine manual start controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-eng-man-start-22vu.webp" alt="ENG MAN START — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels flt ctl elac, sec and fac controls">
+          <div class="cardhead"><h3>FLT CTL</h3><span class="groupbadge">Overhead</span></div>
+          <p>ELAC, SEC and FAC controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-flt-ctl-24vu.webp" alt="FLT CTL — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels evac emergency evacuation controls">
+          <div class="cardhead"><h3>EVAC</h3><span class="groupbadge">Overhead</span></div>
+          <p>Emergency evacuation controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-evac-21vu.webp" alt="EVAC — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels gpws ground proximity warning system controls">
+          <div class="cardhead"><h3>GPWS</h3><span class="groupbadge">Overhead</span></div>
+          <p>Ground Proximity Warning System controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-gpws-21vu.webp" alt="GPWS — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels oxygen passenger/crew oxygen controls">
+          <div class="cardhead"><h3>OXYGEN</h3><span class="groupbadge">Overhead</span></div>
+          <p>Passenger/crew oxygen controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-oxygen-21vu.webp" alt="OXYGEN — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels ventilation avionics ventilation controls">
+          <div class="cardhead"><h3>VENTILATION</h3><span class="groupbadge">Overhead</span></div>
+          <p>Avionics ventilation controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-ventilation-22vu.webp" alt="VENTILATION — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels rcdr cockpit voice recorder controls">
+          <div class="cardhead"><h3>RCDR</h3><span class="groupbadge">Overhead</span></div>
+          <p>Cockpit voice recorder controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-rcdr-21vu.webp" alt="RCDR — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="overhead panels wiper rain repellent / windshield wiper controls">
+          <div class="cardhead"><h3>WIPER</h3><span class="groupbadge">Overhead</span></div>
+          <p>Rain repellent / windshield wiper controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/02/a320-ovhd-rain-rplnt-wiper-21vu.webp" alt="WIPER — Figure"></div>
+          </article></div>
+</section>
+<section class="section" id="glareshield">
+  <div class="kicker">Glareshield Panels</div>
+  <h2>Glareshield Panels</h2>
+  <div class="cards">
+        <article class="card searchable-card" data-search="glareshield panels warning master warning/caution, autoland, atc msg, chrono and priority indications">
+          <div class="cardhead"><h3>WARNING</h3><span class="groupbadge">Glareshield</span></div>
+          <p>Master warning/caution, autoland, ATC MSG, chrono and priority indications</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/09/a320-gs-warning-panel-capt.webp" alt="WARNING — Figure 1"></div>
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/09/a320-gs-warning-panel-fo.webp" alt="WARNING — Figure 2"></div>
+          </article>
+        <article class="card searchable-card" data-search="glareshield panels efis efis control panels — captain and first officer">
+          <div class="cardhead"><h3>EFIS</h3><span class="groupbadge">Glareshield</span></div>
+          <p>EFIS control panels — Captain and First Officer</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/09/a320-gs-efis-panel-capt.webp" alt="EFIS — Figure 1"></div>
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/09/a320-gs-efis-panel-fo.webp" alt="EFIS — Figure 2"></div>
+          </article>
+        <article class="card searchable-card" data-search="glareshield panels fcu flight control unit">
+          <div class="cardhead"><h3>FCU</h3><span class="groupbadge">Glareshield</span></div>
+          <p>Flight Control Unit</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/09/a320-gs-fcu-panel.webp" alt="FCU — Figure"></div>
+          </article></div>
+</section>
+<section class="section" id="instrument">
+  <div class="kicker">Instrument Panels</div>
+  <h2>Instrument Panels</h2>
+  <div class="cards">
+        <article class="card searchable-card" data-search="instrument panels lighting captain instrument lighting control panel">
+          <div class="cardhead"><h3>LIGHTING</h3><span class="groupbadge">Instrument</span></div>
+          <p>Captain instrument lighting control panel</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-inst-ilcp-cptn-301vu.webp" alt="LIGHTING — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="instrument panels pfd primary flight display">
+          <div class="cardhead"><h3>PFD</h3><span class="groupbadge">Instrument</span></div>
+          <p>Primary Flight Display</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-inst-pfd.webp" alt="PFD — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="instrument panels terr on nd terrain display selection pushbutton">
+          <div class="cardhead"><h3>TERR ON ND</h3><span class="groupbadge">Instrument</span></div>
+          <p>Terrain display selection pushbutton</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-inst-terr-on-nd-sw.webp" alt="TERR ON ND — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="instrument panels isis integrated standby instrument system">
+          <div class="cardhead"><h3>ISIS</h3><span class="groupbadge">Instrument</span></div>
+          <p>Integrated Standby Instrument System</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-inst-isis.webp" alt="ISIS — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="instrument panels ldg gear / brk landing gear indications, brake fan, autobrake and anti-skid/nw steering">
+          <div class="cardhead"><h3>LDG GEAR / BRK</h3><span class="groupbadge">Instrument</span></div>
+          <p>Landing gear indications, brake fan, autobrake and anti-skid/NW steering</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-inst-ldg-gear-auto-brk-brk-fan-askid-nw-strg.webp" alt="LDG GEAR / BRK — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="instrument panels clock aircraft clock">
+          <div class="cardhead"><h3>CLOCK</h3><span class="groupbadge">Instrument</span></div>
+          <p>Aircraft clock</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-inst-clock.webp" alt="CLOCK — Figure"></div>
+          </article></div>
+</section>
+<section class="section" id="pedestal">
+  <div class="kicker">Pedestal Panels</div>
+  <h2>Pedestal Panels</h2>
+  <div class="cards">
+        <article class="card searchable-card" data-search="pedestal panels switching att/hdg, air data, eis dmc and ecam/nd transfer switching">
+          <div class="cardhead"><h3>SWITCHING</h3><span class="groupbadge">Pedestal</span></div>
+          <p>ATT/HDG, AIR DATA, EIS DMC and ECAM/ND transfer switching</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-ped-switching-panel-135vu.webp" alt="SWITCHING — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="pedestal panels ecam cp ecam control panel">
+          <div class="cardhead"><h3>ECAM CP</h3><span class="groupbadge">Pedestal</span></div>
+          <p>ECAM Control Panel</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-ped-ecam-cp.webp" alt="ECAM CP — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="pedestal panels rmp radio management panel">
+          <div class="cardhead"><h3>RMP</h3><span class="groupbadge">Pedestal</span></div>
+          <p>Radio Management Panel</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-ped-rmp.webp" alt="RMP — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="pedestal panels acp audio control panel">
+          <div class="cardhead"><h3>ACP</h3><span class="groupbadge">Pedestal</span></div>
+          <p>Audio Control Panel</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-ped-acp.webp" alt="ACP — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="pedestal panels wxr weather radar panel">
+          <div class="cardhead"><h3>WXR</h3><span class="groupbadge">Pedestal</span></div>
+          <p>Weather Radar panel</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-ped-wxr-panel.webp" alt="WXR — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="pedestal panels atc/tcas atc transponder and tcas control panel">
+          <div class="cardhead"><h3>ATC/TCAS</h3><span class="groupbadge">Pedestal</span></div>
+          <p>ATC transponder and TCAS control panel</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-ped-atc-tcas-panel.webp" alt="ATC/TCAS — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="pedestal panels cockpit door cockpit door pedestal controls">
+          <div class="cardhead"><h3>COCKPIT DOOR</h3><span class="groupbadge">Pedestal</span></div>
+          <p>Cockpit door pedestal controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-ped-cockpit-door-panel.webp" alt="COCKPIT DOOR — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="pedestal panels lighting / aids / dfdr pedestal lighting, aids print and dfdr event panel">
+          <div class="cardhead"><h3>LIGHTING / AIDS / DFDR</h3><span class="groupbadge">Pedestal</span></div>
+          <p>Pedestal lighting, AIDS PRINT and DFDR EVENT panel</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-ped-flood-integ-lt-111vu.webp" alt="LIGHTING / AIDS / DFDR — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="pedestal panels engine engine master levers and mode selector">
+          <div class="cardhead"><h3>ENGINE</h3><span class="groupbadge">Pedestal</span></div>
+          <p>Engine master levers and mode selector</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-ped-eng-master-levers-mode-selector.webp" alt="ENGINE — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="pedestal panels thrust / pitch trim thrust levers and pitch trim wheels">
+          <div class="cardhead"><h3>THRUST / PITCH TRIM</h3><span class="groupbadge">Pedestal</span></div>
+          <p>Thrust levers and pitch trim wheels</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-ped-thrust-levers-pitch-trim.webp" alt="THRUST / PITCH TRIM — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="pedestal panels rud trim rudder trim controls">
+          <div class="cardhead"><h3>RUD TRIM</h3><span class="groupbadge">Pedestal</span></div>
+          <p>Rudder trim controls</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-ped-rud-trim-panel.webp" alt="RUD TRIM — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="pedestal panels flaps flap/slat control lever">
+          <div class="cardhead"><h3>FLAPS</h3><span class="groupbadge">Pedestal</span></div>
+          <p>Flap/slat control lever</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-ped-flaps-handle-114vu.webp" alt="FLAPS — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="pedestal panels speed brk speedbrake lever">
+          <div class="cardhead"><h3>SPEED BRK</h3><span class="groupbadge">Pedestal</span></div>
+          <p>Speedbrake lever</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-ped-speed-brk-handle.webp" alt="SPEED BRK — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="pedestal panels gravity gear extn landing gear gravity extension panel">
+          <div class="cardhead"><h3>GRAVITY GEAR EXTN</h3><span class="groupbadge">Pedestal</span></div>
+          <p>Landing gear gravity extension panel</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-ped-gravity-gear-extn-panel.webp" alt="GRAVITY GEAR EXTN — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="pedestal panels printer cockpit printer">
+          <div class="cardhead"><h3>PRINTER</h3><span class="groupbadge">Pedestal</span></div>
+          <p>Cockpit printer</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/06/a320-ped-cockpit-printer.webp" alt="PRINTER — Figure"></div>
+          </article></div>
+</section>
+<section class="section" id="ecam">
+  <div class="kicker">ECAM Display</div>
+  <h2>ECAM Display</h2>
+  <div class="cards">
+        <article class="card searchable-card" data-search="ecam display ewd engine / warning display">
+          <div class="cardhead"><h3>EWD</h3><span class="groupbadge">ECAM Display</span></div>
+          <p>Engine / Warning Display</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ewd-upper-ecam-display.webp" alt="EWD — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="ecam display eng engine sd page">
+          <div class="cardhead"><h3>ENG</h3><span class="groupbadge">ECAM Display</span></div>
+          <p>Engine SD page</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/11/a320-ecam-sd-eng-page.webp" alt="ENG — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="ecam display bleed bleed sd page">
+          <div class="cardhead"><h3>BLEED</h3><span class="groupbadge">ECAM Display</span></div>
+          <p>Bleed SD page</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/11/a320-ecam-sd-bleed-page.webp" alt="BLEED — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="ecam display press cabin pressurization sd page">
+          <div class="cardhead"><h3>PRESS</h3><span class="groupbadge">ECAM Display</span></div>
+          <p>Cabin Pressurization SD page</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-cab-press-page.webp" alt="PRESS — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="ecam display elec electrical sd page">
+          <div class="cardhead"><h3>ELEC</h3><span class="groupbadge">ECAM Display</span></div>
+          <p>Electrical SD page</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-elec-page.webp" alt="ELEC — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="ecam display hyd hydraulic sd page">
+          <div class="cardhead"><h3>HYD</h3><span class="groupbadge">ECAM Display</span></div>
+          <p>Hydraulic SD page</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-hyd-page.webp" alt="HYD — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="ecam display fuel fuel sd page">
+          <div class="cardhead"><h3>FUEL</h3><span class="groupbadge">ECAM Display</span></div>
+          <p>Fuel SD page</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-fuel-page.webp" alt="FUEL — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="ecam display apu apu sd page">
+          <div class="cardhead"><h3>APU</h3><span class="groupbadge">ECAM Display</span></div>
+          <p>APU SD page</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-apu-page.webp" alt="APU — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="ecam display cond air conditioning sd page">
+          <div class="cardhead"><h3>COND</h3><span class="groupbadge">ECAM Display</span></div>
+          <p>Air Conditioning SD page</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-cond-page.webp" alt="COND — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="ecam display door/oxy door / oxygen sd page">
+          <div class="cardhead"><h3>DOOR/OXY</h3><span class="groupbadge">ECAM Display</span></div>
+          <p>Door / Oxygen SD page</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/11/a320-ecam-sd-door-oxy-page.webp" alt="DOOR/OXY — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="ecam display wheel wheel sd page">
+          <div class="cardhead"><h3>WHEEL</h3><span class="groupbadge">ECAM Display</span></div>
+          <p>Wheel SD page</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/11/a320-ecam-sd-wheel-page.webp" alt="WHEEL — Figure"></div>
+          </article>
+        <article class="card searchable-card" data-search="ecam display f/ctl flight controls sd page">
+          <div class="cardhead"><h3>F/CTL</h3><span class="groupbadge">ECAM Display</span></div>
+          <p>Flight Controls SD page</p>
+          
+            <div class="figure"><img loading="lazy" src="https://www.aviationhunt.com/wp-content/uploads/2023/10/a320-ecam-sd-fctl-page.webp" alt="F/CTL — Figure"></div>
+          </article></div>
+</section>
+<div class="footer">A320 Cockpit Panels — Visual Technical Guide. Figures sourced from the AviationHunt panel reference pages.</div>
+</main>
+<a class="top" href="#top">↑ Top</a>
+<script>
+const q=document.getElementById('search');
+q.addEventListener('input',()=>{
+ const s=q.value.trim().toLowerCase();
+ document.querySelectorAll('.searchable-card').forEach(c=>c.classList.toggle('hidden',s && !c.dataset.search.includes(s)));
+});
+</script>
+</body></html>

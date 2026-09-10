@@ -1,0 +1,415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Airbus A320 Quick Dispatch Guide</title>
+<style>
+:root {
+ --bg:#0a1016; --side:#0d151d; --panel:#111b25; --panel2:#162330;
+ --line:#2a3a49; --text:#eaf0f4; --muted:#9fb0bd; --accent:#55b7ff;
+ --accent2:#76d6b2; --warn:#f2b94b; --danger:#ff7474;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 "Segoe UI",Arial,sans-serif}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.sidebar{position:fixed;left:0;top:0;bottom:0;width:310px;background:var(--side);border-right:1px solid var(--line);padding:24px 18px;overflow:auto}
+.brand{font-size:20px;font-weight:750;letter-spacing:.2px}
+.sub{color:var(--muted);font-size:12px;margin-top:5px}
+.nav{margin-top:22px}
+.nav a{display:block;color:#dce6ed;padding:8px 10px;border-radius:8px;font-size:13px}
+.nav a:hover{background:var(--panel2);text-decoration:none}
+.main{margin-left:310px;padding:34px;max-width:1500px}
+.hero{background:linear-gradient(135deg,#132433,#0f1720);border:1px solid var(--line);border-radius:17px;padding:28px;margin-bottom:18px}
+.hero h1{margin:0 0 6px;font-size:31px}
+.kicker{color:var(--accent);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.12em}
+.badges{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+.badge{border:1px solid #31506a;background:#172837;padding:6px 9px;border-radius:999px;font-size:12px}
+.searchbar{position:sticky;top:0;z-index:10;background:rgba(10,16,22,.96);padding:10px 0 14px}
+.searchbar input{width:100%;border:1px solid var(--line);border-radius:10px;background:#0e1821;color:var(--text);padding:13px 14px;font-size:15px}
+.quickgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:18px 0}
+.qcard{display:block;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:15px;color:var(--text)}
+.qcard:hover{border-color:#3d6888;text-decoration:none}
+.qcard b{display:block;margin-bottom:5px}
+.qcard span{color:var(--muted);font-size:12px}
+.section{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:23px;margin:20px 0}
+.section h2{margin:2px 0 14px;font-size:22px}
+.note{border-left:4px solid var(--accent);background:#0e1a24;padding:12px 14px;border-radius:8px;margin:14px 0}
+.warn{border-left-color:var(--warn)}
+.tablewrap{overflow:visible}
+table{
+ width:100%;
+ border-collapse:collapse;
+ table-layout:auto;
+}
+th,td{
+ padding:12px 10px;
+ border-bottom:1px solid var(--line);
+ text-align:left;
+ vertical-align:top;
+ white-space:normal;
+ overflow-wrap:anywhere;
+ word-break:normal;
+ line-height:1.55;
+}
+th{position:static;background:#152431;text-transform:uppercase;letter-spacing:.055em;font-size:12px;line-height:1.4}
+tr:hover td{background:#13202b}
+code{
+ color:#bfe1ff;background:#0b141c;border:1px solid #263846;
+ border-radius:5px;padding:2px 5px;
+ white-space:normal;
+ overflow-wrap:anywhere;
+ word-break:break-word;
+ display:inline;
+}
+.hidden{display:none!important}
+.top{position:fixed;right:18px;bottom:18px;border:1px solid #36536a;background:#172837;color:white;padding:10px 12px;border-radius:10px}
+.footer{color:var(--muted);font-size:12px;padding:20px 0 60px}
+@media(max-width:920px){
+ .sidebar{position:static;width:auto;border-right:0;border-bottom:1px solid var(--line)}
+ .main{margin-left:0;padding:18px;max-width:100%}
+ .section{padding:16px}
+ .tablewrap{overflow-x:visible}
+ table{table-layout:fixed}
+ th,td{white-space:normal;overflow-wrap:anywhere}
+ th:first-child,td:first-child{width:60%}
+ th:last-child,td:last-child{width:40%}
+ code{white-space:normal;overflow-wrap:anywhere}
+}
+@media print{
+ body{background:white;color:black}
+ .sidebar,.searchbar,.top{display:none}
+ .main{margin:0;padding:0;max-width:none}
+ .hero,.section,.qcard{background:white;color:black;border-color:#bbb}
+ th{background:#eee;color:black}
+ code{color:black;background:white;white-space:normal;overflow-wrap:anywhere}
+ table{table-layout:fixed}
+ th,td{white-space:normal;overflow-wrap:anywhere}
+}
+
+tbody tr:first-child td{
+  padding-top:16px;
+}
+.section{
+  scroll-margin-top:18px;
+}
+.tablewrap{
+  padding-top:2px;
+}
+
+</style>
+</head>
+<body id="top">
+<aside class="sidebar">
+  <div class="brand">A320 Quick Dispatch</div>
+  <div class="sub">Task Reference & Cross-Reference Guide</div>
+  <div class="nav">
+    <a href="#overview">Overview</a>
+    <a href="#config">1. Aircraft Configuration before Maintenance</a>
+<a href="#deact">2. Deactivation / Reactivation</a>
+<a href="#power">3. Aircraft Energization / Pressurization</a>
+<a href="#doors">4. Access Doors</a>
+<a href="#fasteners">5. Missing Fasteners</a>
+<a href="#antennas">6. Location of Antennas</a>
+<a href="#servicing">7. Maintenance Procedures and Servicing</a>
+<a href="#unsched">8. Unscheduled Maintenance Checks and Inspections</a>
+<a href="#std">9. Standard Practices</a>
+<a href="#dataload">10. Data Loading</a>
+<a href="#materials">11. Materials</a>
+    <a href="#leaks">Fluid Leak Measurement</a>
+    <a href="#limitations">Use & Limitations</a>
+  </div>
+</aside>
+
+<main class="main">
+<section class="hero" id="overview">
+  <div class="kicker">Reference Aircraft</div>
+  <h1>Airbus A320 Task Reference for Quick Dispatch</h1>
+  <p><strong>A320-251N</strong> fitted with <strong>CFM LEAP-1A26</strong>.</p>
+  <div class="badges">
+    <span class="badge">AMM</span><span class="badge">SRM</span><span class="badge">ESPM</span>
+    <span class="badge">MMEL / CDL</span><span class="badge">Quick Dispatch</span>
+  </div>
+</section>
+
+<div class="searchbar">
+  <input id="search" type="search" placeholder="Search task, system, ATA or reference (e.g. hydraulic, 29-10-00, doors, QAR, oxygen)">
+</div>
+
+<div class="quickgrid">
+  <a class="qcard" href="#power"><b>Power & Pressurization</b><span>Electrical, hydraulic and bleed supply</span></a>
+  <a class="qcard" href="#doors"><b>Access Doors</b><span>Passenger, avionics, gear, APU, cowl, reverser</span></a>
+  <a class="qcard" href="#servicing"><b>Servicing</b><span>Hydraulic, L/G, oil, fuel, oxygen, water, cleaning</span></a>
+  <a class="qcard" href="#std"><b>Standard Practices</b><span>Torques, tubing, bonding, ESPM</span></a>
+  <a class="qcard" href="#dataload"><b>Data Loading</b><span>FM, FDIMU, QAR</span></a>
+  <a class="qcard" href="#fasteners"><b>Missing Fasteners</b><span>Fairings and lining-panel references</span></a>
+</div>
+
+<div class="note warn">
+<strong>Navigation concept:</strong> use the left index or the search field to jump directly to a maintenance action or manual reference.
+</div>
+
+
+<section class="section searchable" id="config">
+  <div class="kicker">Quick Dispatch</div>
+  <h2>1. Aircraft Configuration before Maintenance</h2>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Task / Maintenance Action</th><th>Reference</th></tr></thead>
+    <tbody><tr><td>Put CHOCK – WHEEL in position</td><td><code>AMM TASK 10-11-00-555-015</code></td></tr>
+<tr><td>Make sure landing-gear safety devices are installed</td><td><code>AMM TASK 32-00-00-481-001</code></td></tr>
+<tr><td>Make sure landing-gear door safety-devices are installed</td><td><code>AMM TASK 32-00-00-481-002</code></td></tr>
+<tr><td>Install aircraft protection equipment</td><td><code>AMM TASK 10-11-00-555-013</code></td></tr>
+<tr><td>Electrically ground the aircraft</td><td><code>AMM TASK 12-34-24-869-002</code></td></tr>
+<tr><td>Make sure flaps and slats are retracted</td><td><code>AMM TASK 27-50-00-866-009</code></td></tr>
+<tr><td>Make sure spoilers are retracted</td><td><code>AMM TASK 27-60-00-866-002</code></td></tr>
+<tr><td>Make sure thrust reversers are unserviceable</td><td><code>AMM TASK 78-30-00-040-807</code></td></tr></tbody>
+  </table>
+  </div>
+</section>
+
+<section class="section searchable" id="deact">
+  <div class="kicker">Quick Dispatch</div>
+  <h2>2. Deactivation / Reactivation</h2>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Task / Maintenance Action</th><th>Reference</th></tr></thead>
+    <tbody><tr><td>Procedures originate from MMEL and CDL. Use MMEL/CDL to identify the related AMM procedures.</td><td><code>MMEL / CDL</code></td></tr></tbody>
+  </table>
+  </div>
+</section>
+
+<section class="section searchable" id="power">
+  <div class="kicker">Quick Dispatch</div>
+  <h2>3. Aircraft Energization / Pressurization</h2>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Task / Maintenance Action</th><th>Reference</th></tr></thead>
+    <tbody><tr><td>Energize aircraft electrical circuits from external power</td><td><code>AMM TASK 24-41-00-861-002</code></td></tr>
+<tr><td>Energize aircraft electrical circuits from APU</td><td><code>AMM TASK 24-41-00-861-002</code></td></tr>
+<tr><td>De-energize aircraft electrical circuits from external power</td><td><code>AMM TASK 24-41-00-862-002</code></td></tr>
+<tr><td>De-energize aircraft electrical circuits from APU</td><td><code>AMM TASK 24-41-00-862-002</code></td></tr>
+<tr><td>Pressurize Green hydraulic system</td><td><code>AMM TASK 29-10-00-863-001 / 29-23-00-863-001</code></td></tr>
+<tr><td>Pressurize Yellow hydraulic system</td><td><code>AMM TASK 29-10-00-863-002 / 29-23-00-863-002</code></td></tr>
+<tr><td>Pressurize Blue hydraulic system with ground power supply</td><td><code>AMM TASK 29-10-00-863-003</code></td></tr>
+<tr><td>Pressurize Blue hydraulic system with electric pump</td><td><code>AMM TASK 29-10-00-863-003</code></td></tr>
+<tr><td>Depressurize Green hydraulic system</td><td><code>AMM TASK 29-10-00-864-001 / 29-23-00-864-001</code></td></tr>
+<tr><td>Depressurize Yellow hydraulic system</td><td><code>AMM TASK 29-10-00-864-002 / 29-23-00-864-001</code></td></tr>
+<tr><td>Depressurize Blue hydraulic system</td><td><code>AMM TASK 29-10-00-864-003</code></td></tr>
+<tr><td>Depressurize brake system</td><td><code>AMM TASK 29-10-00-864-004</code></td></tr>
+<tr><td>Put related hydraulic system in depressurized configuration before maintenance</td><td><code>AMM TASK 29-00-00-864-001</code></td></tr>
+<tr><td>Pressurize bleed system through HP ground connector</td><td><code>AMM TASK 36-12-00-860-002</code></td></tr></tbody>
+  </table>
+  </div>
+</section>
+
+<section class="section searchable" id="doors">
+  <div class="kicker">Quick Dispatch</div>
+  <h2>4. Access Doors</h2>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Task / Maintenance Action</th><th>Reference</th></tr></thead>
+    <tbody><tr><td>Open passenger/crew door</td><td><code>AMM TASK 52-10-00-010-001</code></td></tr>
+<tr><td>Close passenger/crew door</td><td><code>AMM TASK 52-10-00-410-001</code></td></tr>
+<tr><td>Open avionics compartment doors</td><td><code>AMM TASK 52-41-00-010-002</code></td></tr>
+<tr><td>Close avionics compartment doors</td><td><code>AMM TASK 52-41-00-410-002</code></td></tr>
+<tr><td>Open Main Gear door</td><td><code>AMM TASK 32-12-00-010-001</code></td></tr>
+<tr><td>Close Main Gear door</td><td><code>AMM TASK 32-12-00-410-001</code></td></tr>
+<tr><td>Open Nose Gear door</td><td><code>AMM TASK 32-22-00-010-001</code></td></tr>
+<tr><td>Close Nose Gear door</td><td><code>AMM TASK 32-12-00-410-001</code></td></tr>
+<tr><td>Open APU doors</td><td><code>AMM TASK 52-41-00-010-001</code></td></tr>
+<tr><td>Close APU doors</td><td><code>AMM TASK 52-41-00-410-001</code></td></tr>
+<tr><td>Open fan cowl doors</td><td><code>AMM TASK 71-13-00-010-803</code></td></tr>
+<tr><td>Close fan cowl doors</td><td><code>AMM TASK 71-13-00-410-803</code></td></tr>
+<tr><td>Open thrust reverser doors</td><td><code>AMM TASK 78-36-00-010-806</code></td></tr>
+<tr><td>Close thrust reverser doors</td><td><code>AMM TASK 78-36-00-410-806</code></td></tr></tbody>
+  </table>
+  </div>
+</section>
+
+<section class="section searchable" id="fasteners">
+  <div class="kicker">Quick Dispatch</div>
+  <h2>5. Missing Fasteners</h2>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Task / Maintenance Action</th><th>Reference</th></tr></thead>
+    <tbody><tr><td>Wing-to-fuselage fairings, belly fairing access-panels and belly-fairing louver-panel vanes</td><td><code>AMM TASK 53-35-00-200-002</code></td></tr>
+<tr><td>Pylon fairing panels</td><td><code>SRM 54-52-11-283-014 / 54-52-11-283-022</code></td></tr>
+<tr><td>Vertical-stabilizer trailing-edge access-panels</td><td><code>AMM TASK 55-33-00-200-001</code></td></tr>
+<tr><td>Vertical stabilizer fairings and rudder fairings</td><td><code>AMM TASK 53-55-00-200-802</code></td></tr>
+<tr><td>Lower-deck forward cargo-compartment lining panels</td><td><code>AMM TASK 25-54-12-300-001</code></td></tr>
+<tr><td>Lower-deck aft cargo-compartment lining panels</td><td><code>AMM TASK 25-55-11-300-001</code></td></tr>
+<tr><td>Lower-deck bulk cargo-compartment lining panels</td><td><code>AMM TASK 25-55-12-300-001</code></td></tr>
+<tr><td>Additional-center-tank integrated impact-wall (if installed)</td><td><code>AMM TASK 28-28-00-200-002</code></td></tr></tbody>
+  </table>
+  </div>
+</section>
+
+<section class="section searchable" id="antennas">
+  <div class="kicker">Quick Dispatch</div>
+  <h2>6. Location of Antennas</h2>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Task / Maintenance Action</th><th>Reference</th></tr></thead>
+    <tbody><tr><td>Location of Antennas, Probes, Sensors and Exterior Lights</td><td><code>Reference section in source</code></td></tr></tbody>
+  </table>
+  </div>
+</section>
+
+<section class="section searchable" id="servicing">
+  <div class="kicker">Quick Dispatch</div>
+  <h2>7. Maintenance Procedures and Servicing</h2>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Task / Maintenance Action</th><th>Reference</th></tr></thead>
+    <tbody><tr><td>Fill hydraulic fluid reservoir with a hand pump</td><td><code>AMM TASK 12-12-29-611-001</code></td></tr>
+<tr><td>Fill hydraulic fluid reservoir with hydraulic service cart</td><td><code>AMM TASK 12-12-29-611-002</code></td></tr>
+<tr><td>Check hydraulic fluid level on reservoir indicators</td><td><code>AMM TASK 29-10-00-200-001</code></td></tr>
+<tr><td>General rules and main links to hydraulic systems (Bleeding…)</td><td><code>AMM TASK 29-00-00-910-004</code></td></tr>
+<tr><td>Nitrogen charge-pressure check on hydraulic power accumulators</td><td><code>AMM TASK 29-10-00-200-008</code></td></tr>
+<tr><td>Nitrogen charge-pressure check on parking/emergency accumulators</td><td><code>AMM TASK 32-44-11-200-001</code></td></tr>
+<tr><td>Inspect brakes with wheels</td><td><code>AMM TASK 32-42-27-210-001</code></td></tr>
+<tr><td>Inspect brakes without wheels</td><td><code>AMM TASK 32-42-27-210-006</code></td></tr>
+<tr><td>Inspect wheels and tires</td><td><code>AMM TASK 32-41-00-210-002</code></td></tr>
+<tr><td>Check NLG shock-absorber fluid level</td><td><code>AMM TASK 12-12-32-611-001</code></td></tr>
+<tr><td>Check NLG shock-absorber charge pressure</td><td><code>AMM TASK 12-14-32-614-004</code></td></tr>
+<tr><td>Check MLG shock-absorber fluid level</td><td><code>AMM TASK 12-12-32-611-004</code></td></tr>
+<tr><td>Check MLG shock absorber before flight</td><td><code>AMM TASK 12-14-32-200-001</code></td></tr>
+<tr><td>Check engine oil level and replenish</td><td><code>AMM TASK 12-13-79-610-805</code></td></tr>
+<tr><td>Check IDG oil level and replenish</td><td><code>AMM TASK 12-13-24-612-804</code></td></tr>
+<tr><td>Check APU oil level and replenish</td><td><code>AMM TASK 12-13-49-612-001</code></td></tr>
+<tr><td>Pressure refueling with automatic control</td><td><code>AMM TASK 12-11-28-650-003</code></td></tr>
+<tr><td>Pressure refueling with manual control</td><td><code>AMM TASK 12-11-28-650-004</code></td></tr>
+<tr><td>Pressure refueling without electrical power</td><td><code>AMM TASK 12-11-28-650-005</code></td></tr>
+<tr><td>Drain tank water content</td><td><code>AMM TASK 12-32-28-281-001</code></td></tr>
+<tr><td>Fill passenger oxygen cylinder (if installed)</td><td><code>AMM TASK 35-21-00-614-002</code></td></tr>
+<tr><td>Inspect crew oxygen-cylinder pressure</td><td><code>AMM TASK 35-10-00-040-001</code></td></tr>
+<tr><td>Functional test emergency lights using LIGHT EMER pushbutton</td><td><code>AMM TASK 33-51-00-710-007</code></td></tr>
+<tr><td>Functional test emergency lights using TEST EMER LIGHT SYS pushbutton</td><td><code>AMM TASK 33-51-00-710-001</code></td></tr>
+<tr><td>Check all cabin lights and signs</td><td><code>AMM TASK 33-51-00-710-009</code></td></tr>
+<tr><td>Fill potable-water tank system with electrical power</td><td><code>AMM TASK 12-15-38-613-001</code></td></tr>
+<tr><td>Fill potable-water tank system without electrical power</td><td><code>AMM TASK 12-15-38-613-002</code></td></tr>
+<tr><td>Drain potable water system with electrical power</td><td><code>AMM TASK 12-24-38-680-001</code></td></tr>
+<tr><td>Drain potable water system without electrical power</td><td><code>AMM TASK 12-24-38-680-002</code></td></tr>
+<tr><td>Service toilet system</td><td><code>AMM TASK 12-16-38-613-001</code></td></tr>
+<tr><td>Service liquid soap dispenser</td><td><code>AMM TASK 12-16-25-613-001</code></td></tr>
+<tr><td>Parking or storage of aircraft</td><td><code>AMM TASK 10-10-00-550-801</code></td></tr>
+<tr><td>External cleaning of aircraft</td><td><code>AMM TASK 12-21-11-615-002</code></td></tr>
+<tr><td>Internal cleaning of aircraft</td><td><code>AMM D/O 12-21-12-03</code></td></tr>
+<tr><td>Fumigation of aircraft</td><td><code>AMM TASK 12-21-12-670-002 / 12-21-12-670-004</code></td></tr>
+<tr><td>Cold weather procedures</td><td><code>AMM TASK 12-31-00-600-001</code></td></tr></tbody>
+  </table>
+  </div>
+</section>
+
+<section class="section searchable" id="unsched">
+  <div class="kicker">Quick Dispatch</div>
+  <h2>8. Unscheduled Maintenance Checks and Inspections</h2>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Task / Maintenance Action</th><th>Reference</th></tr></thead>
+    <tbody><tr><td>Find and measure all types of leaks</td><td><code>AMM TASK 05-50-00-790-001</code></td></tr>
+<tr><td>Inspect engine after bird strike / FOD</td><td><code>AMM TASK 72-00-00-200-814</code></td></tr>
+<tr><td>Find all unscheduled maintenance inspections</td><td><code>AMM 05-51-XX-06</code></td></tr></tbody>
+  </table>
+  </div>
+</section>
+
+<section class="section searchable" id="std">
+  <div class="kicker">Quick Dispatch</div>
+  <h2>9. Standard Practices</h2>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Task / Maintenance Action</th><th>Reference</th></tr></thead>
+    <tbody><tr><td>Standard procedures — Airframe and System</td><td><code>AMM 20-20-00-00</code></td></tr>
+<tr><td>Standard torques — Airframe and System</td><td><code>AMM 20-21-XX-02</code></td></tr>
+<tr><td>Installation and repair of tubings</td><td><code>AMM TASK 20-23-11-917-002</code></td></tr>
+<tr><td>Bonding procedures</td><td><code>AMM TASK 20-28-00-912-802</code></td></tr>
+<tr><td>Standard torques — Engine</td><td><code>AMM TASK 70-24-00-910-814</code></td></tr>
+<tr><td>Electrical standard procedures</td><td><code>ESPM 20-51-00</code></td></tr>
+<tr><td>Electrical repair procedures</td><td><code>ESPM 20-53-00</code></td></tr>
+<tr><td>Electrical cleaning procedures</td><td><code>ESPM 20-55-00</code></td></tr></tbody>
+  </table>
+  </div>
+</section>
+
+<section class="section searchable" id="dataload">
+  <div class="kicker">Quick Dispatch</div>
+  <h2>10. Data Loading</h2>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Task / Maintenance Action</th><th>Reference</th></tr></thead>
+    <tbody><tr><td>Upload FM data</td><td><code>AMM TASK 22-70-00-610-008</code></td></tr>
+<tr><td>Cross load FM data (if applicable)</td><td><code>AMM TASK 22-70-00-610-009</code></td></tr>
+<tr><td>Download FM data</td><td><code>AMM TASK 22-70-00-610-006</code></td></tr>
+<tr><td>Upload FDIMU DFDRS software (if installed)</td><td><code>AMM TASK 31-33-00-710-013</code></td></tr>
+<tr><td>Upload optical QAR Software (if installed)</td><td><code>AMM TASK 31-33-00-710-008</code></td></tr>
+<tr><td>Upload WGL-QAR Software (if installed)</td><td><code>AMM TASK 31-33-00-710-017</code></td></tr></tbody>
+  </table>
+  </div>
+</section>
+
+<section class="section searchable" id="materials">
+  <div class="kicker">Quick Dispatch</div>
+  <h2>11. Materials</h2>
+  <div class="tablewrap">
+  <table>
+    <thead><tr><th>Task / Maintenance Action</th><th>Reference</th></tr></thead>
+    <tbody><tr><td>Consumable Material List for aircraft service and maintenance</td><td><code>AMM 20-31-00-00</code></td></tr>
+<tr><td>Materials necessary for APU service and maintenance</td><td><code>AMM 20-33-00-00</code></td></tr>
+<tr><td>Materials necessary for IDG service and maintenance</td><td><code>AMM 20-34-00-00</code></td></tr>
+<tr><td>Consumable Material List — Engine</td><td><code>AMM TASK 70-30-00-918-804</code></td></tr></tbody>
+  </table>
+  </div>
+</section>
+
+
+<section class="section searchable" id="leaks">
+  <div class="kicker">Maintenance Practices</div>
+  <h2>Fluid Leak Measurement</h2>
+  <p>This source groups leak-measurement procedures for flight controls, fuel, hydraulic, landing gear, cargo door and power plant systems.</p>
+  <div class="tablewrap">
+    <table>
+      <thead><tr><th>System</th><th>Reference</th></tr></thead>
+      <tbody><tr><td>Hydraulic system leaks</td><td><code>AMM TASK 29-00-00-790-001</code></td></tr>
+<tr><td>Flight control system leaks</td><td><code>AMM TASK 29-00-00-790-001</code></td></tr>
+<tr><td>Fuel system leaks</td><td><code>AMM TASK 28-11-00-280-002</code></td></tr>
+<tr><td>Landing gear system leaks</td><td><code>AMM TASK 29-00-00-790-001</code></td></tr>
+<tr><td>Cargo door system leaks</td><td><code>AMM TASK 29-00-00-790-001</code></td></tr>
+<tr><td>Power plant system leaks</td><td><code>AMM TASK 71-00-00-790-806</code></td></tr></tbody>
+    </table>
+  </div>
+</section>
+
+<section class="section" id="limitations">
+  <div class="kicker">Important</div>
+  <h2>Use & Limitations</h2>
+  <div class="note warn"><strong>Quick reference only.</strong> Confirm task applicability, aircraft effectivity, configuration and latest revision in the approved maintenance documentation before maintenance action or release to service.</div>
+  <p>This HTML reorganizes the information supplied in the source; it does not replace AMM, SRM, ESPM, MMEL or CDL.</p>
+</section>
+
+<div class="footer">Airbus A320-251N / CFM LEAP-1A26 — Quick Dispatch technical reference HTML • Revised layout: first-row clipping corrected.</div>
+</main>
+
+<a class="top" href="#top">↑ Top</a>
+
+<script>
+const input = document.getElementById('search');
+input.addEventListener('input', () => {
+  const q = input.value.trim().toLowerCase();
+  document.querySelectorAll('.searchable').forEach(section => {
+    let any = false;
+    section.querySelectorAll('tbody tr').forEach(row => {
+      const hit = !q || row.innerText.toLowerCase().includes(q);
+      row.classList.toggle('hidden', !hit);
+      if (hit) any = true;
+    });
+    const sectionTextHit = !q || section.querySelector('h2').innerText.toLowerCase().includes(q);
+    section.classList.toggle('hidden', !(any || sectionTextHit));
+  });
+});
+</script>
+</body>
+</html>
