@@ -1,910 +1,355 @@
-```
-html
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<title>PAINEL OPERACIONAL – LATAM MOC</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="PAINEL OPERACIONAL – LATAM MOC: atalhos para operações, manutenção e guias A320 MOC.">
+  <meta name="theme-color" content="#6D2077">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>PAINEL OPERACIONAL – LATAM MOC</title>
+  <style>
+    :root{
+      --primary:#6D2077;
+      --secondary:#E4007C;
+      --bg:#f4f6f9;
+      --card:#ffffff;
+      --text:#222;
+      --muted:#6b6b6b;
+      --radius:12px;
+      --shadow:0 8px 20px rgba(0,0,0,.08);
+    }
 
-<style>
- @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
-2
- 
-3
-:root{
-4
---primary:#6D2077;
-5
---secondary:#E4007C;
-6
---bg:#f4f6f9;
-7
---card:#ffffff;
-8
---text:#222;
-9
-}
-10
- 
-11
-body{
-12
-font-family:'Poppins',sans-serif;
-13
-background:var(--bg);
-14
-color:var(--text);
-15
-margin:0;
-16
-transition:.3s;
-17
-}
-18
- 
-19
-/* TEMAS */
-20
- 
-21
-body.blue{
-22
---primary:#0057D9;
-23
---secondary:#00A3FF;
-24
-}
-25
- 
-26
-body.green{
-27
---primary:#006B3C;
-28
---secondary:#00D67A;
-29
-}
-30
- 
-31
-body.orange{
-32
---primary:#C76B00;
-33
---secondary:#FDB022;
-34
-}
-35
- 
-36
-body.dark{
-37
---bg:#121212;
-38
---card:#232323;
-39
---text:#f0f0f0;
-40
-}
-41
- 
-42
-/* SIDEBAR */
-43
- 
-44
-.sidebar{
-45
- 
-46
-position:fixed;
-47
-left:0;
-48
-top:0;
-49
- 
-50
-width:260px;
-51
-height:100%;
-52
- 
-53
-background:
-54
-linear-gradient(
-55
-180deg,
-56
-var(--primary),
-57
-var(--secondary)
-58
-);
-59
- 
-60
-color:white;
-61
- 
-62
-padding-top:20px;
-63
- 
-64
-box-shadow:
-65
-4px 0 20px rgba(0,0,0,.12);
-66
- 
-67
-}
-68
- 
-69
-.sidebar h3{
-70
- 
-71
-text-align:center;
-72
-font-size:24px;
-73
- 
-74
-}
-75
- 
-76
-.sidebar a{
-77
- 
-78
-display:block;
-79
-color:white;
-80
- 
-81
-text-decoration:none;
-82
- 
-83
-padding:14px 20px;
-84
- 
-85
-border-radius:12px;
-86
- 
-87
-margin:6px 10px;
-88
- 
-89
-transition:.2s;
-90
- 
-91
-}
-92
- 
-93
-.sidebar a:hover{
-94
- 
-95
-background:
-96
-rgba(255,255,255,.15);
-97
- 
-98
-transform:
-99
-translateX(4px);
-100
- 
-101
-}
-102
- 
-103
-.container{
-104
- 
-105
-margin-left:280px;
-106
-padding:30px;
-107
- 
-108
-}
-109
- 
-110
-/* TOPO */
-111
- 
-112
-.topbar{
-113
- 
-114
-background:var(--card);
-115
- 
-116
-padding:20px;
-117
- 
-118
-border-radius:20px;
-119
- 
-120
-margin-bottom:25px;
-121
- 
-122
-box-shadow:
-123
-0 8px 25px rgba(0,0,0,.08);
-124
- 
-125
-}
-126
- 
-127
-.topbar h1{
-128
- 
-129
-margin:0;
-130
- 
-131
-color:var(--primary);
-132
- 
-133
-}
-134
- 
-135
-/* SECTIONS */
-136
- 
-137
-.section{
-138
- 
-139
-background:var(--card);
-140
- 
-141
-padding:25px;
-142
- 
-143
-border-radius:20px;
-144
- 
-145
-margin-bottom:30px;
-146
- 
-147
-box-shadow:
-148
-0 8px 20px rgba(0,0,0,.08);
-149
- 
-150
-}
-151
- 
-152
-.section h2{
-153
- 
-154
-color:var(--primary);
-155
- 
-156
-border-bottom:
-157
-3px solid var(--secondary);
-158
- 
-159
-padding-bottom:10px;
-160
- 
-161
-}
-162
- 
-163
-/* GRID */
-164
- 
-165
-.grid{
-166
- 
-167
-display:grid;
-168
- 
-169
-gap:20px;
-170
- 
-171
-grid-template-columns:
-172
-repeat(auto-fill,minmax(240px,1fr));
-173
- 
-174
-}
-175
- 
-176
-/* CARD */
-177
- 
-178
-.card{
-179
- 
-180
-background:var(--card);
-181
- 
-182
-border-radius:18px;
-183
- 
-184
-padding:22px;
-185
- 
-186
-text-align:center;
-187
- 
-188
-position:relative;
-189
- 
-190
-overflow:hidden;
-191
- 
-192
-transition:.2s;
-193
- 
-194
-box-shadow:
-195
-0 8px 20px rgba(0,0,0,.08);
-196
- 
-197
-}
-198
- 
-199
-.card::before{
-200
- 
-201
-content:"";
-202
- 
-203
-position:absolute;
-204
- 
-205
-top:0;
-206
-left:0;
-207
- 
-208
-width:100%;
-209
-height:4px;
-210
- 
-211
-background:
-212
-linear-gradient(
-213
-90deg,
-214
-var(--primary),
-215
-var(--secondary)
-216
-);
-217
- 
-218
-}
-219
- 
-220
-.card:hover{
-221
- 
-222
-transform:
-223
-translateY(-6px);
-224
- 
-225
-box-shadow:
-226
-0 15px 30px rgba(0,0,0,.15);
-227
- 
-228
-}
-229
- 
-230
-.card:active{
-231
- 
-232
-transform:
-233
-scale(.96);
-234
- 
-235
-}
-236
- 
-237
-/* ÍCONES */
-238
- 
-239
-.icon{
-240
- 
-241
-width:55px;
-242
-height:55px;
-243
- 
-244
-margin:auto;
-245
- 
-246
-margin-bottom:14px;
-247
- 
-248
-border-radius:50%;
-249
- 
-250
-display:flex;
-251
- 
-252
-align-items:center;
-253
-justify-content:center;
-254
- 
-255
-font-size:22px;
-256
- 
-257
-color:white;
-258
- 
-259
-background:
-260
-linear-gradient(
-261
-135deg,
-262
-var(--primary),
-263
-var(--secondary)
-264
-);
-265
- 
-266
-}
-267
- 
-268
-/* LINKS */
-269
- 
-270
-.card a{
-271
- 
-272
-color:var(--primary);
-273
- 
-274
-text-decoration:none;
-275
- 
-276
-font-size:15px;
-277
- 
-278
-font-weight:600;
-279
- 
-280
-line-height:1.5;
-281
- 
-282
-}
-283
- 
-284
-/* BOTÕES */
-285
- 
-286
-.dark-toggle{
-287
- 
-288
-width:90%;
-289
- 
-290
-margin:15px auto;
-291
- 
-292
-display:block;
-293
- 
-294
-border:none;
-295
- 
-296
-background:white;
-297
- 
-298
-color:var(--primary);
-299
- 
-300
-padding:12px;
-301
- 
-302
-border-radius:12px;
-303
- 
-304
-cursor:pointer;
-305
- 
-306
-font-weight:600;
-307
- 
-308
-}
-309
- 
-310
-/* RESPONSIVO */
-311
- 
-312
-@media(max-width:900px){
-313
- 
-314
-.sidebar{
-315
- 
-316
-position:relative;
-317
- 
-318
-width:100%;
-319
-height:auto;
-320
- 
-321
-}
-322
- 
-323
-.container{
-324
- 
-325
-margin-left:0;
-326
- 
-327
-}
-328
- 
-329
-}
-Mostrar mais linhas   
-</style>
+    /* Theme variants applied via body class */
+    body.blue{ --primary:#0057D9; --secondary:#00A3FF; }
+    body.green{ --primary:#006B3C; --secondary:#00D67A; }
+    body.orange{ --primary:#C76B00; --secondary:#FDB022; }
+    body.dark{ --bg:#121212; --card:#232323; --text:#f0f0f0; --muted:#9aa0a6; }
+
+    html,body{height:100%;}
+    body{
+      font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      margin:0;
+      transition:background .25s,color .25s;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    a{color:inherit;text-decoration:none}
+    .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip-link:focus{left:12px;top:12px;width:auto;height:auto;background:#fff;padding:8px;border-radius:6px;box-shadow:var(--shadow);z-index:9999}
+
+    /* SIDEBAR */
+    .sidebar{
+      position:fixed;left:0;top:0;width:260px;height:100%;
+      background:linear-gradient(180deg,var(--primary),var(--secondary));
+      color:white;padding-top:20px;box-shadow:4px 0 20px rgba(0,0,0,.12);
+      display:flex;flex-direction:column;gap:12px;z-index:40;
+    }
+    .brand{font-weight:700;text-align:center;margin:0 12px}
+    .nav-list{list-style:none;margin:0;padding:0 12px;display:flex;flex-direction:column;gap:6px}
+    .nav-list a{display:block;padding:12px;border-radius:10px;color:inherit}
+    .nav-list a:hover, .nav-list a:focus{background:rgba(255,255,255,.09);outline:none;transform:translateX(4px)}
+
+    /* container/main */
+    .container{margin-left:280px;padding:30px}
+    header.topbar{background:var(--card);padding:18px;border-radius:16px;margin-bottom:20px;box-shadow:var(--shadow)}
+    header.topbar h1{margin:0;color:var(--primary);font-size:20px}
+
+    .section{background:var(--card);padding:20px;border-radius:var(--radius);margin-bottom:24px;box-shadow:var(--shadow)}
+    .section h2{color:var(--primary);border-bottom:3px solid var(--secondary);padding-bottom:8px;margin:0 0 12px}
+
+    .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+
+    .card{background:var(--card);border-radius:18px;padding:18px;text-align:center;position:relative;overflow:hidden;transition:transform .15s,box-shadow .15s}
+    .card:hover{transform:translateY(-6px);box-shadow:0 15px 30px rgba(0,0,0,.12)}
+    .card .icon{width:55px;height:55px;margin:0 auto 12px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;color:white;background:linear-gradient(135deg,var(--primary),var(--secondary))}
+    .card a{color:var(--primary);font-weight:600}
+
+    .dark-toggle{width:90%;margin:8px auto;background:white;color:var(--primary);border:none;padding:12px;border-radius:12px;cursor:pointer;font-weight:600}
+
+    /* Responsive behavior */
+    @media(max-width:900px){
+      .sidebar{position:fixed;left:-320px;transition:left .22s}
+      .sidebar.open{left:0}
+      .container{margin-left:0;padding:18px}
+      .menu-toggle{display:inline-flex}
+    }
+
+    .menu-toggle{display:none;position:fixed;left:12px;top:12px;z-index:60;background:var(--card);border-radius:10px;padding:10px;border:none;box-shadow:var(--shadow);cursor:pointer}
+
+    /* Focus outlines for accessibility */
+    :focus{outline:3px solid rgba(82,184,255,.18);outline-offset:2px}
+    :focus:not(:focus-visible){outline:none}
+
+    /* Small helpers */
+    .icon-emoji{font-size:20px}
+  </style>
 </head>
+<body id="top">
+  <a class="skip-link" href="#main">Pular para o conteúdo</a>
 
-<body>
+  <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteSidebar" aria-label="Abrir menu">☰</button>
 
-<!-- SIDEBAR -->
-<div class="sidebar">
-    <h3>LATAM Portal</h3>
-    <a href="#ops">Operations</a>
-    <a href="#maint">Maintenance Facilities</a>
-    <a href="#a320-moc">A320 MOC Maintenance Facilities</a>
-    <a href="#mfg">Manufacturers</a>
-    <a href="#docs">Documentation</a>
-    <a href="#extra">Recursos Adicionais</a>
+  <aside id="siteSidebar" class="sidebar" role="navigation" aria-label="Navegação principal">
+    <div class="brand" id="brand">LATAM Portal</div>
+    <nav>
+      <ul class="nav-list">
+        <li><a href="#ops">Operations</a></li>
+        <li><a href="#maint">Maintenance Facilities</a></li>
+        <li><a href="#a320-moc">A320 MOC Maintenance Facilities</a></li>
+        <li><a href="#mfg">Manufacturers</a></li>
+        <li><a href="#docs">Documentation</a></li>
+        <li><a href="#extra">Recursos Adicionais</a></li>
+      </ul>
+    </nav>
 
-    <button class="dark-toggle" onclick="document.body.classList.toggle('dark')">
-        Alternar Dark Mode
-    </button>
-</div>
+    <button class="dark-toggle" id="themeToggle" aria-pressed="false" aria-label="Alternar modo escuro">Alternar Dark Mode</button>
+  </aside>
 
-<div class="container">
+  <main id="main" class="container">
+    <header class="topbar" role="banner">
+      <h1>PAINEL OPERACIONAL – LATAM MOC</h1>
+    </header>
 
-<!-- OPERATIONS -->
-<div class="section" id="ops">
-    <h2>🟦 Operations & Control Room</h2>
-    <div class="grid">
-
-        <div class="card"><div class="icon">✈️</div>
+    <!-- OPERATIONS -->
+    <section class="section" id="ops">
+      <h2>🟦 Operations & Control Room</h2>
+      <div class="grid">
+        <div class="card"><div class="icon"><span class="icon-emoji">✈️</span></div>
             <a href="https://iflightla.ibsplc.aero/iflight-limops/web/getMainPage" target="_blank" rel="noopener noreferrer">Limops</a>
         </div>
 
-        <div class="card"><div class="icon">✈️</div>
+        <div class="card"><div class="icon"><span class="icon-emoji">✈️</span></div>
             <a href="https://iflightla.ibsplc.aero/iflight-ops/web/getMainPage" target="_blank" rel="noopener noreferrer">Malha Aérea LATAM</a>
         </div>
 
-        <div class="card"><div class="icon">📊</div>
+        <div class="card"><div class="icon"><span class="icon-emoji">📊</span></div>
             <a href="https://portalmoc.appslatam.com/operations/ac-flight-monitoring" target="_blank" rel="noopener noreferrer">Dashboards</a>
         </div>
 
-        <div class="card"><div class="icon">📋</div>
+        <div class="card"><div class="icon"><span class="icon-emoji">📋</span></div>
             <a href="https://trello.com/b/IdrmcHRA/moc" target="_blank" rel="noopener noreferrer">Trello</a>
         </div>
 
-        <div class="card"><div class="icon">📦</div>
+        <div class="card"><div class="icon"><span class="icon-emoji">📦</span></div>
             <a href="https://fiori.appslatam.com/sites/prd#stockSituationMMBE-Display?mode=MMBE" target="_blank" rel="noopener noreferrer">Stock Situation</a>
         </div>
 
-        <div class="card"><div class="icon">🚚</div>
+        <div class="card"><div class="icon"><span class="icon-emoji">🚚</span></div>
             <a href="https://cargo-heroes.appslatam.com/#/app" target="_blank" rel="noopener noreferrer">Cargo Heroes</a>
         </div>
 
-        <div class="card"><div class="icon">🔧</div>
+        <div class="card"><div class="icon"><span class="icon-emoji">🔧</span></div>
             <a href="https://maintenix.lan.com/maintenix/common/security/login.jsp" target="_blank" rel="noopener noreferrer">Maintenix</a>
         </div>
 
-        <div class="card"><div class="icon">📊</div>
+        <div class="card"><div class="icon"><span class="icon-emoji">📊</span></div>
             <a href="https://datastudio.google.com/u/0/reporting/1rLUa2IErQ-fI172csXDY18MX4LCEwREU/page/lIkR" target="_blank" rel="noopener noreferrer">CCM MEL</a>
         </div>
 
-        <div class="card"><div class="icon">🧰</div>
+        <div class="card"><div class="icon"><span class="icon-emoji">🧰</span></div>
             <a href="https://client.wvd.microsoft.com/arm/webclient/index.html" target="_blank" rel="noopener noreferrer">Aircom</a>
         </div>
 
-        <div class="card"><div class="icon">🛠️</div>
+        <div class="card"><div class="icon"><span class="icon-emoji">🛠️</span></div>
             <a href="https://laningenieria.sysaidit.com/HelpDesk.jsp?fromId=IncidentsList" target="_blank" rel="noopener noreferrer">SysAid</a>
         </div>
 
-    </div>
-</div>
+      </div>
+    </section>
 
-<!-- MAINTENANCE FACILITIES -->
-<div class="section" id="maint">
-    <h2>🟩 Maintenance Facilities</h2>
-    <div class="grid">
-
-        
-
-        <div class="card"><div class="icon">🎓</div>
+    <!-- MAINTENANCE FACILITIES -->
+    <section class="section" id="maint">
+      <h2>🟩 Maintenance Facilities</h2>
+      <div class="grid">
+        <div class="card"><div class="icon"><span class="icon-emoji">🎓</span></div>
             <a href="https://sites.google.com/latam.com/lc-line-control/facilitadores-b777" target="_blank" rel="noopener noreferrer">Facilitadores B777</a>
         </div>
 
-        <div class="card"><div class="icon">🎓</div>
+        <div class="card"><div class="icon"><span class="icon-emoji">🎓</span></div>
             <a href="https://sites.google.com/latam.com/lc-line-control/facilitadores-b787" target="_blank" rel="noopener noreferrer">Facilitadores B787</a>
         </div>
 
-        <div class="card"><div class="icon">🎓</div>
+        <div class="card"><div class="icon"><span class="icon-emoji">🎓</span></div>
             <a href="https://sites.google.com/latam.com/lc-line-control/facilitadores-embraer-e2" target="_blank" rel="noopener noreferrer">Facilitadores Embraer E2</a>
         </div>
 
-    </div>
-</div>
+      </div>
+    </section>
 
-        <!-- A320 MOC MAINTENANCE FACILITIES -->
-        <div class="section" id="a320-moc">
-            <h2>🛠️ A320 MOC Maintenance Facilities</h2>
-            <div class="grid">
-
-                
-
-                
-                <div class="card"><div class="icon">📞</div>
+    <!-- A320 MOC MAINTENANCE FACILITIES -->
+    <section class="section" id="a320-moc">
+      <h2>🛠️ A320 MOC Maintenance Facilities</h2>
+      <div class="grid">
+        <div class="card"><div class="icon"><span class="icon-emoji">📞</span></div>
                     <a href="Airbus%20A320%20Family/Alpha_Call_Up_References.html" target="_blank" rel="noopener noreferrer">Alpha Call Up References</a>
                 </div>
-                <div class="card"><div class="icon">🖥️</div>
+                <div class="card"><div class="icon"><span class="icon-emoji">🖥️</span></div>
                     <a href="Airbus%20A320%20Family/Avionics_Computers_Visual_Guide.html" target="_blank" rel="noopener noreferrer">Avionics Computers Visual Guide</a>
                 </div>
-                <div class="card"><div class="icon">🧪</div>
+                <div class="card"><div class="icon"><span class="icon-emoji">🧪</span></div>
                     <a href="Airbus%20A320%20Family/CFDS_BITE_MODES_Guide.html" target="_blank" rel="noopener noreferrer">CFDS BITE Modes Guide</a>
                 </div>
-                <div class="card"><div class="icon">🎛️</div>
+                <div class="card"><div class="icon"><span class="icon-emoji">🎛️</span></div>
                     <a href="Airbus%20A320%20Family/Cockpit_Panels_Visual_Guide.html" target="_blank" rel="noopener noreferrer">Cockpit Panels Visual Guide</a>
                 </div>
-                <div class="card"><div class="icon">📊</div>
+                <div class="card"><div class="icon"><span class="icon-emoji">📊</span></div>
                     <a href="Airbus%20A320%20Family/ECAM_SD_Pages_Visual_Technical_Guide.html" target="_blank" rel="noopener noreferrer">ECAM SD Pages Visual Technical Guide</a>
                 </div>
-                <div class="card"><div class="icon">✈️</div>
+                <div class="card"><div class="icon"><span class="icon-emoji">✈️</span></div>
                     <a href="Airbus%20A320%20Family/Flight_Phases_FWC_Visual_Guide.html" target="_blank" rel="noopener noreferrer">Flight Phases FWC Visual Guide</a>
                 </div>
-                <div class="card"><div class="icon">🔩</div>
+                <div class="card"><div class="icon"><span class="icon-emoji">🔩</span></div>
                     <a href="Airbus%20A320%20Family/Guia_A320_Missing_Fasteners.html" target="_blank" rel="noopener noreferrer">Guia A320 Missing Fasteners</a>
                 </div>
-                <div class="card"><div class="icon">⚡</div>
+                <div class="card"><div class="icon"><span class="icon-emoji">⚡</span></div>
                     <a href="Airbus%20A320%20Family/Guia_Localizacao_CB_A320.html" target="_blank" rel="noopener noreferrer">Guia Localização CB A320</a>
                 </div>
-                <div class="card"><div class="icon">📅</div>
+                <div class="card"><div class="icon"><span class="icon-emoji">📅</span></div>
                     <a href="Airbus%20A320%20Family/MEL_Day_Validity_Calculator_UTC.html" target="_blank" rel="noopener noreferrer">MEL Day Validity Calculator UTC</a>
                 </div>
-                <div class="card"><div class="icon">⛔</div>
+                <div class="card"><div class="icon"><span class="icon-emoji">⛔</span></div>
                     <a href="Airbus%20A320%20Family/NO_GO_ITENS_ATA_Technical_Guide.html" target="_blank" rel="noopener noreferrer">NO-GO Items ATA Technical Guide</a>
                 </div>
-                <div class="card"><div class="icon">📘</div>
+                <div class="card"><div class="icon"><span class="icon-emoji">📘</span></div>
                     <a href="Airbus%20A320%20Family/Quick_Reference_Guide.html" target="_blank" rel="noopener noreferrer">Quick Reference Guide</a>
                 </div>
-                <div class="card"><div class="icon">🔄</div>
+                <div class="card"><div class="icon"><span class="icon-emoji">🔄</span></div>
                     <a href="Airbus%20A320%20Family/System_Reset_Technical_Index.html" target="_blank" rel="noopener noreferrer">System Reset Technical Index</a>
                 </div>
-                <div class="card"><div class="icon">🔧</div>
+                <div class="card"><div class="icon"><span class="icon-emoji">🔧</span></div>
                     <a href="Airbus%20A320%20Family/Task_Reference_Guide.html" target="_blank" rel="noopener noreferrer">Task Reference Guide</a>
                 </div>
-                <div class="card"><div class="icon">🎚️</div>
+                <div class="card"><div class="icon"><span class="icon-emoji">🎚️</span></div>
                     <a href="Airbus%20A320%20Family/VU_Panels_Guide.html" target="_blank" rel="noopener noreferrer">VU Panels Guide</a>
                 </div>
 
-<div class="card"><div class="icon">🧪</div>
+                <div class="card"><div class="icon"><span class="icon-emoji">🧪</span></div>
                     <a href="https://w3.airbus.com/1T40/search/text?q=operational%20test%20with%20cfds" target="_blank" rel="noopener noreferrer">Operational Tests With CFDS (A320 Family)</a>
                 </div>
 
-                <div class="card"><div class="icon">⚙️</div>
+                <div class="card"><div class="icon"><span class="icon-emoji">⚙️</span></div>
                     <a href="https://w3.airbus.com/1T40/search/text?q=system%20test%20with%20cfds" target="_blank" rel="noopener noreferrer">System Tests With CFDS (A320 Family)</a>
                 </div>
 
-            </div>
+      </div>
+    </section>
+
+    <!-- MANUFACTURERS -->
+    <section class="section" id="mfg">
+      <h2>🟧 Manufacturers Portals</h2>
+      <div class="grid">
+        <div class="card"><div class="icon"><span class="icon-emoji">🏭</span></div><a href="https://w3.airbus.com/newairbusworld/faces/wcnav_defaultSelection" target="_blank" rel="noopener noreferrer">Airbus World</a></div>
+        <div class="card"><div class="icon"><span class="icon-emoji">🛩️</span></div><a href="https://flyembraer.com/home?first=true" target="_blank" rel="noopener noreferrer">FlyEmbraer</a></div>
+        <div class="card"><div class="icon"><span class="icon-emoji">✈️</span></div><a href="https://ui.aviationid.com/iamui/mfa/userReference" target="_blank" rel="noopener noreferrer">MyBoeing Fleet</a></div>
+      </div>
+    </section>
+
+    <!-- DOCUMENTATION -->
+    <section class="section" id="docs">
+      <h2>🟥 Technical Documentation</h2>
+      <div class="grid">
+
+        <div class="card"><div class="icon"><span class="icon-emoji">📦</span></div><a href="https://toolbox.appslatam.com/a320/ToolboxRemote.html" target="_blank" rel="noopener noreferrer">Toolbox A320</a></div>
+        <div class="card"><div class="icon"><span class="icon-emoji">📦</span></div><a href="https://toolbox.appslatam.com/e195/ToolboxRemote.html" target="_blank" rel="noopener noreferrer">Toolbox Embraer</a></div>
+        <div class="card"><div class="icon"><span class="icon-emoji">📦</span></div><a href="https://toolbox.appslatam.com/b787/ToolboxRemote.html" target="_blank" rel="noopener noreferrer">Toolbox B787</a></div>
+        <div class="card"><div class="icon"><span class="icon-emoji">📦</span></div><a href="https://toolbox.appslatam.com/b767/ToolboxRemote.html" target="_blank" rel="noopener noreferrer">Toolbox B767</a></div>
+        <div class="card"><div class="icon"><span class="icon-emoji">📦</span></div><a href="https://toolbox.appslatam.com/b777/ToolboxRemote.html" target="_blank" rel="noopener noreferrer">Toolbox B777</a></div>
+
+        <div class="card"><div class="icon"><span class="icon-emoji">📘</span></div><a href="https://sites.google.com/latam.com/lc-line-control/aeronaves" target="_blank" rel="noopener noreferrer">FCOM A320</a></div>
+        <div class="card"><div class="icon"><span class="icon-emoji">📘</span></div><a href="https://drive.google.com/drive/folders/1-qRf6s5FfEI321VMYvwqbnLdUs7IH5DK" target="_blank" rel="noopener noreferrer">FCOM B777</a></div>
+        <div class="card"><div class="icon"><span class="icon-emoji">📘</span></div><a href="https://drive.google.com/drive/folders/1MtgaculTtXBOUTavz5pZpwvPojC3jiWU" target="_blank" rel="noopener noreferrer">FCOM B787</a></div>
+
+        <div class="card"><div class="icon"><span class="icon-emoji">📑</span></div><a href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/mel-nef-afm-cdl" target="_blank" rel="noopener noreferrer">MEL / NEF / AFM / CDL</a></div>
+        <div class="card"><div class="icon"><span class="icon-emoji">⚠️</span></div><a href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/bta" target="_blank" rel="noopener noreferrer">BTA</a></div>
+        <div class="card"><div class="icon"><span class="icon-emoji">ℹ️</span></div><a href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/bti" target="_blank" rel="noopener noreferrer">BTI</a></div>
+        <div class="card"><div class="icon"><span class="icon-emoji">📝</span></div><a href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/itt" target="_blank" rel="noopener noreferrer">ITT</a></div>
+        <div class="card"><div class="icon"><span class="icon-emoji">📄</span></div><a href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/ptt" target="_blank" rel="noopener noreferrer">PTT</a></div>
+        <div class="card"><div class="icon"><span class="icon-emoji">🔍</span></div><a href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/iq" target="_blank" rel="noopener noreferrer">IQ</a></div>
+
+      </div>
+    </section>
+
+    <!-- EXTRA -->
+    <section class="section" id="extra">
+      <h2>🔵 Recursos Adicionais</h2>
+      <div class="grid">
+
+        <div class="card"><div class="icon"><span class="icon-emoji">📊</span></div>
+            <a href="https://datastudio.google.com/u/0/reporting/53a98689-6da5-47ab-be45-678dd4633daa/page/p_7gh7oq4ndd" target="_blank" rel="noopener noreferrer">MOC Management Data</a>
         </div>
 
-<!-- MANUFACTURERS -->
-<div class="section" id="mfg">
-    <h2>🟧 Manufacturers Portals</h2>
-    <div class="grid">
-        <div class="card"><div class="icon">🏭</div><a href="https://w3.airbus.com/newairbusworld/faces/wcnav_defaultSelection" target="_blank" rel="noopener noreferrer">Airbus World</a></div>
-        <div class="card"><div class="icon">🛩️</div><a href="https://flyembraer.com/home?first=true" target="_blank" rel="noopener noreferrer">FlyEmbraer</a></div>
-        <div class="card"><div class="icon">✈️</div><a href="https://ui.aviationid.com/iamui/mfa/userReference" target="_blank" rel="noopener noreferrer">MyBoeing Fleet</a></div>
-    </div>
-</div>
-
-<!-- DOCUMENTATION -->
-<div class="section" id="docs">
-    <h2>🟥 Technical Documentation</h2>
-    <div class="grid">
-
-        <div class="card"><div class="icon">📦</div><a href="https://toolbox.appslatam.com/a320/ToolboxRemote.html" target="_blank" rel="noopener noreferrer">Toolbox A320</a></div>
-        <div class="card"><div class="icon">📦</div><a href="https://toolbox.appslatam.com/e195/ToolboxRemote.html" target="_blank" rel="noopener noreferrer">Toolbox Embraer</a></div>
-        <div class="card"><div class="icon">📦</div><a href="https://toolbox.appslatam.com/b787/ToolboxRemote.html" target="_blank" rel="noopener noreferrer">Toolbox B787</a></div>
-        <div class="card"><div class="icon">📦</div><a href="https://toolbox.appslatam.com/b767/ToolboxRemote.html" target="_blank" rel="noopener noreferrer">Toolbox B767</a></div>
-        <div class="card"><div class="icon">📦</div><a href="https://toolbox.appslatam.com/b777/ToolboxRemote.html" target="_blank" rel="noopener noreferrer">Toolbox B777</a></div>
-
-        <div class="card"><div class="icon">📘</div><a href="https://sites.google.com/latam.com/lc-line-control/aeronaves" target="_blank" rel="noopener noreferrer">FCOM A320</a></div>
-        <div class="card"><div class="icon">📘</div><a href="https://drive.google.com/drive/folders/1-qRf6s5FfEI321VMYvwqbnLdUs7IH5DK" target="_blank" rel="noopener noreferrer">FCOM B777</a></div>
-        <div class="card"><div class="icon">📘</div><a href="https://drive.google.com/drive/folders/1MtgaculTtXBOUTavz5pZpwvPojC3jiWU" target="_blank" rel="noopener noreferrer">FCOM B787</a></div>
-
-        <div class="card"><div class="icon">📑</div><a href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/mel-nef-afm-cdl" target="_blank" rel="noopener noreferrer">MEL / NEF / AFM / CDL</a></div>
-        <div class="card"><div class="icon">⚠️</div><a href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/bta" target="_blank" rel="noopener noreferrer">BTA</a></div>
-        <div class="card"><div class="icon">ℹ️</div><a href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/bti" target="_blank" rel="noopener noreferrer">BTI</a></div>
-        <div class="card"><div class="icon">📝</div><a href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/itt" target="_blank" rel="noopener noreferrer">ITT</a></div>
-        <div class="card"><div class="icon">📄</div><a href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/ptt" target="_blank" rel="noopener noreferrer">PTT</a></div>
-        <div class="card"><div class="icon">🔍</div><a href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/iq" target="_blank" rel="noopener noreferrer">IQ</a></div>
-
-    </div>
-</div>
-
-<!-- EXTRA -->
-<div class="section" id="extra">
-    <h2>🔵 Recursos Adicionais</h2>
-    <div class="grid">
-
-        <div class="card"><div class="icon">📊</div>
-            <a href="https://datastudio.google.com/u/0/reporting/53a98689-6da5-47ab-be45-678dd4633daa/page/p_7gh7oq4ndd" target="_blank" rel="noopener noreferrer">
-                MOC Management Data
-            </a>
+        <div class="card"><div class="icon"><span class="icon-emoji">📘</span></div>
+            <a href="https://drive.google.com/file/d/1S7iyQxgVwphpboxgb1Xnho1n6iIN522V/view?usp=sharing" target="_blank" rel="noopener noreferrer">Manual Procedimentos MOC</a>
         </div>
 
-        <div class="card"><div class="icon">📘</div>
-            <a href="https://drive.google.com/file/d/1S7iyQxgVwphpboxgb1Xnho1n6iIN522V/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                Manual Procedimentos MOC
-            </a>
+        <div class="card"><div class="icon"><span class="icon-emoji">🧪</span></div>
+            <a href="https://drive.google.com/file/d/1jEIF7yKC0t9bFA_Wkj8s4Z4ZWqxIvXlj/view" target="_blank" rel="noopener noreferrer">Efetividade Softwares BTI-GEN-00-025</a>
         </div>
 
-        <div class="card"><div class="icon">🧪</div>
-            <a href="https://drive.google.com/file/d/1jEIF7yKC0t9bFA_Wkj8s4Z4ZWqxIvXlj/view" target="_blank" rel="noopener noreferrer">
-                Efetividade Softwares BTI-GEN-00-025
-            </a>
+        <div class="card"><div class="icon"><span class="icon-emoji">🌐</span></div>
+            <a href="https://portal.latam.com/" target="_blank" rel="noopener noreferrer">Portal LATAM</a>
         </div>
 
-        <div class="card"><div class="icon">🌐</div>
-            <a href="https://portal.latam.com/" target="_blank" rel="noopener noreferrer">
-                Portal LATAM
-            </a>
+        <div class="card"><div class="icon"><span class="icon-emoji">⚙️</span></div>
+            <a href="https://sites.google.com/latam.com/lc-line-control/master-caution-master-warning/latam-delta-overall-compression-efficiency" target="_blank" rel="noopener noreferrer">Delta Overall Compression Efficiency</a>
         </div>
 
-        <div class="card"><div class="icon">⚙️</div>
-            <a href="https://sites.google.com/latam.com/lc-line-control/master-caution-master-warning/latam-delta-overall-compression-efficiency" target="_blank" rel="noopener noreferrer">
-                Delta Overall Compression Efficiency
-            </a>
+        <div class="card"><div class="icon"><span class="icon-emoji">🔍</span></div>
+            <a href="https://script.google.com/a/macros/latam.com/s/AKfycbyZJL5BaNkcSOxFidFTQszqcqYCth0xoJ-reU7La0xqRT6JrvFZuuKrWmiD6EIFnm1q/exec" target="_blank" rel="noopener noreferrer">Histórico Antecedentes</a>
         </div>
 
-        <div class="card"><div class="icon">🔍</div>
-            <a href="https://script.google.com/a/macros/latam.com/s/AKfycbyZJL5BaNkcSOxFidFTQszqcqYCth0xoJ-reU7La0xqRT6JrvFZuuKrWmiD6EIFnm1q/exec" target="_blank" rel="noopener noreferrer">
-                Histórico Antecedentes
-            </a>
+        <div class="card"><div class="icon"><span class="icon-emoji">📊</span></div>
+            <a href="https://datastudio.google.com/u/0/reporting/1rLUa2IErQ-fI172csXDY18MX4LCEwREU/page/lIkR" target="_blank" rel="noopener noreferrer">CCM MEL</a>
         </div>
 
-        <div class="card"><div class="icon">📊</div>
-            <a href="https://datastudio.google.com/u/0/reporting/1rLUa2IErQ-fI172csXDY18MX4LCEwREU/page/lIkR" target="_blank" rel="noopener noreferrer">
-                CCM MEL
-            </a>
-        </div>
+      </div>
+    </section>
 
-    </div>
-</div>
+  </main>
 
-</div>
+  <script defer>
+    (function(){
+      const body=document.body;
+      const themeToggle=document.getElementById('themeToggle');
+      const menuToggle=document.getElementById('menuToggle');
+      const sidebar=document.getElementById('siteSidebar');
+
+      // Apply saved theme or system preference
+      const saved=localStorage.getItem('theme');
+      if(saved){ body.classList.toggle('dark', saved==='dark'); themeToggle.setAttribute('aria-pressed', saved==='dark'); }
+      else if(window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches){ body.classList.add('dark'); themeToggle.setAttribute('aria-pressed','true'); }
+
+      themeToggle.addEventListener('click', ()=>{
+        const isDark=body.classList.toggle('dark');
+        themeToggle.setAttribute('aria-pressed', isDark);
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      });
+
+      // Menu toggle for small screens
+      menuToggle.addEventListener('click', ()=>{
+        const open = sidebar.classList.toggle('open');
+        menuToggle.setAttribute('aria-expanded', String(open));
+      });
+
+      // Close sidebar when clicking outside on small screens
+      document.addEventListener('click', (e)=>{
+        if(window.innerWidth<=900 && sidebar.classList.contains('open')){
+          if(!sidebar.contains(e.target) && !menuToggle.contains(e.target)){
+            sidebar.classList.remove('open');
+            menuToggle.setAttribute('aria-expanded','false');
+          }
+        }
+      });
+
+      // Keyboard: close on Escape
+      document.addEventListener('keydown',(e)=>{ if(e.key==='Escape'){ sidebar.classList.remove('open'); menuToggle.setAttribute('aria-expanded','false'); } });
+    })();
+  </script>
 </body>
 </html>
-```
