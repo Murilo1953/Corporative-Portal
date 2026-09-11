@@ -8,25 +8,28 @@
   <link rel="icon" href="/favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <title>PAINEL OPERACIONAL – LATAM MOC</title>
   <style>
     :root{
       --primary:#6D2077;
       --secondary:#E4007C;
-      --bg:#f4f6f9;
+      --bg:#f8fafb;
       --card:#ffffff;
-      --text:#222;
+      --text:#1a1a1a;
       --muted:#6b6b6b;
-      --radius:12px;
-      --shadow:0 8px 20px rgba(0,0,0,.08);
+      --accent:#e8e8e8;
+      --radius:14px;
+      --shadow:0 2px 8px rgba(0,0,0,.06);
+      --shadow-lg:0 8px 24px rgba(0,0,0,.12);
+      --shadow-hover:0 12px 32px rgba(0,0,0,.15);
     }
 
     /* Theme variants applied via body class */
     body.blue{ --primary:#0057D9; --secondary:#00A3FF; }
     body.green{ --primary:#006B3C; --secondary:#00D67A; }
     body.orange{ --primary:#C76B00; --secondary:#FDB022; }
-    body.dark{ --bg:#121212; --card:#232323; --text:#f0f0f0; --muted:#9aa0a6; }
+    body.dark{ --bg:#0f1419; --card:#1a1f2e; --text:#f0f2f5; --muted:#9aa0a6; --accent:#2a3042; }
 
     html,body{height:100%;}
     body{
@@ -34,60 +37,276 @@
       background:var(--bg);
       color:var(--text);
       margin:0;
-      transition:background .25s,color .25s;
+      transition:background .3s ease,color .3s ease;
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
     }
 
     a{color:inherit;text-decoration:none}
     .skip-link{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
-    .skip-link:focus{left:12px;top:12px;width:auto;height:auto;background:#fff;padding:8px;border-radius:6px;box-shadow:var(--shadow);z-index:9999}
+    .skip-link:focus{left:12px;top:12px;width:auto;height:auto;background:#fff;padding:8px;border-radius:6px;box-shadow:var(--shadow-lg);z-index:9999}
 
     /* SIDEBAR */
     .sidebar{
-      position:fixed;left:0;top:0;width:260px;height:100%;
-      background:linear-gradient(180deg,var(--primary),var(--secondary));
-      color:white;padding-top:20px;box-shadow:4px 0 20px rgba(0,0,0,.12);
-      display:flex;flex-direction:column;gap:12px;z-index:40;
+      position:fixed;left:0;top:0;width:280px;height:100%;
+      background:linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      color:white;padding:28px 20px;box-shadow:4px 0 20px rgba(0,0,0,.15);
+      display:flex;flex-direction:column;gap:24px;z-index:40;
+      overflow-y:auto;
     }
-    .brand{font-weight:700;text-align:center;margin:0 12px}
-    .nav-list{list-style:none;margin:0;padding:0 12px;display:flex;flex-direction:column;gap:6px}
-    .nav-list a{display:block;padding:12px;border-radius:10px;color:inherit}
-    .nav-list a:hover, .nav-list a:focus{background:rgba(255,255,255,.09);outline:none;transform:translateX(4px)}
+    
+    .brand{
+      font-weight:700;
+      font-size:18px;
+      text-align:center;
+      margin:0;
+      letter-spacing:0.5px;
+      padding:12px 0;
+      border-bottom:1px solid rgba(255,255,255,.15);
+      padding-bottom:20px;
+    }
+    
+    .nav-list{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      flex:1;
+    }
+    
+    .nav-list a{
+      display:block;
+      padding:14px 16px;
+      border-radius:10px;
+      color:inherit;
+      font-weight:500;
+      font-size:14px;
+      transition:all .2s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    
+    .nav-list a::before{
+      content:'';
+      position:absolute;
+      left:0;
+      top:0;
+      width:3px;
+      height:100%;
+      background:white;
+      transform:scaleY(0);
+      transform-origin:center;
+      transition:transform .2s ease;
+    }
+    
+    .nav-list a:hover, .nav-list a:focus{
+      background:rgba(255,255,255,.15);
+      outline:none;
+      padding-left:20px;
+    }
+    
+    .nav-list a:hover::before, .nav-list a:focus::before{
+      transform:scaleY(1);
+    }
 
     /* container/main */
-    .container{margin-left:280px;padding:30px}
-    header.topbar{background:var(--card);padding:18px;border-radius:16px;margin-bottom:20px;box-shadow:var(--shadow)}
-    header.topbar h1{margin:0;color:var(--primary);font-size:20px}
+    .container{margin-left:300px;padding:40px}
+    
+    header.topbar{
+      background:var(--card);
+      padding:24px;
+      border-radius:var(--radius);
+      margin-bottom:32px;
+      box-shadow:var(--shadow);
+      border:1px solid var(--accent);
+    }
+    
+    header.topbar h1{
+      margin:0;
+      color:var(--primary);
+      font-size:24px;
+      font-weight:700;
+      letter-spacing:-0.5px;
+    }
 
-    .section{background:var(--card);padding:20px;border-radius:var(--radius);margin-bottom:24px;box-shadow:var(--shadow)}
-    .section h2{color:var(--primary);border-bottom:3px solid var(--secondary);padding-bottom:8px;margin:0 0 12px}
+    .section{
+      background:var(--card);
+      padding:28px;
+      border-radius:var(--radius);
+      margin-bottom:32px;
+      box-shadow:var(--shadow);
+      border:1px solid var(--accent);
+      transition:all .3s ease;
+    }
+    
+    .section:hover{
+      box-shadow:var(--shadow-lg);
+      border-color:var(--primary);
+    }
+    
+    .section h2{
+      color:var(--primary);
+      border-bottom:2px solid var(--secondary);
+      padding-bottom:12px;
+      margin:0 0 20px;
+      font-size:18px;
+      font-weight:700;
+      letter-spacing:-0.3px;
+    }
 
-    .grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr))}
+    .grid{
+      display:grid;
+      gap:20px;
+      grid-template-columns:repeat(auto-fill,minmax(200px,1fr))
+    }
 
-    .card{background:var(--card);border-radius:18px;padding:18px;text-align:center;position:relative;overflow:hidden;transition:transform .15s,box-shadow .15s}
-    .card:hover{transform:translateY(-6px);box-shadow:0 15px 30px rgba(0,0,0,.12)}
-    .card .icon{width:55px;height:55px;margin:0 auto 12px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;color:white;background:linear-gradient(135deg,var(--primary),var(--secondary))}
-    .card a{color:var(--primary);font-weight:600}
+    .card{
+      background:linear-gradient(135deg, var(--card) 0%, color-mix(in srgb, var(--primary) 2%, var(--card)) 100%);
+      border-radius:16px;
+      padding:24px 18px;
+      text-align:center;
+      position:relative;
+      overflow:hidden;
+      transition:all .3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      border:1px solid var(--accent);
+      cursor:pointer;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      min-height:180px;
+    }
+    
+    .card::before{
+      content:'';
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      background:linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+      opacity:0;
+      transition:opacity .3s ease;
+      z-index:-1;
+    }
+    
+    .card:hover{
+      transform:translateY(-8px);
+      box-shadow:var(--shadow-hover);
+      border-color:var(--primary);
+    }
+    
+    .card:hover::before{
+      opacity:0.06;
+    }
+    
+    .card .icon{
+      width:60px;
+      height:60px;
+      margin:0 auto 16px;
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:24px;
+      color:white;
+      background:linear-gradient(135deg,var(--primary),var(--secondary));
+      transition:all .3s ease;
+      box-shadow:0 4px 12px rgba(0,0,0,.15);
+    }
+    
+    .card:hover .icon{
+      transform:scale(1.1) rotate(5deg);
+      box-shadow:0 8px 20px rgba(0,0,0,.25);
+    }
+    
+    .card a{
+      color:var(--primary);
+      font-weight:600;
+      font-size:14px;
+      transition:all .2s ease;
+      position:relative;
+      z-index:1;
+    }
+    
+    .card a::after{
+      content:'';
+      position:absolute;
+      bottom:-2px;
+      left:0;
+      right:0;
+      height:2px;
+      background:var(--secondary);
+      transform:scaleX(0);
+      transform-origin:right;
+      transition:transform .3s ease;
+    }
+    
+    .card:hover a::after{
+      transform:scaleX(1);
+      transform-origin:left;
+    }
 
-    .dark-toggle{width:90%;margin:8px auto;background:white;color:var(--primary);border:none;padding:12px;border-radius:12px;cursor:pointer;font-weight:600}
+    .dark-toggle{
+      width:100%;
+      margin-top:auto;
+      background:rgba(255,255,255,.12);
+      color:white;
+      border:1px solid rgba(255,255,255,.25);
+      padding:12px;
+      border-radius:10px;
+      cursor:pointer;
+      font-weight:600;
+      font-size:13px;
+      transition:all .2s ease;
+    }
+    
+    .dark-toggle:hover{
+      background:rgba(255,255,255,.2);
+      border-color:rgba(255,255,255,.4);
+    }
 
     /* Responsive behavior */
     @media(max-width:900px){
-      .sidebar{position:fixed;left:-320px;transition:left .22s}
+      .sidebar{position:fixed;left:-320px;transition:left .3s ease;width:320px;}
       .sidebar.open{left:0}
-      .container{margin-left:0;padding:18px}
+      .container{margin-left:0;padding:20px}
       .menu-toggle{display:inline-flex}
+      header.topbar h1{font-size:20px}
     }
 
-    .menu-toggle{display:none;position:fixed;left:12px;top:12px;z-index:60;background:var(--card);border-radius:10px;padding:10px;border:none;box-shadow:var(--shadow);cursor:pointer}
+    .menu-toggle{
+      display:none;
+      position:fixed;
+      left:16px;
+      top:16px;
+      z-index:60;
+      background:var(--card);
+      border-radius:10px;
+      padding:12px;
+      border:1px solid var(--accent);
+      box-shadow:var(--shadow-lg);
+      cursor:pointer;
+      font-size:20px;
+      transition:all .2s ease;
+    }
+    
+    .menu-toggle:hover{
+      background:var(--primary);
+      color:white;
+    }
 
     /* Focus outlines for accessibility */
-    :focus{outline:3px solid rgba(82,184,255,.18);outline-offset:2px}
+    :focus{outline:2px solid var(--primary);outline-offset:2px}
     :focus:not(:focus-visible){outline:none}
 
     /* Small helpers */
     .icon-emoji{font-size:20px}
+    
+    /* Smooth scroll behavior */
+    html{scroll-behavior:smooth}
   </style>
 </head>
 <body id="top">
@@ -96,19 +315,19 @@
   <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="siteSidebar" aria-label="Abrir menu">☰</button>
 
   <aside id="siteSidebar" class="sidebar" role="navigation" aria-label="Navegação principal">
-    <div class="brand" id="brand">LATAM Portal</div>
+    <div class="brand" id="brand">✈️ LATAM Portal</div>
     <nav>
       <ul class="nav-list">
         <li><a href="#ops">Operations</a></li>
         <li><a href="#maint">Maintenance Facilities</a></li>
-        <li><a href="#a320-moc">A320 MOC Maintenance Facilities</a></li>
+        <li><a href="#a320-moc">A320 MOC Maintenance</a></li>
         <li><a href="#mfg">Manufacturers</a></li>
         <li><a href="#docs">Documentation</a></li>
         <li><a href="#extra">Recursos Adicionais</a></li>
       </ul>
     </nav>
 
-    <button class="dark-toggle" id="themeToggle" aria-pressed="false" aria-label="Alternar modo escuro">Alternar Dark Mode</button>
+    <button class="dark-toggle" id="themeToggle" aria-pressed="false" aria-label="Alternar modo escuro">🌙 Alternar Dark Mode</button>
   </aside>
 
   <main id="main" class="container">
@@ -244,9 +463,9 @@
     <section class="section" id="mfg">
       <h2>🟧 Manufacturers Portals</h2>
       <div class="grid">
-        <div class="card"><div class="icon"><span class="icon-emoji">🏭</span></div><a href="https://w3.airbus.com/newairbusworld/faces/wcnav_defaultSelection" target="_blank" rel="noopener noreferrer">Airbus World</a></div>
+        <div class="card"><div class="icon"><span class="icon-emoji">🏭</span></div><a href="https://w3.airbus.com/newairbusworld/faces/wcnav_defaultSelection" target="_blank" rel="noopener noreferrer">Airbus W3</a></div>
         <div class="card"><div class="icon"><span class="icon-emoji">🛩️</span></div><a href="https://flyembraer.com/home?first=true" target="_blank" rel="noopener noreferrer">FlyEmbraer</a></div>
-        <div class="card"><div class="icon"><span class="icon-emoji">✈️</span></div><a href="https://ui.aviationid.com/iamui/mfa/userReference" target="_blank" rel="noopener noreferrer">MyBoeing Fleet</a></div>
+        <div class="card"><div class="icon"><span class="icon-emoji">✈️</span></div><a href="https://ui.aviationid.com/iamui/mfa/userReference" target="_blank" rel="noopener noreferrer">MyBoeing Field</a></div>
       </div>
     </section>
 
@@ -256,16 +475,16 @@
       <div class="grid">
 
         <div class="card"><div class="icon"><span class="icon-emoji">📦</span></div><a href="https://toolbox.appslatam.com/a320/ToolboxRemote.html" target="_blank" rel="noopener noreferrer">Toolbox A320</a></div>
-        <div class="card"><div class="icon"><span class="icon-emoji">📦</span></div><a href="https://toolbox.appslatam.com/e195/ToolboxRemote.html" target="_blank" rel="noopener noreferrer">Toolbox Embraer</a></div>
+        <div class="card"><div class="icon"><span class="icon-emoji">📦</span></div><a href="https://toolbox.appslatam.com/e195/ToolboxRemote.html" target="_blank" rel="noopener noreferrer">Toolbox E195</a></div>
         <div class="card"><div class="icon"><span class="icon-emoji">📦</span></div><a href="https://toolbox.appslatam.com/b787/ToolboxRemote.html" target="_blank" rel="noopener noreferrer">Toolbox B787</a></div>
         <div class="card"><div class="icon"><span class="icon-emoji">📦</span></div><a href="https://toolbox.appslatam.com/b767/ToolboxRemote.html" target="_blank" rel="noopener noreferrer">Toolbox B767</a></div>
         <div class="card"><div class="icon"><span class="icon-emoji">📦</span></div><a href="https://toolbox.appslatam.com/b777/ToolboxRemote.html" target="_blank" rel="noopener noreferrer">Toolbox B777</a></div>
 
-        <div class="card"><div class="icon"><span class="icon-emoji">📘</span></div><a href="https://sites.google.com/latam.com/lc-line-control/aeronaves" target="_blank" rel="noopener noreferrer">FCOM A320</a></div>
-        <div class="card"><div class="icon"><span class="icon-emoji">📘</span></div><a href="https://drive.google.com/drive/folders/1-qRf6s5FfEI321VMYvwqbnLdUs7IH5DK" target="_blank" rel="noopener noreferrer">FCOM B777</a></div>
-        <div class="card"><div class="icon"><span class="icon-emoji">📘</span></div><a href="https://drive.google.com/drive/folders/1MtgaculTtXBOUTavz5pZpwvPojC3jiWU" target="_blank" rel="noopener noreferrer">FCOM B787</a></div>
+        <div class="card"><div class="icon"><span class="icon-emoji">📘</span></div><a href="https://sites.google.com/latam.com/lc-line-control/aeronaves" target="_blank" rel="noopener noreferrer">Fleet Documentation</a></div>
+        <div class="card"><div class="icon"><span class="icon-emoji">📘</span></div><a href="https://drive.google.com/drive/folders/1-qRf6s5FfEI321VMYvwqbnLdUs7IH5DK" target="_blank" rel="noopener noreferrer">Technical Library 1</a></div>
+        <div class="card"><div class="icon"><span class="icon-emoji">📘</span></div><a href="https://drive.google.com/drive/folders/1MtgaculTtXBOUTavz5pZpwvPojC3jiWU" target="_blank" rel="noopener noreferrer">Technical Library 2</a></div>
 
-        <div class="card"><div class="icon"><span class="icon-emoji">📑</span></div><a href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/mel-nef-afm-cdl" target="_blank" rel="noopener noreferrer">MEL / NEF / AFM / CDL</a></div>
+        <div class="card"><div class="icon"><span class="icon-emoji">📑</span></div><a href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/mel-normative" target="_blank" rel="noopener noreferrer">MEL Normative</a></div>
         <div class="card"><div class="icon"><span class="icon-emoji">⚠️</span></div><a href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/bta" target="_blank" rel="noopener noreferrer">BTA</a></div>
         <div class="card"><div class="icon"><span class="icon-emoji">ℹ️</span></div><a href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/bti" target="_blank" rel="noopener noreferrer">BTI</a></div>
         <div class="card"><div class="icon"><span class="icon-emoji">📝</span></div><a href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/itt" target="_blank" rel="noopener noreferrer">ITT</a></div>
@@ -297,11 +516,11 @@
         </div>
 
         <div class="card"><div class="icon"><span class="icon-emoji">⚙️</span></div>
-            <a href="https://sites.google.com/latam.com/lc-line-control/master-caution-master-warning/latam-delta-overall-compression-efficiency" target="_blank" rel="noopener noreferrer">Delta Overall Compression Efficiency</a>
+            <a href="https://sites.google.com/latam.com/lc-line-control/master-caution-master-warning/latam-delta-overall-compression-efficiency" target="_blank" rel="noopener noreferrer">Delta Overall Compression</a>
         </div>
 
         <div class="card"><div class="icon"><span class="icon-emoji">🔍</span></div>
-            <a href="https://script.google.com/a/macros/latam.com/s/AKfycbyZJL5BaNkcSOxFidFTQszqcqYCth0xoJ-reU7La0xqRT6JrvFZuuKrWmiD6EIFnm1q/exec" target="_blank" rel="noopener noreferrer">Histórico Antecedentes</a>
+            <a href="https://script.google.com/a/macros/latam.com/s/AKfycbyZJL5BaNkcSOxFidFTQszqcqYCth0xoJ-reU7La0xqRT6JrvFZuuKrWmiD6EIFnm1q/exec" target="_blank" rel="noopener noreferrer">Histórico Consultas</a>
         </div>
 
         <div class="card"><div class="icon"><span class="icon-emoji">📊</span></div>
