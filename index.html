@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<meta name="description"
-     content="LATAM MOC | Technical Operations Portal - Painel operacional para consultas, manutenção e documentação técnica.">
+  <meta name="description"
+        content="LATAM MOC | Technical Operations Portal - Painel operacional para consultas, manutenção e documentação técnica.">
 
   <meta name="theme-color" content="#101827">
 
@@ -26,7 +25,7 @@
        ROOT / DESIGN SYSTEM
        ========================================================= */
 
-    :root{
+    : root{
 
       --primary:#6D2077;
       --primary-dark:#53175e;
@@ -44,5 +43,3270 @@
       --resource-field-hover:#e2f1ff;
 
       --text:#172033;
-      --tex
+      --text-soft:#536174;
+      --muted:#7b8798;
+
+      --border:#dfe4eb;
+      --border-dark:#cbd3df;
+
+      --success:#16a36a;
+      --warning:#d88900;
+      --danger:#d64545;
+      --info:#2878d7;
+
+      --radius:10px;
+      --radius-sm:7px;
+
+      --shadow:0 2px 8px rgba(15,23,42,.05);
+      --shadow-md:0 5px 18px rgba(15,23,42,.08);
+      --shadow-lg:0 12px 30px rgba(15,23,42,.12);
+
+      --sidebar-width:270px;
+    }
+
+    body. dark{
+
+      --bg:#0c111a;
+      --card:#151c28;
+      --card-hover:#1a2331;
+      --portal-header:#4a4528;
+      --resource-field:#182a3a;
+      --resource-field-hover:#1d3347;
+
+      --text:#eef2f7;
+      --text-soft:#aab5c5;
+      --muted:#8490a1;
+
+      --border:#293445;
+      --border-dark:#354257;
+
+      --shadow:0 2px 8px rgba(0,0,0,.18);
+      --shadow-md:0 5px 18px rgba(0,0,0,.25);
+      --shadow-lg:0 12px 30px rgba(0,0,0,.35);
+    }
+
+
+    /* =========================================================
+       RESET
+       ========================================================= */
+
+    *{
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior: smooth;
+    }
+
+    body{
+
+      margin:0;
+
+      background:var(--bg);
+      color:var(--text);
+
+      font-family:
+        'Inter',
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+      font-size:15px;
+      line-height:1.5;
+
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+
+      transition:
+        background .25s ease,
+        color .25s ease;
+    }
+
+    a{
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button,
+    input{
+      font-family: inherit;
+    }
+
+    ::selection{
+      background:var(--primary);
+      color: white;
+    }
+
+
+    /* =========================================================
+       ACCESSIBILITY
+       ========================================================= */
+
+    .skip-link{
+
+      position: absolute;
+      left:-9999px;
+      top: auto;
+
+      width:1px;
+      height:1px;
+
+      overflow: hidden;
+    }
+
+    .skip-link:focus{
+
+      left:12px;
+      top:12px;
+
+      width: auto;
+      height: auto;
+
+      padding:10px 14px;
+
+      background: white;
+      color:#111827;
+
+      border-radius:6px;
+
+      box-shadow:var(--shadow-lg);
+
+      z-index:9999;
+    }
+
+    :focus-visible{
+
+      outline:2px solid var(--secondary);
+      outline-offset:3px;
+    }
+
+
+    /* =========================================================
+       SIDEBAR
+       ========================================================= */
+
+    .sidebar{
+
+      position: fixed;
+
+      left:0;
+      top:0;
+      bottom:0;
+
+      width:var(--sidebar-width);
+
+      background:
+        linear-gradient(
+          180deg,
+          #0d1421 0%,
+          #121b2a 55%,
+          #101827 100%
+        );
+
+      color:#fff;
+
+      display: flex;
+      flex-direction: column;
+
+      padding:22px 16px;
+
+      border-right:1px solid rgba(255,255,255,.07);
+
+      z-index:100;
+
+      overflow-y: auto;
+
+      box-shadow:
+        5px 0 20px rgba(0,0,0,.10);
+    }
+
+
+    /* =========================================================
+       BRAND
+       ========================================================= */
+
+    .brand{
+
+      display: flex;
+      align-items: center;
+      gap:12px;
+
+      padding:8px 8px 20px;
+
+      margin-bottom:18px;
+
+      border-bottom:
+        1px solid rgba(255,255,255,.09);
+    }
+
+    .brand-logo{
+
+      width:40px;
+      height:40px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background:
+        linear-gradient(
+          135deg,
+          var(--primary),
+          var(--secondary)
+        );
+
+      border-radius:9px;
+
+      font-size:20px;
+
+      box-shadow:
+        0 5px 14px rgba(228,0,124,.25);
+    }
+
+    .brand-text{
+      min-width:0;
+    }
+
+    .brand-title{
+
+      font-size:15px;
+      font-weight:700;
+
+      letter-spacing:.4px;
+
+      white-space:nowrap;
+    }
+
+    .brand-subtitle{
+
+      margin-top:2px;
+
+      color:#9ca8b8;
+
+      font-family:'Roboto Mono', monospace;
+
+      font-size:10px;
+
+      letter-spacing:.7px;
+
+      text-transform: uppercase;
+    }
+
+
+    /* =========================================================
+       SIDEBAR NAVIGATION
+       ========================================================= */
+
+    .nav-label{
+
+      padding:
+        8px 10px
+        6px;
+
+      color:#718096;
+
+      font-family:'Roboto Mono', monospace;
+
+      font-size:10px;
+
+      font-weight:500;
+
+      letter-spacing:1px;
+
+      text-transform: uppercase;
+    }
+
+    .nav-list{
+
+      list-style: none;
+
+      margin:0;
+      padding:0;
+
+      display: flex;
+      flex-direction: column;
+
+      gap:4px;
+    }
+
+    .nav-list a{
+
+      position: relative;
+
+      display: flex;
+      align-items: center;
+
+      gap:11px;
+
+      padding:11px 12px;
+
+      border-radius:7px;
+
+      color:#b9c3d1;
+
+      font-size:14px;
+      font-weight:500;
+
+      transition:
+        background .2s ease,
+        color .2s ease,
+        transform .2s ease;
+    }
+
+    .nav-icon{
+
+      width:20px;
+
+      text-align: center;
+
+      font-size:15px;
+
+      opacity:.9;
+    }
+
+    .nav-list a: hover{
+
+      background:
+        rgba(255,255,255,.07);
+
+      color: white;
+
+      transform:translateX(2px);
+    }
+
+    .nav-list a.active{
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(109,32,119,.75),
+          rgba(228,0,124,.18)
+        );
+
+      color: white;
+
+      box-shadow:
+        inset 3px 0 0 var(--secondary);
+    }
+
+
+    /* =========================================================
+       SIDEBAR FOOTER
+       ========================================================= */
+
+    .sidebar-footer{
+
+      margin-top: auto;
+
+      padding-top:18px;
+
+      border-top:
+        1px solid rgba(255,255,255,.08);
+    }
+
+    .system-status{
+
+      display: flex;
+      align-items: center;
+      gap:9px;
+
+      margin-bottom:12px;
+
+      padding:9px 11px;
+
+      background:
+        rgba(22,163,106,.08);
+
+      border:
+        1px solid rgba(22,163,106,.20);
+
+      border-radius:7px;
+
+      color:#b9e8d2;
+
+      font-family:'Roboto Mono', monospace;
+
+      font-size:11px;
+    }
+
+    .status-dot{
+
+      width:7px;
+      height:7px;
+
+      border-radius:50%;
+
+      background:var(--success);
+
+      box-shadow:
+        0 0 0 4px rgba(22,163,106,.12);
+
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse{
+
+      0%,100%{
+        opacity:1;
+      }
+
+      50%{
+        opacity:.45;
+      }
+    }
+
+    .theme-toggle{
+
+      width:100%;
+
+      border:
+        1px solid rgba(255,255,255,.12);
+
+      background:
+        rgba(255,255,255,.05);
+
+      color:#c7d0dc;
+
+      padding:10px 12px;
+
+      border-radius:7px;
+
+      cursor: pointer;
+
+      font-size:12px;
+      font-weight:600;
+
+      transition:.2s ease;
+    }
+
+    .theme-toggle:hover{
+
+      background:
+        rgba(255,255,255,.10);
+
+      color: white;
+    }
+
+
+    /* =========================================================
+       MAIN
+       ========================================================= */
+
+    .main{
+
+      margin-left:var(--sidebar-width);
+
+      min-height:100vh;
+
+      padding:28px 34px 50px;
+    }
+
+
+    /* =========================================================
+       TOP HEADER
+       ========================================================= */
+
+    .topbar{
+
+      position: sticky;
+
+      top:0;
+
+      z-index:50;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content:space-between;
+
+      gap:25px;
+
+      min-height:72px;
+
+      margin-bottom:28px;
+
+      padding:14px 20px;
+
+      background:
+        color-mix(
+          in srgb,
+          var(--portal-header) 96%,
+          transparent
+        );
+
+      border:
+        1px solid var(--border);
+
+      border-radius:10px;
+
+      box-shadow:var(--shadow);
+
+      backdrop-filter:blur(12px);
+    }
+
+    .page-heading{
+
+      min-width:0;
+    }
+
+    .page-kicker{
+
+      color:var(--primary);
+
+      font-family:'Roboto Mono', monospace;
+
+      font-size:11px;
+
+      font-weight:600;
+
+      letter-spacing:1.2px;
+
+      text-transform: uppercase;
+    }
+
+    .page-title{
+
+      margin:2px 0 0;
+
+      font-size:21px;
+
+      line-height:1.2;
+
+      font-weight:700;
+
+      letter-spacing:-.3px;
+    }
+
+    .page-description{
+
+      margin:3px 0 0;
+
+      color:var(--muted);
+
+      font-size:12px;
+    }
+
+
+    /* =========================================================
+       TOPBAR TOOLS
+       ========================================================= */
+
+    .topbar-tools{
+
+      display: flex;
+      align-items: center;
+
+      gap:12px;
+
+      flex-shrink:0;
+    }
+
+    .search-box{
+
+      position: relative;
+
+      width:260px;
+    }
+
+    .search-box input{
+
+      width:100%;
+
+      height:40px;
+
+      padding:
+        0 12px 0 38px;
+
+      border:
+        1px solid var(--border);
+
+      background:var(--bg);
+
+      color:var(--text);
+
+      border-radius:7px;
+
+      outline: none;
+
+      font-size:13px;
+
+      transition:.2s ease;
+    }
+
+    .search-box input: focus{
+
+      border-color:var(--primary);
+
+      box-shadow:
+        0 0 0 3px rgba(109,32,119,.10);
+    }
+
+    .search-icon{
+
+      position: absolute;
+
+      left:13px;
+      top:50%;
+
+      transform:translateY(-50%);
+
+      color:var(--muted);
+
+      font-size:14px;
+
+      pointer-events: none;
+    }
+
+    .utc-clock{
+
+      min-width:115px;
+
+      padding:7px 10px;
+
+      background:var(--navy);
+
+      color:#e6edf5;
+
+      border-radius:7px;
+
+      text-align: center;
+
+      font-family:'Roboto Mono', monospace;
+    }
+
+    .utc-label{
+
+      display: block;
+
+      color:#8996a8;
+
+      font-size:9px;
+
+      letter-spacing:1px;
+    }
+
+    .utc-time{
+
+      display: block;
+
+      margin-top:1px;
+
+      font-size:13px;
+
+      font-weight:600;
+    }
+
+
+    /* =========================================================
+       SECTION
+       ========================================================= */
+
+    .section{
+
+      margin-bottom:28px;
+
+      scroll-margin-top:95px;
+    }
+
+    .section-header{
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content:space-between;
+
+      gap:15px;
+
+      margin-bottom:13px;
+    }
+
+    .section-title-wrap{
+
+      display: flex;
+      align-items: center;
+
+      gap:10px;
+    }
+
+    .section-marker{
+
+      width:4px;
+      height:23px;
+
+      border-radius:3px;
+
+      background:
+        linear-gradient(
+          180deg,
+          var(--primary),
+          var(--secondary)
+        );
+    }
+
+    .section h2{
+
+      margin:0;
+
+      font-size:17px;
+
+      font-weight:700;
+
+      letter-spacing:-.2px;
+    }
+
+    .section-code{
+
+      color:var(--muted);
+
+      font-family:'Roboto Mono', monospace;
+
+      font-size:10px;
+
+      letter-spacing:.8px;
+    }
+
+
+    /* =========================================================
+       RESOURCE GRID
+       ========================================================= */
+
+    .resource-grid{
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          auto-fill,
+          minmax(220px,1fr)
+        );
+
+      gap:12px;
+    }
+
+
+    /* =========================================================
+       RESOURCE CARD
+       ========================================================= */
+
+    .resource-card{
+
+      position: relative;
+
+      display: flex;
+      align-items: center;
+
+      gap:13px;
+
+      min-height:76px;
+
+      padding:14px 15px;
+
+      background:var(--resource-field);
+
+      border:
+        1px solid var(--border);
+
+      border-radius:9px;
+
+      box-shadow:var(--shadow);
+
+      overflow: hidden;
+
+      transition:
+        transform .2s ease,
+        border-color .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+    }
+
+    .resource-card::before{
+
+      content:"";
+
+      position: absolute;
+
+      left:0;
+      top:0;
+      bottom:0;
+
+      width:3px;
+
+      background:
+        linear-gradient(
+          180deg,
+          var(--primary),
+          var(--secondary)
+        );
+
+      transform:scaleY(0);
+
+      transform-origin: center;
+
+      transition:.2s ease;
+    }
+
+    .resource-card:hover{
+
+      transform:translateY(-2px);
+
+      background:var(--resource-field-hover);
+
+      border-color:
+        color-mix(
+          in srgb,
+          var(--primary) 45%,
+          var(--border)
+        );
+
+      box-shadow:var(--shadow-md);
+    }
+
+    .resource-card:hover::before{
+
+      transform:scaleY(1);
+    }
+
+    .resource-icon{
+
+      flex-shrink:0;
+
+      width:40px;
+      height:40px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius:7px;
+
+      background:
+        color-mix(
+          in srgb,
+          var(--primary) 9%,
+          var(--card)
+        );
+
+      border:
+        1px solid
+        color-mix(
+          in srgb,
+          var(--primary) 18%,
+          var(--border)
+        );
+
+      color:var(--primary);
+
+      font-size:17px;
+    }
+
+    .resource-info{
+
+      min-width:0;
+
+      flex:1;
+    }
+
+    .resource-title{
+
+      display: block;
+
+      color:var(--text);
+
+      font-size:14px;
+
+      font-weight:600;
+
+      line-height:1.35;
+    }
+
+    .resource-meta{
+
+      margin-top:3px;
+
+      color:var(--muted);
+
+      font-family:'Roboto Mono', monospace;
+
+      font-size:9px;
+
+      text-transform: uppercase;
+
+      letter-spacing:.5px;
+    }
+
+    .resource-arrow{
+
+      flex-shrink:0;
+
+      color:#9aa5b4;
+
+      font-size:15px;
+
+      transition:
+        transform .2s ease,
+        color .2s ease;
+    }
+
+    .resource-card:hover .resource-arrow{
+
+      color:var(--primary);
+
+      transform:translateX(3px);
+    }
+
+
+    /* =========================================================
+       A320 SPECIAL SECTION
+       ========================================================= */
+
+    .section-a320{
+
+      position: relative;
+
+      padding:18px;
+
+      background:
+        linear-gradient(
+          135deg,
+          color-mix(
+            in srgb,
+            var(--primary) 5%,
+            var(--card)
+          ),
+          var(--card)
+        );
+
+      border:
+        1px solid
+        color-mix(
+          in srgb,
+          var(--primary) 28%,
+          var(--border)
+        );
+
+      border-radius:11px;
+
+      box-shadow:var(--shadow-md);
+    }
+
+    .section-a320::after{
+
+      content:"A320";
+
+      position: absolute;
+
+      top:12px;
+      right:18px;
+
+      color:
+        color-mix(
+          in srgb,
+          var(--primary) 20%,
+          transparent
+        );
+
+      font-family:'Roboto Mono', monospace;
+
+      font-size:28px;
+
+      font-weight:600;
+
+      letter-spacing:2px;
+
+      pointer-events: none;
+    }
+
+    .section-a320 .section-header{
+
+      position: relative;
+      z-index:2;
+    }
+
+
+    /* =========================================================
+       SEARCH FILTER
+       ========================================================= */
+
+    .resource-card.hidden{
+
+      display: none;
+    }
+
+    .no-results{
+
+      display: none;
+
+      margin-top:12px;
+
+      padding:20px;
+
+      border:
+        1px dashed var(--border-dark);
+
+      border-radius:8px;
+
+      color:var(--muted);
+
+      text-align: center;
+
+      font-size:13px;
+    }
+
+
+    /* =========================================================
+       MOBILE MENU
+       ========================================================= */
+
+    .menu-toggle{
+
+      display: none;
+
+      position: fixed;
+
+      left:14px;
+      top:14px;
+
+      z-index:200;
+
+      width:42px;
+      height:42px;
+
+      border:1px solid var(--border);
+
+      border-radius:8px;
+
+      background:var(--card);
+
+      color:var(--text);
+
+      box-shadow:var(--shadow-md);
+
+      cursor: pointer;
+
+      font-size:20px;
+    }
+
+
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
+
+    @media(max-width:1100px){
+
+      .topbar{
+
+        align-items:flex-start;
+        flex-direction: column;
+      }
+
+      .topbar-tools{
+
+        width:100%;
+      }
+
+      .search-box{
+
+        flex:1;
+        width: auto;
+      }
+    }
+
+
+    @media(max-width:900px){
+
+      .sidebar{
+
+        left:-290px;
+
+        width:270px;
+
+        transition: left .25s ease;
+      }
+
+      .sidebar.open{
+
+        left:0;
+      }
+
+      .menu-toggle{
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+      }
+
+      .main{
+
+        margin-left:0;
+
+        padding:
+          72px 18px 40px;
+      }
+
+      .topbar{
+
+        position: relative;
+
+        margin-bottom:22px;
+      }
+
+      .page-title{
+
+        font-size:19px;
+      }
+
+      .resource-grid{
+
+        grid-template-columns:
+          repeat(
+            auto-fill,
+            minmax(200px,1fr)
+          );
+      }
+    }
+
+
+    @media(max-width:600px){
+
+      .main{
+
+        padding:
+          68px 12px 30px;
+      }
+
+      .topbar{
+
+        padding:15px;
+      }
+
+      .topbar-tools{
+
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .search-box{
+
+        width:100%;
+      }
+
+      .utc-clock{
+
+        width:100%;
+      }
+
+      .resource-grid{
+
+        grid-template-columns:1fr;
+
+        gap:9px;
+      }
+
+      .section-a320{
+
+        padding:14px;
+      }
+
+      .section-a320::after{
+
+        display: none;
+      }
+
+      .resource-title{
+
+        font-size:14px;
+      }
+    }
+
+
+    /* =========================================================
+       DARK MODE ADJUSTMENTS
+       ========================================================= */
+
+    body. dark .resource-icon{
+
+      background:
+        rgba(109,32,119,.15);
+
+      border-color:
+        rgba(228,0,124,.20);
+    }
+
+    body. dark .topbar{
+
+      background:
+        rgba(21,28,40,.94);
+    }
+
+
+    /* =========================================================
+       PRINT
+       ========================================================= */
+
+    @media print{
+
+      .sidebar,
+      .menu-toggle,
+      .topbar-tools{
+
+        display: none! important;
+      }
+
+      .main{
+
+        margin-left:0;
+
+        padding:0;
+      }
+
+      .resource-card{
+
+        break-inside: avoid;
+      }
+    }
+
+  </style>
+</head>
+
+
+<body id="top">
+
+  <!-- =======================================================
+       ACCESSIBILITY
+       ======================================================= -->
+
+  <a
+    class="skip-link"
+    href="#main">
+    Pular para o conteúdo
+  </a>
+
+
+  <!-- =======================================================
+       MOBILE MENU
+       ======================================================= -->
+
+  <button
+    class="menu-toggle"
+    id="menuToggle"
+    aria-expanded="false"
+    aria-controls="siteSidebar"
+    aria-label="Abrir menu">
+
+    â˜°
+
+  </button>
+
+
+  <!-- =======================================================
+       SIDEBAR
+       ======================================================= -->
+
+  <aside
+    id="siteSidebar"
+    class="sidebar"
+    aria-label="NavegaÃ§Ã£o principal">
+
+
+    <div class="brand">
+
+      <div class="brand-logo">
+        âœˆ
+      </div>
+
+      <div class="brand-text">
+
+        <div class="brand-title">
+          LATAM MOC
+        </div>
+
+        <div class="brand-subtitle">
+          Technical Operations
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="nav-label">
+      Navigation
+    </div>
+
+
+    <nav>
+
+      <ul class="nav-list">
+
+        <li>
+          <a href="#ops">
+            <span class="nav-icon">â–£</span>
+            <span>MOC Consultas</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#maint">
+            <span class="nav-icon">âš™</span>
+            <span>Facilitadores Frota</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#a320-moc">
+            <span class="nav-icon">âœˆ</span>
+            <span>Airbus A320 Family</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#mfg">
+            <span class="nav-icon">âŒ‚</span>
+            <span>Fabricantes</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#docs">
+            <span class="nav-icon">â–¤</span>
+            <span>Documentação Técnica</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="#extra">
+            <span class="nav-icon">â—ˆ</span>
+            <span>Recursos Adicionais</span>
+          </a>
+        </li>
+
+      </ul>
+
+    </nav>
+
+
+    <div class="sidebar-footer">
+
+      <div class="system-status">
+
+        <span class="status-dot"></span>
+
+        <span>
+          SYSTEM ONLINE
+        </span>
+
+      </div>
+
+
+      <button
+        class="theme-toggle"
+        id="themeToggle"
+        aria-pressed="false">
+
+        â— &nbsp; Alternar Dark Mode
+
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- =======================================================
+       MAIN
+       ======================================================= -->
+
+  <main
+    id="main"
+    class="main">
+
+
+    <!-- =====================================================
+         TOPBAR
+         ===================================================== -->
+
+    <header class="topbar">
+
+      <div class="page-heading">
+
+        <div class="page-kicker">
+          LATAM Airlines Group Â· MOC
+        </div>
+
+        <h1 class="page-title">
+          Technical Operations Portal
+        </h1>
+
+        <p class="page-description">
+          Central operacional para consultas, manutenção e documentação técnica.
+        </p>
+
+      </div>
+
+
+      <div class="topbar-tools">
+
+        <div class="search-box">
+
+          <span class="search-icon">
+            âŒ•
+          </span>
+
+          <input
+            type="search"
+            id="searchInput"
+            placeholder="Pesquisar recurso..."
+            autocomplete="off"
+            aria-label="Pesquisar recursos">
+
+        </div>
+
+
+        <div class="utc-clock">
+
+          <span class="utc-label">
+            UTC TIME
+          </span>
+
+          <span
+            class="utc-time"
+            id="utcTime">
+            --:--:--
+          </span>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- =====================================================
+         MOC CONSULTAS
+         ===================================================== -->
+
+    <section
+      class="section"
+      id="ops">
+
+      <div class="section-header">
+
+        <div class="section-title-wrap">
+
+          <span class="section-marker"></span>
+
+          <h2>
+            Portal de Consultas MOC
+          </h2>
+
+        </div>
+
+        <span class="section-code">
+          OPS / MOC
+        </span>
+
+      </div>
+
+
+      <div class="resource-grid">
+
+
+        <a
+          class="resource-card"
+          href="https://iflightla.ibsplc.aero/iflight-limops/web/getMainPage"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">âœˆ</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              Limops
+            </span>
+
+            <span class="resource-meta">
+              Operations
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">
+            â†’
+          </span>
+
+        </a>
+
+
+        <a
+          class="resource-card"
+          href="https://iflightla.ibsplc.aero/iflight-ops/web/getMainPage"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">âœˆ</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              Malha AÃ©rea LATAM
+            </span>
+
+            <span class="resource-meta">
+              Flight Operations
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a
+          class="resource-card"
+          href="https://portalmoc.appslatam.com/operations/ac-flight-monitoring"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">â–¥</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              Dashboards
+            </span>
+
+            <span class="resource-meta">
+              Monitoring
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a
+          class="resource-card"
+          href="https://trello.com/b/IdrmcHRA/moc"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">â–¤</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              Trello
+            </span>
+
+            <span class="resource-meta">
+              MOC Management
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a
+          class="resource-card"
+          href="https://fiori.appslatam.com/sites/prd#stockSituationMMBE-Display?mode=MMBE"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">â–¦</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              Situação Estoque Atual
+            </span>
+
+            <span class="resource-meta">
+              Materials
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a
+          class="resource-card"
+          href="https://cargo-heroes.appslatam.com/#/app"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">â–°</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              Cargo Heroes
+            </span>
+
+            <span class="resource-meta">
+              Logistics
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a
+          class="resource-card"
+          href="https://maintenix.lan.com/maintenix/common/security/login.jsp"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">âš™</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              Maintenix
+            </span>
+
+            <span class="resource-meta">
+              Maintenance System
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a
+          class="resource-card"
+          href="https://datastudio.google.com/u/0/reporting/1rLUa2IErQ-fI172csXDY18MX4LCEwREU/page/lIkR"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">â–¥</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              CCM MEL
+            </span>
+
+            <span class="resource-meta">
+              MEL Control
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a
+          class="resource-card"
+          href="https://client.wvd.microsoft.com/arm/webclient/index.html"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">â–£</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              Aircom
+            </span>
+
+            <span class="resource-meta">
+              Remote Workspace
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a
+          class="resource-card"
+          href="https://laningenieria.sysaidit.com/HelpDesk.jsp?fromId=IncidentsList"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">âš’</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              SysAid
+            </span>
+
+            <span class="resource-meta">
+              Help Desk
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a
+          class="resource-card"
+          href="https://script.google.com/a/macros/latam.com/s/AKfycbyZJL5BaNkcSOxFidFTQszqcqYCth0xoJ-reU7La0xqRT6JrvFZuuKrWmiD6EIFnm1q/exec"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">âŒ•</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              Consulta Antecedentes de Panes
+            </span>
+
+            <span class="resource-meta">
+              Troubleshooting
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a
+          class="resource-card"
+          href="Airbus%20A320%20Family/MOTORES%20INSTALADOS%20NA%20FROTA.html"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">âš™</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              Motores Instalados Frota TAM
+            </span>
+
+            <span class="resource-meta">
+              Fleet Data
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a
+          class="resource-card"
+          href="https://sites.google.com/latam.com/lc-line-control/master-caution-master-warning/latam-delta-overall-compression-efficiency"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">âš™</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              Delta Overall Compression Efficiency
+            </span>
+
+            <span class="resource-meta">
+              Engine Performance
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FACILITADORES FROTA
+         ===================================================== -->
+
+    <section
+      class="section"
+      id="maint">
+
+      <div class="section-header">
+
+        <div class="section-title-wrap">
+
+          <span class="section-marker"></span>
+
+          <h2>
+            Facilitadores Frota
+          </h2>
+
+        </div>
+
+        <span class="section-code">
+          FLEET
+        </span>
+
+      </div>
+
+
+      <div class="resource-grid">
+
+
+        <a
+          class="resource-card"
+          href="https://sites.google.com/latam.com/lc-line-control/facilitadores-a320fam"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">A320</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              Facilitadores A320
+            </span>
+
+            <span class="resource-meta">
+              Airbus A320 Family
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a
+          class="resource-card"
+          href="https://sites.google.com/latam.com/lc-line-control/facilitadores-b777"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">ðŸŽ“</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              Facilitadores B777
+            </span>
+
+            <span class="resource-meta">
+              Boeing 777
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a
+          class="resource-card"
+          href="https://sites.google.com/latam.com/lc-line-control/facilitadores-b787"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">ðŸŽ“</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              Facilitadores B787
+            </span>
+
+            <span class="resource-meta">
+              Boeing 787
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a
+          class="resource-card"
+          href="https://sites.google.com/latam.com/lc-line-control/facilitadores-embraer-e2"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">ðŸŽ“</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              Facilitadores Embraer E2
+            </span>
+
+            <span class="resource-meta">
+              Embraer E2
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         A320 FAMILY
+         ===================================================== -->
+
+    <section
+      class="section section-a320"
+      id="a320-moc">
+
+      <div class="section-header">
+
+        <div class="section-title-wrap">
+
+          <span class="section-marker"></span>
+
+          <h2>
+            Dados Facilitadores Família A320
+          </h2>
+
+        </div>
+
+        <span class="section-code">
+          ATA / A320
+        </span>
+
+      </div>
+
+
+      <div class="resource-grid">
+
+
+        <a class="resource-card"
+           href="Airbus%20A320%20Family/Alpha_Call_Up_References.html"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">â˜Ž</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              Referências de Alpha Call Up
+            </span>
+            <span class="resource-meta">
+              Alpha Call Up
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="Airbus%20A320%20Family/Avionics_Computers_Visual_Guide.html"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">â–£</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              Guia Localização Computadores
+            </span>
+            <span class="resource-meta">
+              Avionics
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="Airbus%20A320%20Family/CFDS_BITE_MODES_Guide.html"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">âŒ˜</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              CFDS BITE Recursos Disponíveis
+            </span>
+            <span class="resource-meta">
+              CFDS / BITE
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="Airbus%20A320%20Family/Cockpit_Panels_Visual_Guide.html"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">â–¤</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              IlustraÃ§Ã£o Paineis Cockpit
+            </span>
+            <span class="resource-meta">
+              Cockpit
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="Airbus%20A320%20Family/ECAM_SD_Pages_Visual_Technical_Guide.html"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">â–¥</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              ExplanaÃ§Ã£o System Display Pages
+            </span>
+            <span class="resource-meta">
+              ECAM / SD
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="Airbus%20A320%20Family/Flight_Phases_FWC_Visual_Guide.html"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">âœˆ</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              ExplanaÃ§Ã£o FMC Flight Phases
+            </span>
+            <span class="resource-meta">
+              Flight Phases
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="Airbus%20A320%20Family/Guia_A320_Missing_Fasteners.html"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">âš™</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              Guia A320 Missing Fasteners
+            </span>
+            <span class="resource-meta">
+              Structures
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="Airbus%20A320%20Family/Guia_Localizacao_CB_A320.html"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">âš¡</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              Guia Localização CB A320
+            </span>
+            <span class="resource-meta">
+              Circuit Breakers
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="Airbus%20A320%20Family/MEL_Day_Validity_Calculator_UTC.html"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">â—·</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              Calculador Vencimento MEL UTC
+            </span>
+            <span class="resource-meta">
+              MEL / UTC
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="Airbus%20A320%20Family/NO_GO_ITENS_ATA_Technical_Guide.html"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">âŠ˜</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              Mensagens NO-GO Items
+            </span>
+            <span class="resource-meta">
+              ATA / NO-GO
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/mel-nef-afm-cdl"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">â–¤</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              MEL / NEF / AFM / CDL
+            </span>
+            <span class="resource-meta">
+              Technical Documentation
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="Airbus%20A320%20Family/System_Reset_Technical_Index.html"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">â†»</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              Índice de Resets Permitidos
+            </span>
+            <span class="resource-meta">
+              System Reset
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="Airbus%20A320%20Family/Task_Reference_Guide.html"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">âš’</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              Índice de Testes Operacionais
+            </span>
+            <span class="resource-meta">
+              Operational Tests
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="ms-excel:ofe|u|https://murilo1953.github.io/Corporative-Portal/Airbus%20A320%20Family/Systems%20and%20Panels.xlsm">
+
+          <div class="resource-icon">â–¦</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              Explanação Técnica Sistemas A320
+            </span>
+            <span class="resource-meta">
+              Excel / Systems
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="https://w3.airbus.com/1T40/search/text?q=operational%20test%20with%20cfds"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">âŒ˜</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              Operational Tests With CFDS
+            </span>
+            <span class="resource-meta">
+              A320 Family / CFDS
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="https://w3.airbus.com/1T40/search/text?q=system%20test%20with%20cfds"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">âš™</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              System Tests With CFDS
+            </span>
+            <span class="resource-meta">
+              A320 Family / CFDS
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FABRICANTES
+         ===================================================== -->
+
+    <section
+      class="section"
+      id="mfg">
+
+      <div class="section-header">
+
+        <div class="section-title-wrap">
+
+          <span class="section-marker"></span>
+
+          <h2>
+            Sites Oficiais Fabricantes
+          </h2>
+
+        </div>
+
+        <span class="section-code">
+          OEM
+        </span>
+
+      </div>
+
+
+      <div class="resource-grid">
+
+
+        <a
+          class="resource-card"
+          href="https://w3.airbus.com/newairbusworld/faces/wcnav_defaultSelection"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">ðŸ­</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              AirbusWorld
+            </span>
+
+            <span class="resource-meta">
+              Airbus
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a
+          class="resource-card"
+          href="https://flyembraer.com/home?first=true"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">âœˆ</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              FlyEmbraer
+            </span>
+
+            <span class="resource-meta">
+              Embraer
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a
+          class="resource-card"
+          href="https://ui.aviationid.com/iamui/mfa/userReference"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">âœˆ</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              MyBoeingFleet
+            </span>
+
+            <span class="resource-meta">
+              Boeing
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         DOCUMENTAÃ‡ÃƒO
+         ===================================================== -->
+
+    <section
+      class="section"
+      id="docs">
+
+      <div class="section-header">
+
+        <div class="section-title-wrap">
+
+          <span class="section-marker"></span>
+
+          <h2>
+            Documentação Técnica
+          </h2>
+
+        </div>
+
+        <span class="section-code">
+          DOC / TECH
+        </span>
+
+      </div>
+
+
+      <div class="resource-grid">
+
+
+        <a class="resource-card"
+           href="https://toolbox.appslatam.com/a320/ToolboxRemote.html"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">â–£</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              Toolbox A320
+            </span>
+            <span class="resource-meta">
+              Airbus A320
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="https://toolbox.appslatam.com/e195/ToolboxRemote.html"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">â–£</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              Toolbox E195
+            </span>
+            <span class="resource-meta">
+              Embraer E195
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="https://toolbox.appslatam.com/b787/ToolboxRemote.html"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">â–£</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              Toolbox B787
+            </span>
+            <span class="resource-meta">
+              Boeing 787
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="https://toolbox.appslatam.com/b767/ToolboxRemote.html"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">â–£</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              Toolbox B767
+            </span>
+            <span class="resource-meta">
+              Boeing 767
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="https://toolbox.appslatam.com/b777/ToolboxRemote.html"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">â–£</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              Toolbox B777
+            </span>
+            <span class="resource-meta">
+              Boeing 777
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="https://drive.google.com/drive/folders/1-qRf6s5FfEI321VMYvwqbnLdUs7IH5DK"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">â–¤</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              FCOM B767
+            </span>
+            <span class="resource-meta">
+              Flight Crew Operations
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="https://drive.google.com/drive/folders/1MtgaculTtXBOUTavz5pZpwvPojC3jiWU"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">â–¤</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              FCOM B787
+            </span>
+            <span class="resource-meta">
+              Flight Crew Operations
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/bta"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">âš </div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              BTA
+            </span>
+            <span class="resource-meta">
+              Technical Bulletin
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/bti"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">â„¹</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              BTI
+            </span>
+            <span class="resource-meta">
+              Technical Instruction
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/itt"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">â–¤</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              ITT
+            </span>
+            <span class="resource-meta">
+              Technical Documentation
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/ptt"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">â–¤</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              PTT
+            </span>
+            <span class="resource-meta">
+              Technical Documentation
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a class="resource-card"
+           href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/iq"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">âŒ•</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              IQ
+            </span>
+            <span class="resource-meta">
+              Quality / Inspection
+            </span>
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+      </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         RECURSOS ADICIONAIS
+         ===================================================== -->
+
+    <section
+      class="section"
+      id="extra">
+
+      <div class="section-header">
+
+        <div class="section-title-wrap">
+
+          <span class="section-marker"></span>
+
+          <h2>
+            Recursos Adicionais
+          </h2>
+
+        </div>
+
+        <span class="section-code">
+          SUPPORT
+        </span>
+
+      </div>
+
+
+      <div class="resource-grid">
+
+
+        <a
+          class="resource-card"
+          href="https://datastudio.google.com/u/0/reporting/53a98689-6da5-47ab-be45-678dd4633daa/page/p_7gh7oq4ndd"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">â–¥</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              Controle CR & CCM
+            </span>
+
+            <span class="resource-meta">
+              Dashboard
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a
+          class="resource-card"
+          href="https://drive.google.com/file/d/1S7iyQxgVwphpboxgb1Xnho1n6iIN522V/view?usp=sharing"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">â–¤</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              Manual Procedimentos MOC
+            </span>
+
+            <span class="resource-meta">
+              MOC Procedures
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a
+          class="resource-card"
+          href="https://drive.google.com/file/d/1jEIF7yKC0t9bFA_Wkj8s4Z4ZWqxIvXlj/view"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">âŒ˜</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              Efetividade Softwares BTI-GEN-00-025
+            </span>
+
+            <span class="resource-meta">
+              Software / BTI
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+        <a
+          class="resource-card"
+          href="https://portal.latam.com/"
+          target="_blank"
+          rel="noopener noreferrer">
+
+          <div class="resource-icon">â—Ž</div>
+
+          <div class="resource-info">
+
+            <span class="resource-title">
+              Portal LATAM
+            </span>
+
+            <span class="resource-meta">
+              Corporate Portal
+            </span>
+
+          </div>
+
+          <span class="resource-arrow">â†’</span>
+
+        </a>
+
+
+      </div>
+
+    </section>
+
+
+    <div class="no-results" id="noResults">
+      Nenhum recurso encontrado para a pesquisa.
+    </div>
+
+
+  </main>
+
+
+  <!-- =======================================================
+       JAVASCRIPT
+       ======================================================= -->
+
+  <script>
+
+    (function(){
+
+      "use strict";
+
+
+      /* =====================================================
+         ELEMENTS
+         ===================================================== */
+
+      const body =
+        document.body;
+
+      const themeToggle =
+        document.getElementById(
+          "themeToggle"
+        );
+
+      const menuToggle =
+        document.getElementById(
+          "menuToggle"
+        );
+
+      const sidebar =
+        document.getElementById(
+          "siteSidebar"
+        );
+
+      const searchInput =
+        document.getElementById(
+          "searchInput"
+        );
+
+      const utcTime =
+        document.getElementById(
+          "utcTime"
+        );
+
+      const noResults =
+        document.getElementById(
+          "noResults"
+        );
+
+      const cards =
+        Array.from(
+          document.querySelectorAll(
+            ".resource-card"
+          )
+        );
+
+
+      /* =====================================================
+         DARK MODE
+         ===================================================== */
+
+      const savedTheme =
+        localStorage.getItem(
+          "theme"
+        );
+
+      if(savedTheme === "dark"){
+
+        body.classList.add("dark");
+
+        themeToggle.setAttribute(
+          "aria-pressed",
+          "true"
+        );
+
+      }
+      else if(
+        !savedTheme &&
+        window.matchMedia &&
+        window.matchMedia(
+          "(prefers-color-scheme: dark)"
+        ).matches
+      ){
+
+        body.classList.add("dark");
+
+        themeToggle.setAttribute(
+          "aria-pressed",
+          "true"
+        );
+
+      }
+
+
+      themeToggle.addEventListener(
+        "click",
+        function(){
+
+          const isDark =
+            body.classList.toggle(
+              "dark"
+            );
+
+          themeToggle.setAttribute(
+            "aria-pressed",
+            String(isDark)
+          );
+
+          localStorage.setItem(
+            "theme",
+            isDark
+              ? "dark"
+              : "light"
+          );
+
+        }
+      );
+
+
+      /* =====================================================
+         UTC CLOCK
+         ===================================================== */
+
+      function updateUTC(){
+
+        const now =
+          new Date();
+
+        const hours =
+          String(
+            now.getUTCHours()
+          ).padStart(2,"0");
+
+        const minutes =
+          String(
+            now.getUTCMinutes()
+          ).padStart(2,"0");
+
+        const seconds =
+          String(
+            now.getUTCSeconds()
+          ).padStart(2,"0");
+
+        utcTime.textContent =
+          `${hours}:${minutes}:${seconds}`;
+
+      }
+
+      updateUTC();
+
+      setInterval(
+        updateUTC,
+        1000
+      );
+
+
+      /* =====================================================
+         SEARCH
+         ===================================================== */
+
+      searchInput.addEventListener(
+        "input",
+        function(){
+
+          const query =
+            this. value
+              .trim()
+              .toLowerCase();
+
+          let visibleCount = 0;
+
+
+          cards.forEach(
+            function(card){
+
+              const title =
+                card
+                  .querySelector(
+                    ".resource-title"
+                  )
+                  ?.textContent
+                  .toLowerCase() || "";
+
+              const meta =
+                card
+                  .querySelector(
+                    ".resource-meta"
+                  )
+                  ?.textContent
+                  .toLowerCase() || "";
+
+              const match =
+                !query ||
+                title.includes(query) ||
+                meta.includes(query);
+
+              card.classList.toggle(
+                "hidden",
+                !match
+              );
+
+              if(match){
+                visibleCount++;
+              }
+
+            }
+          );
+
+
+          noResults.style.display =
+            visibleCount === 0
+              ? "block"
+              : "none";
+
+        }
+      );
+
+
+      /* =====================================================
+         MOBILE MENU
+         ===================================================== */
+
+      menuToggle.addEventListener(
+        "click",
+        function(){
+
+          const open =
+            sidebar.classList.toggle(
+              "open"
+            );
+
+          menuToggle.setAttribute(
+            "aria-expanded",
+            String(open)
+          );
+
+        }
+      );
+
+
+      document.addEventListener(
+        "click",
+        function(event){
+
+          if(
+            window.innerWidth <= 900 &&
+            sidebar.classList.contains(
+              "open"
+            )
+          ){
+
+            if(
+              !sidebar. contains(
+                event.target
+              ) &&
+              !menuToggle.contains(
+                event.target
+              )
+            ){
+
+              sidebar.classList.remove(
+                "open"
+              );
+
+              menuToggle.setAttribute(
+                "aria-expanded",
+                "false"
+              );
+
+            }
+
+          }
+
+        }
+      );
+
+
+      /* =====================================================
+         ESCAPE CLOSE
+         ===================================================== */
+
+      document.addEventListener(
+        "keydown",
+        function(event){
+
+          if(
+            event.key === "Escape"
+          ){
+
+            sidebar.classList.remove(
+              "open"
+            );
+
+            menuToggle.setAttribute(
+              "aria-expanded",
+              "false"
+            );
+
+          }
+
+        }
+      );
+
+
+      /* =====================================================
+         ACTIVE NAVIGATION
+         ===================================================== */
+
+      const navLinks =
+        Array. from(
+          document.querySelectorAll(
+            ".nav-list a"
+          )
+        );
+
+      const sections =
+        Array. from(
+          document.querySelectorAll(
+            "main section[id]"
+          )
+        );
+
+
+      const observer =
+        new IntersectionObserver(
+          function(entries){
+
+            entries.forEach(
+              function(entry){
+
+                if(entry.isIntersecting){
+
+                  navLinks.forEach(
+                    function(link){
+
+                      link.classList.remove(
+                        "active"
+                      );
+
+                      if(
+                        link.getAttribute(
+                          "href"
+                        ) ===
+                        "#" +
+                        entry.target.id
+                      ){
+
+                        link.classList.add(
+                          "active"
+                        );
+
+                      }
+
+                    }
+                  );
+
+                }
+
+              }
+            );
+
+          },
+          {
+            rootMargin:
+              "-20% 0px -65% 0px"
+          }
+        );
+
+
+      sections.forEach(
+        function(section){
+
+          observer. observe(
+            section
+          );
+
+        }
+      );
+
+
+      /* =====================================================
+         CLOSE MOBILE MENU AFTER NAVIGATION
+         ===================================================== */
+
+      navLinks.forEach(
+        function(link){
+
+          link.addEventListener(
+            "click",
+            function(){
+
+              if(
+                window.innerWidth <= 900
+              ){
+
+                sidebar.classList.remove(
+                  "open"
+                );
+
+                menuToggle.setAttribute(
+                  "aria-expanded",
+                  "false"
+                );
+
+              }
+
+            }
+          );
+
+        }
+      );
+
+
+    })();
+
+  </script>
+
+</body>
+</html>
 
