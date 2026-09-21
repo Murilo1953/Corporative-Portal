@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <meta name="description"
-        content="LATAM MOC | Technical Operations Portal - Painel operacional para consultas, manutenção e documentação técnica.">
+        content="LATAM MOC | Technical Operations Portal - Painel operacional para consultas, manutenÃ§Ã£o e documentaÃ§Ã£o tÃ©cnica.">
 
   <meta name="theme-color" content="#101827">
 
@@ -25,7 +25,7 @@
        ROOT / DESIGN SYSTEM
        ========================================================= */
 
-    : root{
+    :root{
 
       --primary:#6D2077;
       --primary-dark:#53175e;
@@ -64,7 +64,7 @@
       --sidebar-width:270px;
     }
 
-    body. dark{
+    body.dark{
 
       --bg:#0c111a;
       --card:#151c28;
@@ -95,7 +95,7 @@
     }
 
     html{
-      scroll-behavior: smooth;
+      scroll-behavior:smooth;
     }
 
     body{
@@ -125,18 +125,18 @@
     }
 
     a{
-      color: inherit;
-      text-decoration: none;
+      color:inherit;
+      text-decoration:none;
     }
 
     button,
     input{
-      font-family: inherit;
+      font-family:inherit;
     }
 
     ::selection{
       background:var(--primary);
-      color: white;
+      color:white;
     }
 
 
@@ -146,14 +146,14 @@
 
     .skip-link{
 
-      position: absolute;
+      position:absolute;
       left:-9999px;
-      top: auto;
+      top:auto;
 
       width:1px;
       height:1px;
 
-      overflow: hidden;
+      overflow:hidden;
     }
 
     .skip-link:focus{
@@ -161,12 +161,12 @@
       left:12px;
       top:12px;
 
-      width: auto;
-      height: auto;
+      width:auto;
+      height:auto;
 
       padding:10px 14px;
 
-      background: white;
+      background:white;
       color:#111827;
 
       border-radius:6px;
@@ -189,7 +189,7 @@
 
     .sidebar{
 
-      position: fixed;
+      position:fixed;
 
       left:0;
       top:0;
@@ -207,8 +207,8 @@
 
       color:#fff;
 
-      display: flex;
-      flex-direction: column;
+      display:flex;
+      flex-direction:column;
 
       padding:22px 16px;
 
@@ -216,7 +216,7 @@
 
       z-index:100;
 
-      overflow-y: auto;
+      overflow-y:auto;
 
       box-shadow:
         5px 0 20px rgba(0,0,0,.10);
@@ -229,8 +229,8 @@
 
     .brand{
 
-      display: flex;
-      align-items: center;
+      display:flex;
+      align-items:center;
       gap:12px;
 
       padding:8px 8px 20px;
@@ -246,9 +246,9 @@
       width:40px;
       height:40px;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
 
       background:
         linear-gradient(
@@ -285,13 +285,13 @@
 
       color:#9ca8b8;
 
-      font-family:'Roboto Mono', monospace;
+      font-family:'Roboto Mono',monospace;
 
       font-size:10px;
 
       letter-spacing:.7px;
 
-      text-transform: uppercase;
+      text-transform:uppercase;
     }
 
 
@@ -307,7 +307,7 @@
 
       color:#718096;
 
-      font-family:'Roboto Mono', monospace;
+      font-family:'Roboto Mono',monospace;
 
       font-size:10px;
 
@@ -315,28 +315,28 @@
 
       letter-spacing:1px;
 
-      text-transform: uppercase;
+      text-transform:uppercase;
     }
 
     .nav-list{
 
-      list-style: none;
+      list-style:none;
 
       margin:0;
       padding:0;
 
-      display: flex;
-      flex-direction: column;
+      display:flex;
+      flex-direction:column;
 
       gap:4px;
     }
 
     .nav-list a{
 
-      position: relative;
+      position:relative;
 
-      display: flex;
-      align-items: center;
+      display:flex;
+      align-items:center;
 
       gap:11px;
 
@@ -359,19 +359,19 @@
 
       width:20px;
 
-      text-align: center;
+      text-align:center;
 
       font-size:15px;
 
       opacity:.9;
     }
 
-    .nav-list a: hover{
+    .nav-list a:hover{
 
       background:
         rgba(255,255,255,.07);
 
-      color: white;
+      color:white;
 
       transform:translateX(2px);
     }
@@ -385,7 +385,7 @@
           rgba(228,0,124,.18)
         );
 
-      color: white;
+      color:white;
 
       box-shadow:
         inset 3px 0 0 var(--secondary);
@@ -398,7 +398,7 @@
 
     .sidebar-footer{
 
-      margin-top: auto;
+      margin-top:auto;
 
       padding-top:18px;
 
@@ -408,8 +408,8 @@
 
     .system-status{
 
-      display: flex;
-      align-items: center;
+      display:flex;
+      align-items:center;
       gap:9px;
 
       margin-bottom:12px;
@@ -426,7 +426,7 @@
 
       color:#b9e8d2;
 
-      font-family:'Roboto Mono', monospace;
+      font-family:'Roboto Mono',monospace;
 
       font-size:11px;
     }
@@ -443,7 +443,7 @@
       box-shadow:
         0 0 0 4px rgba(22,163,106,.12);
 
-      animation: pulse 2s infinite;
+      animation:pulse 2s infinite;
     }
 
     @keyframes pulse{
@@ -473,7 +473,7 @@
 
       border-radius:7px;
 
-      cursor: pointer;
+      cursor:pointer;
 
       font-size:12px;
       font-weight:600;
@@ -486,7 +486,7 @@
       background:
         rgba(255,255,255,.10);
 
-      color: white;
+      color:white;
     }
 
 
@@ -510,15 +510,15 @@
 
     .topbar{
 
-      position: sticky;
+      position:sticky;
 
       top:0;
 
       z-index:50;
 
-      display: flex;
+      display:flex;
 
-      align-items: center;
+      align-items:center;
 
       justify-content:space-between;
 
@@ -556,7 +556,7 @@
 
       color:var(--primary);
 
-      font-family:'Roboto Mono', monospace;
+      font-family:'Roboto Mono',monospace;
 
       font-size:11px;
 
@@ -564,7 +564,7 @@
 
       letter-spacing:1.2px;
 
-      text-transform: uppercase;
+      text-transform:uppercase;
     }
 
     .page-title{
@@ -596,8 +596,8 @@
 
     .topbar-tools{
 
-      display: flex;
-      align-items: center;
+      display:flex;
+      align-items:center;
 
       gap:12px;
 
@@ -606,7 +606,7 @@
 
     .search-box{
 
-      position: relative;
+      position:relative;
 
       width:260px;
     }
@@ -629,14 +629,14 @@
 
       border-radius:7px;
 
-      outline: none;
+      outline:none;
 
       font-size:13px;
 
       transition:.2s ease;
     }
 
-    .search-box input: focus{
+    .search-box input:focus{
 
       border-color:var(--primary);
 
@@ -646,7 +646,7 @@
 
     .search-icon{
 
-      position: absolute;
+      position:absolute;
 
       left:13px;
       top:50%;
@@ -657,7 +657,7 @@
 
       font-size:14px;
 
-      pointer-events: none;
+      pointer-events:none;
     }
 
     .utc-clock{
@@ -672,14 +672,14 @@
 
       border-radius:7px;
 
-      text-align: center;
+      text-align:center;
 
-      font-family:'Roboto Mono', monospace;
+      font-family:'Roboto Mono',monospace;
     }
 
     .utc-label{
 
-      display: block;
+      display:block;
 
       color:#8996a8;
 
@@ -690,7 +690,7 @@
 
     .utc-time{
 
-      display: block;
+      display:block;
 
       margin-top:1px;
 
@@ -713,9 +713,9 @@
 
     .section-header{
 
-      display: flex;
+      display:flex;
 
-      align-items: center;
+      align-items:center;
 
       justify-content:space-between;
 
@@ -726,8 +726,8 @@
 
     .section-title-wrap{
 
-      display: flex;
-      align-items: center;
+      display:flex;
+      align-items:center;
 
       gap:10px;
     }
@@ -762,7 +762,7 @@
 
       color:var(--muted);
 
-      font-family:'Roboto Mono', monospace;
+      font-family:'Roboto Mono',monospace;
 
       font-size:10px;
 
@@ -776,7 +776,7 @@
 
     .resource-grid{
 
-      display: grid;
+      display:grid;
 
       grid-template-columns:
         repeat(
@@ -794,10 +794,10 @@
 
     .resource-card{
 
-      position: relative;
+      position:relative;
 
-      display: flex;
-      align-items: center;
+      display:flex;
+      align-items:center;
 
       gap:13px;
 
@@ -814,7 +814,7 @@
 
       box-shadow:var(--shadow);
 
-      overflow: hidden;
+      overflow:hidden;
 
       transition:
         transform .2s ease,
@@ -827,7 +827,7 @@
 
       content:"";
 
-      position: absolute;
+      position:absolute;
 
       left:0;
       top:0;
@@ -844,7 +844,7 @@
 
       transform:scaleY(0);
 
-      transform-origin: center;
+      transform-origin:center;
 
       transition:.2s ease;
     }
@@ -877,9 +877,9 @@
       width:40px;
       height:40px;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
 
       border-radius:7px;
 
@@ -912,7 +912,7 @@
 
     .resource-title{
 
-      display: block;
+      display:block;
 
       color:var(--text);
 
@@ -929,11 +929,11 @@
 
       color:var(--muted);
 
-      font-family:'Roboto Mono', monospace;
+      font-family:'Roboto Mono',monospace;
 
       font-size:9px;
 
-      text-transform: uppercase;
+      text-transform:uppercase;
 
       letter-spacing:.5px;
     }
@@ -965,7 +965,7 @@
 
     .section-a320{
 
-      position: relative;
+      position:relative;
 
       padding:18px;
 
@@ -997,7 +997,7 @@
 
       content:"A320";
 
-      position: absolute;
+      position:absolute;
 
       top:12px;
       right:18px;
@@ -1009,7 +1009,7 @@
           transparent
         );
 
-      font-family:'Roboto Mono', monospace;
+      font-family:'Roboto Mono',monospace;
 
       font-size:28px;
 
@@ -1017,12 +1017,12 @@
 
       letter-spacing:2px;
 
-      pointer-events: none;
+      pointer-events:none;
     }
 
     .section-a320 .section-header{
 
-      position: relative;
+      position:relative;
       z-index:2;
     }
 
@@ -1033,12 +1033,12 @@
 
     .resource-card.hidden{
 
-      display: none;
+      display:none;
     }
 
     .no-results{
 
-      display: none;
+      display:none;
 
       margin-top:12px;
 
@@ -1051,7 +1051,7 @@
 
       color:var(--muted);
 
-      text-align: center;
+      text-align:center;
 
       font-size:13px;
     }
@@ -1063,9 +1063,9 @@
 
     .menu-toggle{
 
-      display: none;
+      display:none;
 
-      position: fixed;
+      position:fixed;
 
       left:14px;
       top:14px;
@@ -1085,7 +1085,7 @@
 
       box-shadow:var(--shadow-md);
 
-      cursor: pointer;
+      cursor:pointer;
 
       font-size:20px;
     }
@@ -1100,7 +1100,7 @@
       .topbar{
 
         align-items:flex-start;
-        flex-direction: column;
+        flex-direction:column;
       }
 
       .topbar-tools{
@@ -1111,7 +1111,7 @@
       .search-box{
 
         flex:1;
-        width: auto;
+        width:auto;
       }
     }
 
@@ -1124,7 +1124,7 @@
 
         width:270px;
 
-        transition: left .25s ease;
+        transition:left .25s ease;
       }
 
       .sidebar.open{
@@ -1134,10 +1134,10 @@
 
       .menu-toggle{
 
-        display: flex;
+        display:flex;
 
-        align-items: center;
-        justify-content: center;
+        align-items:center;
+        justify-content:center;
       }
 
       .main{
@@ -1150,7 +1150,7 @@
 
       .topbar{
 
-        position: relative;
+        position:relative;
 
         margin-bottom:22px;
       }
@@ -1186,8 +1186,8 @@
 
       .topbar-tools{
 
-        flex-direction: column;
-        align-items: stretch;
+        flex-direction:column;
+        align-items:stretch;
       }
 
       .search-box{
@@ -1214,7 +1214,7 @@
 
       .section-a320::after{
 
-        display: none;
+        display:none;
       }
 
       .resource-title{
@@ -1228,7 +1228,7 @@
        DARK MODE ADJUSTMENTS
        ========================================================= */
 
-    body. dark .resource-icon{
+    body.dark .resource-icon{
 
       background:
         rgba(109,32,119,.15);
@@ -1237,7 +1237,7 @@
         rgba(228,0,124,.20);
     }
 
-    body. dark .topbar{
+    body.dark .topbar{
 
       background:
         rgba(21,28,40,.94);
@@ -1254,7 +1254,7 @@
       .menu-toggle,
       .topbar-tools{
 
-        display: none! important;
+        display:none !important;
       }
 
       .main{
@@ -1266,7 +1266,7 @@
 
       .resource-card{
 
-        break-inside: avoid;
+        break-inside:avoid;
       }
     }
 
@@ -1283,7 +1283,7 @@
   <a
     class="skip-link"
     href="#main">
-    Pular para o conteúdo
+    Pular para o conteÃºdo
   </a>
 
 
@@ -1374,7 +1374,7 @@
         <li>
           <a href="#docs">
             <span class="nav-icon">â–¤</span>
-            <span>Documentação Técnica</span>
+            <span>DocumentaÃ§Ã£o TÃ©cnica</span>
           </a>
         </li>
 
@@ -1443,7 +1443,7 @@
         </h1>
 
         <p class="page-description">
-          Central operacional para consultas, manutenção e documentação técnica.
+          Central operacional para consultas, manutenÃ§Ã£o e documentaÃ§Ã£o tÃ©cnica.
         </p>
 
       </div>
@@ -1629,7 +1629,7 @@
           <div class="resource-info">
 
             <span class="resource-title">
-              Situação Estoque Atual
+              SituaÃ§Ã£o Estoque Atual
             </span>
 
             <span class="resource-meta">
@@ -1997,7 +1997,7 @@
           <span class="section-marker"></span>
 
           <h2>
-            Dados Facilitadores Família A320
+            Dados Facilitadores FamÃ­lia A320
           </h2>
 
         </div>
@@ -2021,7 +2021,7 @@
 
           <div class="resource-info">
             <span class="resource-title">
-              Referências de Alpha Call Up
+              ReferÃªncias de Alpha Call Up
             </span>
             <span class="resource-meta">
               Alpha Call Up
@@ -2042,7 +2042,7 @@
 
           <div class="resource-info">
             <span class="resource-title">
-              Guia Localização Computadores
+              Guia LocalizaÃ§Ã£o Computadores
             </span>
             <span class="resource-meta">
               Avionics
@@ -2063,7 +2063,7 @@
 
           <div class="resource-info">
             <span class="resource-title">
-              CFDS BITE Recursos Disponíveis
+              CFDS BITE Recursos DisponÃ­veis
             </span>
             <span class="resource-meta">
               CFDS / BITE
@@ -2168,7 +2168,7 @@
 
           <div class="resource-info">
             <span class="resource-title">
-              Guia Localização CB A320
+              Guia LocalizaÃ§Ã£o CB A320
             </span>
             <span class="resource-meta">
               Circuit Breakers
@@ -2252,7 +2252,7 @@
 
           <div class="resource-info">
             <span class="resource-title">
-              Índice de Resets Permitidos
+              Ãndice de Resets Permitidos
             </span>
             <span class="resource-meta">
               System Reset
@@ -2273,7 +2273,7 @@
 
           <div class="resource-info">
             <span class="resource-title">
-              Índice de Testes Operacionais
+              Ãndice de Testes Operacionais
             </span>
             <span class="resource-meta">
               Operational Tests
@@ -2292,7 +2292,7 @@
 
           <div class="resource-info">
             <span class="resource-title">
-              Explanação Técnica Sistemas A320
+              ExplanaÃ§Ã£o TÃ©cnica Sistemas A320
             </span>
             <span class="resource-meta">
               Excel / Systems
@@ -2476,7 +2476,7 @@
           <span class="section-marker"></span>
 
           <h2>
-            Documentação Técnica
+            DocumentaÃ§Ã£o TÃ©cnica
           </h2>
 
         </div>
@@ -3055,7 +3055,7 @@
         function(){
 
           const query =
-            this. value
+            this.value
               .trim()
               .toLowerCase();
 
@@ -3142,7 +3142,7 @@
           ){
 
             if(
-              !sidebar. contains(
+              !sidebar.contains(
                 event.target
               ) &&
               !menuToggle.contains(
@@ -3199,14 +3199,14 @@
          ===================================================== */
 
       const navLinks =
-        Array. from(
+        Array.from(
           document.querySelectorAll(
             ".nav-list a"
           )
         );
 
       const sections =
-        Array. from(
+        Array.from(
           document.querySelectorAll(
             "main section[id]"
           )
@@ -3262,7 +3262,7 @@
       sections.forEach(
         function(section){
 
-          observer. observe(
+          observer.observe(
             section
           );
 
