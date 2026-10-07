@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <meta name="description"
-        content="LATAM MOC | Technical Operations Portal - Painel operacional para consultas, manutenção e documentação técnica.">
+        content="LATAM MOC | Portal Consultas Técnicas - Painel operacional para consultas, manutenção e documentação técnica.">
 
   <meta name="theme-color" content="#101827">
 
@@ -17,7 +17,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500;600&display=swap"
         rel="stylesheet">
 
-  <title>LATAM MOC | Technical Operations Portal</title>
+  <title>LATAM MOC | Portal Consultas Técnicas</title>
 
   <style>
 
@@ -346,7 +346,7 @@
 
       color:#b9c3d1;
 
-      font-size:14px;
+      font-size:15px;
       font-weight:500;
 
       transition:
@@ -571,7 +571,7 @@
 
       margin:2px 0 0;
 
-      font-size:21px;
+      font-size:24px;
 
       line-height:1.2;
 
@@ -586,7 +586,7 @@
 
       color:var(--muted);
 
-      font-size:12px;
+      font-size:14px;
     }
 
 
@@ -631,7 +631,7 @@
 
       outline:none;
 
-      font-size:13px;
+      font-size:14px;
 
       transition:.2s ease;
     }
@@ -683,7 +683,7 @@
 
       color:#8996a8;
 
-      font-size:9px;
+      font-size:10px;
 
       letter-spacing:1px;
     }
@@ -694,7 +694,7 @@
 
       margin-top:1px;
 
-      font-size:13px;
+      font-size:14px;
 
       font-weight:600;
     }
@@ -751,7 +751,7 @@
 
       margin:0;
 
-      font-size:17px;
+      font-size:20px;
 
       font-weight:700;
 
@@ -764,7 +764,7 @@
 
       font-family:'Roboto Mono',monospace;
 
-      font-size:10px;
+      font-size:11px;
 
       letter-spacing:.8px;
     }
@@ -916,7 +916,7 @@
 
       color:var(--text);
 
-      font-size:14px;
+      font-size:16px;
 
       font-weight:600;
 
@@ -931,7 +931,7 @@
 
       font-family:'Roboto Mono',monospace;
 
-      font-size:9px;
+      font-size:11px;
 
       text-transform:uppercase;
 
@@ -1053,7 +1053,7 @@
 
       text-align:center;
 
-      font-size:13px;
+      font-size:14px;
     }
 
 
@@ -1348,6 +1348,72 @@
   font-weight: 700;
 }
 
+
+/* ===== Centralização para melhor apresentação ===== */
+.section-header {
+    text-align: center;
+}
+
+.section-header h2 {
+    text-align: center;
+}
+
+.resource-card {
+    text-align: center;
+}
+
+.resource-title,
+.resource-meta,
+.no-results {
+    text-align: center;
+}
+
+.page-title,
+.page-description {
+    text-align: center;
+}
+
+/* Mantém o campo de pesquisa e navegação com alinhamento natural */
+.search-box {
+    text-align: left;
+}
+
+.search-box input {
+    text-align: left;
+}
+
+/* Centraliza conteúdos internos dos cartões quando aplicável */
+.resource-card .resource-content {
+    text-align: center;
+}
+
+
+/* ===== Ajustes do cabeçalho principal ===== */
+.page-title {
+    text-align: center;
+    font-size: 27px;
+    font-weight: 800;
+}
+
+.page-description {
+    text-align: center;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+@media (max-width: 768px) {
+    .page-title {
+        text-align: center;
+        font-size: 24px;
+    }
+
+    .page-description {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 600;
+    }
+}
+
 </style>
 </head>
 
@@ -1517,7 +1583,7 @@
         </div>
 
         <h1 class="page-title">
-          Technical Operations Portal
+          Portal Consultas Técnicas
         </h1>
 
         <p class="page-description">
@@ -1592,6 +1658,27 @@
 
 
       <div class="resource-grid">
+
+
+<a class="resource-card"
+           href="https://sites.google.com/latam.com/lc-line-control/facilitadores-a320fam"
+           target="_blank"
+           rel="noopener noreferrer">
+
+          <div class="resource-icon">☎</div>
+
+          <div class="resource-info">
+            <span class="resource-title">
+              Página MOCBR Junior
+            </span>
+            <span class="resource-meta">
+              Excelente
+            </span>
+          </div>
+
+          <span class="resource-arrow">→</span>
+
+        </a>
 
 
         <a
@@ -1968,29 +2055,7 @@
 
         </a>
 
-        <a
-          class="resource-card"
-          href="https://datahub.appslatam.com/"
-          target="_blank"
-          rel="noopener noreferrer">
-
-          <div class="resource-icon">⚙</div>
-
-          <div class="resource-info">
-
-            <span class="resource-title">
-              LATAM DataHub
-            </span>
-
-            <span class="resource-meta">
-              management of data assets
-            </span>
-
-          </div>
-
-          <span class="resource-arrow">→</span>
-
-        </a>
+        
 
 
         
@@ -2163,67 +2228,9 @@
 
       <div class="resource-grid">
 
-        <a class="resource-card"
-           href="https://sites.google.com/latam.com/lc-line-control/facilitadores-a320fam"
-           target="_blank"
-           rel="noopener noreferrer">
-
-          <div class="resource-icon">☎</div>
-
-          <div class="resource-info">
-            <span class="resource-title">
-              Página MOCBR Junior
-            </span>
-            <span class="resource-meta">
-              Excelente
-            </span>
-          </div>
-
-          <span class="resource-arrow">→</span>
-
-        </a>
 
 
-        <a class="resource-card"
-           href="Airbus%20A320%20Family/Alpha_Call_Up_References.html"
-           target="_blank"
-           rel="noopener noreferrer">
-
-          <div class="resource-icon">☎</div>
-
-          <div class="resource-info">
-            <span class="resource-title">
-              Referências de Alpha Call Up
-            </span>
-            <span class="resource-meta">
-              Alpha Call Up
-            </span>
-          </div>
-
-          <span class="resource-arrow">→</span>
-
-        </a>
-
-
-        <a class="resource-card"
-           href="Airbus%20A320%20Family/Avionics_Computers_Visual_Guide.html"
-           target="_blank"
-           rel="noopener noreferrer">
-
-          <div class="resource-icon">▣</div>
-
-          <div class="resource-info">
-            <span class="resource-title">
-              Guia Localização Computadores
-            </span>
-            <span class="resource-meta">
-              Avionics
-            </span>
-          </div>
-
-          <span class="resource-arrow">→</span>
-
-        </a>
+        
 
 
         <a class="resource-card"
@@ -2289,46 +2296,10 @@
         </a>
 
 
-        <a class="resource-card"
-           href="Airbus%20A320%20Family/Flight_Phases_FWC_Visual_Guide.html"
-           target="_blank"
-           rel="noopener noreferrer">
-
-          <div class="resource-icon">✈</div>
-
-          <div class="resource-info">
-            <span class="resource-title">
-              Explanação FMC Flight Phases
-            </span>
-            <span class="resource-meta">
-              Flight Phases
-            </span>
-          </div>
-
-          <span class="resource-arrow">→</span>
-
-        </a>
+        
 
 
-        <a class="resource-card"
-           href="Airbus%20A320%20Family/Guia_A320_Missing_Fasteners.html"
-           target="_blank"
-           rel="noopener noreferrer">
-
-          <div class="resource-icon">⚙</div>
-
-          <div class="resource-info">
-            <span class="resource-title">
-              Guia A320 Missing Fasteners
-            </span>
-            <span class="resource-meta">
-              Structures
-            </span>
-          </div>
-
-          <span class="resource-arrow">→</span>
-
-        </a>
+        
 
 
         <a class="resource-card"
@@ -2457,23 +2428,7 @@
         </a>
 
 
-        <a class="resource-card"
-           href="ms-excel:ofe|u|https://murilo1953.github.io/Corporative-Portal/Airbus%20A320%20Family/Systems%20and%20Panels.xlsm">
-
-          <div class="resource-icon">▦</div>
-
-          <div class="resource-info">
-            <span class="resource-title">
-              Explanação Técnica Sistemas A320
-            </span>
-            <span class="resource-meta">
-              Excel / Systems
-            </span>
-          </div>
-
-          <span class="resource-arrow">→</span>
-
-        </a>
+        
 
 
         <a class="resource-card"
@@ -2894,25 +2849,7 @@
         </a>
 
 
-        <a class="resource-card"
-           href="https://sites.google.com/latam.com/portaldamanutencao/documenta%C3%A7%C3%A3o-t%C3%A9cnica-normativa/iq"
-           target="_blank"
-           rel="noopener noreferrer">
-
-          <div class="resource-icon">⌕</div>
-
-          <div class="resource-info">
-            <span class="resource-title">
-              IQ
-            </span>
-            <span class="resource-meta">
-              Quality / Inspection
-            </span>
-          </div>
-
-          <span class="resource-arrow">→</span>
-
-        </a>
+        
 
 
       </div>
@@ -2950,29 +2887,7 @@
       <div class="resource-grid">
 
 
-        <a
-          class="resource-card"
-          href="https://datastudio.google.com/u/0/reporting/53a98689-6da5-47ab-be45-678dd4633daa/page/p_7gh7oq4ndd"
-          target="_blank"
-          rel="noopener noreferrer">
-
-          <div class="resource-icon">▥</div>
-
-          <div class="resource-info">
-
-            <span class="resource-title">
-              Controle CR & CCM
-            </span>
-
-            <span class="resource-meta">
-              Dashboard
-            </span>
-
-          </div>
-
-          <span class="resource-arrow">→</span>
-
-        </a>
+        
 
 
         <a
@@ -3000,29 +2915,7 @@
         </a>
 
 
-        <a
-          class="resource-card"
-          href="https://drive.google.com/file/d/1jEIF7yKC0t9bFA_Wkj8s4Z4ZWqxIvXlj/view"
-          target="_blank"
-          rel="noopener noreferrer">
-
-          <div class="resource-icon">⌘</div>
-
-          <div class="resource-info">
-
-            <span class="resource-title">
-              Efetividade Softwares BTI-GEN-00-025
-            </span>
-
-            <span class="resource-meta">
-              Software / BTI
-            </span>
-
-          </div>
-
-          <span class="resource-arrow">→</span>
-
-        </a>
+        
 
 
         <a
